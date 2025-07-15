@@ -7,5 +7,6 @@ namespace Casino.Commands
     {
         void Execute( IUserInterface ui, IGameEngine engine, Wallet wallet );
         bool ShouldExit { get; }
+        //TODO Придумать как избавится от флага
     }
 }

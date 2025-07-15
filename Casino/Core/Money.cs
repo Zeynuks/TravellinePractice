@@ -8,7 +8,7 @@ namespace Casino.Core
         public Money(decimal amount)
         {
             if (amount < 0m)
-                throw new Exception("Сумма не может быть отрицательной.");
+                throw new Exception("Значение не может быть отрицательным.");
             Amount = amount;
         }
 

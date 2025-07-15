@@ -11,9 +11,10 @@ namespace Casino.Commands
         {
             Money amount = new( ui.ReadInt( "Введите сумму пополнения:" ) );
 
-            if ( amount <= Money.Zero )
+            if ( amount.Amount <= 0m )
             {
                 ui.WriteLine( "Сумма пополнения должна быть положительной." );
+                
                 return;
             }
 

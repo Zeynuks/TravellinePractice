@@ -4,9 +4,19 @@ using Casino.UI;
 
 namespace Casino
 {
-    public class App( IUserInterface ui, IGameEngine engine, Wallet wallet )
+    public class App
     {
         private readonly CommandFactory _commands = new();
+        private readonly IUserInterface _ui;
+        private readonly IGameEngine _engine;
+        private readonly Wallet _wallet;
+
+        public App( IUserInterface ui, IGameEngine engine, Wallet wallet )
+        {
+            _ui = ui;
+            _engine = engine;
+            _wallet = wallet;
+        }
 
         public void Run()
         {
@@ -14,23 +24,18 @@ namespace Casino
 
             while ( !exitRequested )
             {
-                string input = ui.ReadLine(
+                string input = _ui.ReadLine(
                     "\nВведите команду:\n1. Играть\n2. Проверить баланс\n3. Пополнить баланс\n0. Выход" );
-                ui.Clear();
-                ui.ShowBanner();
+                _ui.Clear();
+                _ui.ShowBanner();
 
                 if ( !_commands.TryGetCommand( input, out ICommand? command ) )
                 {
-                    ui.WriteLine( "Неверная команда. Попробуйте ещё раз." );
+                    _ui.WriteLine( "Неверная команда. Попробуйте ещё раз." );
                     continue;
                 }
 
-                if ( command == null )
-                {
-                    continue;
-                }
-
-                command.Execute( ui, engine, wallet );
+                command!.Execute( _ui, _engine, _wallet );
                 exitRequested = command.ShouldExit;
             }
         }

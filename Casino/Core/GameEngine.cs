@@ -15,6 +15,7 @@ namespace Casino.Core
             }
 
             Money win = bet * ( 1 + ( mult * rolled ) % ( _winThreshold - 1 ) );
+            
             return new WinResult( win );
         }
     }

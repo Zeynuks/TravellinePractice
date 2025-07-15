@@ -15,10 +15,12 @@ namespace Casino.Commands
             if ( _registry.TryGetValue( key, out Func<ICommand>? ctor ) )
             {
                 command = ctor();
+                
                 return true;
             }
 
             command = null;
+            
             return false;
         }
     }

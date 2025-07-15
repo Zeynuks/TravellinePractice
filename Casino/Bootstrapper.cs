@@ -14,6 +14,7 @@ namespace Casino
                 {
                     int initialInput = ui.ReadInt( "Введите начальный баланс:" );
                     Money initialMoney = new( initialInput );
+                    
                     return new Wallet( initialMoney );
                 }
                 catch ( Exception ex )

@@ -12,15 +12,17 @@ namespace Casino.Commands
             Money bet = new( ui.ReadInt( "Введите сумму ставки:" ) );
             int mult = ui.ReadInt( "Введите множитель:" );
 
-            if ( bet <= Money.Zero || mult <= 0 )
+            if ( bet.Amount <= 0m || mult <= 0 )
             {
                 ui.WriteLine( "Ставка и множитель должны быть положительными." );
+                
                 return;
             }
 
             if ( bet > wallet.Balance )
             {
                 ui.WriteLine( "Ставка превышает баланс." );
+                
                 return;
             }
 

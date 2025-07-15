@@ -8,6 +8,8 @@ namespace Casino.Commands
         public bool ShouldExit => true;
 
         public void Execute( IUserInterface ui, IGameEngine engine, Wallet wallet )
-            => ui.WriteLine( "Удачи в следующий раз!" );
+        { 
+            ui.WriteLine( "Удачи в следующий раз!" );
+        }
     }
 }

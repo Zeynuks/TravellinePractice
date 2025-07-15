@@ -15,14 +15,14 @@ namespace Casino.Commands
             if ( bet.Amount <= 0m || mult <= 0 )
             {
                 ui.WriteLine( "Ставка и множитель должны быть положительными." );
-                
+
                 return;
             }
 
             if ( bet > wallet.Balance )
             {
                 ui.WriteLine( "Ставка превышает баланс." );
-                
+
                 return;
             }
 

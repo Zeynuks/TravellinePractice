@@ -14,7 +14,7 @@ namespace Casino.Commands
             if ( amount.Amount <= 0m )
             {
                 ui.WriteLine( "Сумма пополнения должна быть положительной." );
-                
+
                 return;
             }
 

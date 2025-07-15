@@ -11,12 +11,12 @@ namespace Casino.Core
             int rolled = _rand.Next( 1, _maxRoll + 1 );
             if ( rolled < _winThreshold )
             {
-                return new LoseResult( bet );
+                return new BetResult( false, bet );
             }
 
             Money win = bet * ( 1 + ( mult * rolled ) % ( _winThreshold - 1 ) );
-            
-            return new WinResult( win );
+
+            return new BetResult( true, win );
         }
     }
 }

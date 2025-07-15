@@ -10,7 +10,7 @@ namespace Casino.Core
             {
                 throw new Exception( "Баланс не может быть отрицательным." );
             }
-            
+
             Balance = initialBalance;
         }
 

@@ -19,6 +19,7 @@ namespace Casino.UI.Menu
         public void Execute()
         {
             _ui.Clear();
+            _ui.ShowBanner();
             foreach ( ICommand command in _commands )
             {
                 command.Execute();

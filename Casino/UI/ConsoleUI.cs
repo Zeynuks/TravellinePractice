@@ -5,8 +5,8 @@ namespace Casino.UI
     public class ConsoleUi : IUserInterface
     {
         private const string Banner = "\n#############################\n" +
-                                       "##         CASINO          ##\n" +
-                                       "#############################\n";
+                                      "##         CASINO          ##\n" +
+                                      "#############################\n";
 
         public void ShowBanner()
         {
@@ -17,10 +17,10 @@ namespace Casino.UI
         {
             Console.WriteLine( text );
         }
-        
-        public void Write(string text)
+
+        public void Write( string text )
         {
-            Console.Write(text);
+            Console.Write( text );
         }
 
         public string? ReadLine( string? prompt = null )
@@ -42,7 +42,7 @@ namespace Casino.UI
                 {
                     Write( prompt );
                 }
-                
+
                 string? line = ReadLine();
                 if ( line is not null
                      && T.TryParse( line, CultureInfo.CurrentCulture, out T value ) )

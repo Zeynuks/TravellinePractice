@@ -1,15 +1,19 @@
-using Casino.Core;
 using Casino.UI;
 
 namespace Casino.Commands
 {
     public class ExitCommand : ICommand
     {
-        public bool ShouldExit => true;
+        private readonly IUserInterface _ui;
 
-        public void Execute( IUserInterface ui, IGameEngine engine, Wallet wallet )
+        public ExitCommand( IUserInterface ui )
         {
-            ui.WriteLine( "Удачи в следующий раз!" );
+            _ui = ui;
+        }
+
+        public void Execute()
+        {
+            _ui.WriteLine( "Удачи в следующий раз!" );
         }
     }
 }

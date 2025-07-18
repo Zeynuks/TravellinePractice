@@ -7,7 +7,12 @@ namespace Casino.Core
 
         public BetResult PlayRound( Money bet, int mult )
         {
-            int rolled = Random.Shared.Next(1, _maxRoll + 1);
+            if ( bet.Amount <= 0m || mult <= 0 )
+            {
+                throw new Exception( "Ставка и множитель должны быть положительными." );
+            }
+
+            int rolled = Random.Shared.Next( 1, _maxRoll + 1 );
             if ( rolled < _winThreshold )
             {
                 return new BetResult( false, bet );

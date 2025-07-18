@@ -6,16 +6,13 @@ namespace Casino
 {
     public class App
     {
-        private readonly CommandFactory _commands = new();
         private readonly IUserInterface _ui;
-        private readonly IGameEngine _engine;
-        private readonly Wallet _wallet;
+        private readonly CommandFactory _commands;
 
-        public App( IUserInterface ui, IGameEngine engine, Wallet wallet )
+        public App( IUserInterface ui, CommandFactory commands )
         {
             _ui = ui;
-            _engine = engine;
-            _wallet = wallet;
+            _commands = commands;
         }
 
         public void Run()
@@ -24,19 +21,23 @@ namespace Casino
 
             while ( !exitRequested )
             {
-                string input = _ui.ReadLine(
+                string? input = _ui.ReadLine(
                     "\nВведите команду:\n1. Играть\n2. Проверить баланс\n3. Пополнить баланс\n0. Выход" );
                 _ui.Clear();
                 _ui.ShowBanner();
 
-                if ( !_commands.TryGetCommand( input, out ICommand? command ) )
+                if ( input == null || !_commands.TryGetCommand( input, out ICommand? command ) )
                 {
                     _ui.WriteLine( "Неверная команда. Попробуйте ещё раз." );
                     continue;
                 }
 
-                command!.Execute( _ui, _engine, _wallet );
-                exitRequested = command.ShouldExit;
+                if ( command is ExitCommand )
+                {
+                    exitRequested = true;
+                }
+
+                command!.Execute();
             }
         }
     }

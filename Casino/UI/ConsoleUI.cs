@@ -1,39 +1,56 @@
+using System.Globalization;
+
 namespace Casino.UI
 {
     public class ConsoleUi : IUserInterface
     {
-        private const string _banner = "\n#############################\n" +
+        private const string Banner = "\n#############################\n" +
                                        "##         CASINO          ##\n" +
                                        "#############################\n";
 
         public void ShowBanner()
         {
-            WriteLine( _banner );
+            WriteLine( Banner );
         }
 
         public void WriteLine( string text )
         {
             Console.WriteLine( text );
         }
-
-        public string ReadLine( string prompt )
+        
+        public void Write(string text)
         {
-            WriteLine( prompt );
-
-            return Console.ReadLine() ?? "";
+            Console.Write(text);
         }
 
-        public int ReadInt( string prompt )
+        public string? ReadLine( string? prompt = null )
+        {
+            if ( prompt != null )
+            {
+                Write( prompt );
+            }
+
+            return Console.ReadLine();
+        }
+
+        public T ReadValue<T>( string? prompt = null )
+            where T : struct, IParsable<T>
         {
             while ( true )
             {
-                WriteLine( prompt );
-                if ( int.TryParse( Console.ReadLine(), out int val ) )
+                if ( prompt is not null )
                 {
-                    return val;
+                    Write( prompt );
+                }
+                
+                string? line = ReadLine();
+                if ( line is not null
+                     && T.TryParse( line, CultureInfo.CurrentCulture, out T value ) )
+                {
+                    return value;
                 }
 
-                WriteLine( "Неверный ввод. Введите целое число." );
+                WriteLine( $"Некорректный ввод. Введите значение типа {typeof( T ).Name}." );
             }
         }
 

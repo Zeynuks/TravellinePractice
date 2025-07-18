@@ -5,21 +5,28 @@ namespace Casino.Commands
 {
     public class DepositCommand : ICommand
     {
-        public bool ShouldExit => false;
+        private readonly IUserInterface _ui;
+        private readonly Wallet _wallet;
 
-        public void Execute( IUserInterface ui, IGameEngine engine, Wallet wallet )
+        public DepositCommand( IUserInterface ui, Wallet wallet )
         {
-            Money amount = new( ui.ReadInt( "Введите сумму пополнения:" ) );
+            _ui = ui;
+            _wallet = wallet;
+        }
+
+        public void Execute()
+        {
+            Money amount = new( _ui.ReadValue<int>( "Введите сумму пополнения:" ) );
 
             if ( amount.Amount <= 0m )
             {
-                ui.WriteLine( "Сумма пополнения должна быть положительной." );
+                _ui.WriteLine( "Сумма пополнения должна быть положительной." );
 
                 return;
             }
 
-            wallet.Credit( amount );
-            ui.WriteLine( $"Баланс успешно пополнен на {amount}. Текущий баланс: {wallet.Balance}" );
+            _wallet.Credit( amount );
+            _ui.WriteLine( $"Баланс успешно пополнен на {amount}. Текущий баланс: {_wallet.Balance}" );
         }
     }
 }

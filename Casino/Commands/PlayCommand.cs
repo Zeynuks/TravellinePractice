@@ -5,38 +5,38 @@ namespace Casino.Commands
 {
     public class PlayCommand : ICommand
     {
-        public bool ShouldExit => false;
+        private readonly IUserInterface _ui;
+        private readonly IGameEngine _engine;
+        private readonly Wallet _wallet;
 
-        public void Execute( IUserInterface ui, IGameEngine engine, Wallet wallet )
+        public PlayCommand( IUserInterface ui, IGameEngine engine, Wallet wallet )
         {
-            Money bet = new( ui.ReadInt( "Введите сумму ставки:" ) );
-            int mult = ui.ReadInt( "Введите множитель:" );
+            _ui = ui;
+            _engine = engine;
+            _wallet = wallet;
+        }
 
-            if ( bet.Amount <= 0m || mult <= 0 )
+        public void Execute()
+        {
+            Money bet = new( _ui.ReadValue<int>( "Введите сумму ставки:" ) );
+            int mult = _ui.ReadValue<int>( "Введите множитель:" );
+
+            if ( bet > _wallet.Balance )
             {
-                ui.WriteLine( "Ставка и множитель должны быть положительными." );
-
-                return;
+                throw new Exception( "Ставка превышает баланс." );
             }
 
-            if ( bet > wallet.Balance )
-            {
-                ui.WriteLine( "Ставка превышает баланс." );
-
-                return;
-            }
-
-            wallet.Debit( bet );
-            BetResult result = engine.PlayRound( bet, mult );
+            _wallet.Debit( bet );
+            BetResult result = _engine.PlayRound( bet, mult );
 
             if ( result.IsWin )
             {
-                wallet.Credit( result.Amount );
-                ui.WriteLine( $"Вы выиграли {result.Amount} монет." );
+                _wallet.Credit( result.Amount );
+                _ui.WriteLine( $"Вы выиграли {result.Amount} монет." );
             }
             else
             {
-                ui.WriteLine( $"Вы проиграли {result.Amount} монет." );
+                _ui.WriteLine( $"Вы проиграли {result.Amount} монет." );
             }
         }
     }

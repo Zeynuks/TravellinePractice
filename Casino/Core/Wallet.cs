@@ -38,8 +38,7 @@ namespace Casino.Core
 
             try
             {
-                decimal newAmount = Balance.Amount + amount.Amount;
-                Balance = new Money( newAmount );
+                Balance += amount;
             }
             catch ( Exception )
             {

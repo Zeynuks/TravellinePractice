@@ -5,11 +5,18 @@ namespace Casino.Commands
 {
     public class CheckBalanceCommand : ICommand
     {
-        public bool ShouldExit => false;
+        private readonly IUserInterface _ui;
+        private readonly Wallet _wallet;
 
-        public void Execute( IUserInterface ui, IGameEngine engine, Wallet wallet )
+        public CheckBalanceCommand( IUserInterface ui, Wallet wallet )
         {
-            ui.WriteLine( $"Ваш баланс: {wallet.Balance}" );
+            _ui = ui;
+            _wallet = wallet;
+        }
+
+        public void Execute()
+        {
+            _ui.WriteLine( $"Ваш баланс: {_wallet.Balance}" );
         }
     }
 }

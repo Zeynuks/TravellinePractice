@@ -23,7 +23,7 @@ namespace Casino.Core
             {
                 throw new Exception( "Недостаточно средств." );
             }
-            
+
             return new Money( a.Amount - b.Amount );
         }
 

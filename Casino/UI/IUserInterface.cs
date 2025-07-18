@@ -4,8 +4,12 @@ namespace Casino.UI
     {
         void ShowBanner();
         void WriteLine( string text );
-        string ReadLine( string prompt );
-        int ReadInt( string prompt );
+        public void Write( string text );
+        string? ReadLine( string? prompt = null );
+
+        T ReadValue<T>( string? prompt = null )
+            where T : struct, IParsable<T>;
+
         void Clear();
     }
 }

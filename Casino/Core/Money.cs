@@ -1,6 +1,8 @@
+using System.Globalization;
+
 namespace Casino.Core
 {
-    public readonly struct Money
+    public readonly struct Money : IParsable<Money>
     {
         public decimal Amount { get; }
 
@@ -43,5 +45,36 @@ namespace Casino.Core
         public static bool operator <=( Money a, Money b ) => a.Amount <= b.Amount;
 
         public override string ToString() => Amount.ToString( "0.##" );
+
+        public static Money Parse( string s, IFormatProvider? provider )
+        {
+            if ( decimal.TryParse( s, NumberStyles.Currency, provider ?? CultureInfo.InvariantCulture,
+                    out decimal result ) )
+            {
+                return new Money( result );
+            }
+
+            throw new Exception( "Неверный формат для Money." );
+        }
+
+        public static bool TryParse( string? s, IFormatProvider? provider, out Money result )
+        {
+            result = default;
+
+            if ( string.IsNullOrEmpty( s ) )
+            {
+                return false;
+            }
+
+            if ( !decimal.TryParse( s, NumberStyles.Currency, provider ?? CultureInfo.InvariantCulture,
+                    out decimal amount ) )
+            {
+                return false;
+            }
+
+            result = new Money( amount );
+
+            return true;
+        }
     }
 }

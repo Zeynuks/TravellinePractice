@@ -7,9 +7,9 @@ namespace Casino.Core
 
         public BetResult PlayRound( Money bet, int mult )
         {
-            if ( bet.Amount <= 0m || mult <= 0 )
+            if ( mult <= 0 )
             {
-                throw new Exception( "Ставка и множитель должны быть положительными." );
+                throw new Exception( "Множитель должен быть положительными." );
             }
 
             int rolled = Random.Shared.Next( 1, _maxRoll + 1 );

@@ -16,7 +16,7 @@ namespace Casino.Command
 
         public void Execute()
         {
-            Money amount = new( _ui.ReadValue<int>( "Введите сумму пополнения:" ) );
+            Money amount = _ui.ReadValue<Money>( "Введите сумму пополнения:" );
 
             if ( amount.Amount <= 0m )
             {

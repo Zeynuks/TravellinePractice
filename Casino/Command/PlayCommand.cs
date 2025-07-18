@@ -18,7 +18,7 @@ namespace Casino.Command
 
         public void Execute()
         {
-            Money bet = new( _ui.ReadValue<int>( "Введите сумму ставки:" ) );
+            Money bet = _ui.ReadValue<Money>( "Введите сумму ставки:" );
             int mult = _ui.ReadValue<int>( "Введите множитель:" );
 
             if ( bet > _wallet.Balance )

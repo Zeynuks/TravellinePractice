@@ -12,8 +12,7 @@ namespace Casino
             {
                 try
                 {
-                    int initialInput = ui.ReadValue<int>( "Введите начальный баланс:" );
-                    Money initialMoney = new( initialInput );
+                    Money initialMoney = ui.ReadValue<Money>( "Введите начальный баланс:" );
 
                     return new Wallet( initialMoney );
                 }

@@ -1,7 +1,7 @@
 using Casino.Core;
 using Casino.UI;
 
-namespace Casino.Commands
+namespace Casino.Command
 {
     public class PlayCommand : ICommand
     {

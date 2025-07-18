@@ -1,4 +1,4 @@
-namespace Casino.Commands
+namespace Casino.Command
 {
     public interface ICommand
     {

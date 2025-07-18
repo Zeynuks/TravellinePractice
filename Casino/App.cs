@@ -1,44 +1,23 @@
-using Casino.Commands;
-using Casino.Core;
 using Casino.UI;
+using Casino.UI.Menu;
 
 namespace Casino
 {
     public class App
     {
         private readonly IUserInterface _ui;
-        private readonly CommandFactory _commands;
+        private readonly Menu _menu;
 
-        public App( IUserInterface ui, CommandFactory commands )
+        public App( IUserInterface ui, Menu menu )
         {
             _ui = ui;
-            _commands = commands;
+            _menu = menu;
         }
 
         public void Run()
         {
-            bool exitRequested = false;
-
-            while ( !exitRequested )
-            {
-                string? input = _ui.ReadLine(
-                    "\nВведите команду:\n1. Играть\n2. Проверить баланс\n3. Пополнить баланс\n0. Выход" );
-                _ui.Clear();
-                _ui.ShowBanner();
-
-                if ( input == null || !_commands.TryGetCommand( input, out ICommand? command ) )
-                {
-                    _ui.WriteLine( "Неверная команда. Попробуйте ещё раз." );
-                    continue;
-                }
-
-                if ( command is ExitCommand )
-                {
-                    exitRequested = true;
-                }
-
-                command!.Execute();
-            }
+            _menu.Execute();
+            _ui.WriteLine( "Удачи в следующий раз!" );
         }
     }
 }

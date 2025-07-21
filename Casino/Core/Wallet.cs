@@ -1,6 +1,6 @@
 namespace Casino.Core
 {
-    public class Wallet
+    public class Wallet: IWallet
     {
         public Money Balance { get; private set; }
 

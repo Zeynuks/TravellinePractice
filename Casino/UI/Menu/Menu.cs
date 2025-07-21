@@ -1,3 +1,5 @@
+using Casino.Core;
+
 namespace Casino.UI.Menu
 {
     public class Menu : IMenuComponent
@@ -5,6 +7,7 @@ namespace Casino.UI.Menu
         public string Title { get; }
         private readonly List<IMenuComponent> _items = [ ];
         private readonly IUserInterface _ui;
+        private const int ExitValue = 0;
 
         public Menu( IUserInterface userInterface, string title )
         {
@@ -34,11 +37,11 @@ namespace Casino.UI.Menu
                         _ui.WriteLine( $"{i + 1}. {_items[ i ].Title}" );
                     }
 
-                    _ui.WriteLine( "0. Выход" );
+                    _ui.WriteLine( $"{ExitValue}. Выход" );
 
                     int choice = _ui.ReadValue<int>();
 
-                    if ( choice == 0 )
+                    if ( choice == ExitValue )
                     {
                         break;
                     }
@@ -48,6 +51,7 @@ namespace Casino.UI.Menu
                         _ui.Clear();
                         _ui.ShowBanner();
                         _ui.WriteLine( "Неверный выбор, попробуйте снова." );
+                        
                         continue;
                     }
 

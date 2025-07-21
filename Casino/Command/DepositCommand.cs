@@ -6,9 +6,9 @@ namespace Casino.Command
     public class DepositCommand : ICommand
     {
         private readonly IUserInterface _ui;
-        private readonly Wallet _wallet;
+        private readonly IWallet _wallet;
 
-        public DepositCommand( IUserInterface ui, Wallet wallet )
+        public DepositCommand( IUserInterface ui, IWallet wallet )
         {
             _ui = ui;
             _wallet = wallet;

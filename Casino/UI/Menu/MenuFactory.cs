@@ -7,9 +7,9 @@ namespace Casino.UI.Menu
     {
         private readonly IUserInterface _ui;
         private readonly IGameEngine _engine;
-        private readonly Wallet _wallet; //Стоит ли сделать интерфейс IWallet?
+        private readonly IWallet _wallet;
 
-        public MenuFactory( IUserInterface ui, IGameEngine engine, Wallet wallet )
+        public MenuFactory( IUserInterface ui, IGameEngine engine, IWallet wallet )
         {
             _ui = ui;
             _engine = engine;

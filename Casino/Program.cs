@@ -10,7 +10,7 @@ namespace Casino
         {
             IUserInterface ui = new ConsoleUi();
             IGameEngine engine = new GameEngine();
-            Wallet wallet = Bootstrapper.InitializeWallet( ui );
+            IWallet wallet = Bootstrapper.InitializeWallet( ui );
 
             MenuFactory menuFactory = new( ui, engine, wallet );
             Menu casinoMenu = new( ui, "Введите команду:" );

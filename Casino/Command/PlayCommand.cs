@@ -7,9 +7,9 @@ namespace Casino.Command
     {
         private readonly IUserInterface _ui;
         private readonly IGameEngine _engine;
-        private readonly Wallet _wallet;
+        private readonly IWallet _wallet;
 
-        public PlayCommand( IUserInterface ui, IGameEngine engine, Wallet wallet )
+        public PlayCommand( IUserInterface ui, IGameEngine engine, IWallet wallet )
         {
             _ui = ui;
             _engine = engine;

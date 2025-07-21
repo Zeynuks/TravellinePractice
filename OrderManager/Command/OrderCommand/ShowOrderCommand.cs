@@ -1,0 +1,39 @@
+using OrderManager.Model;
+using OrderManager.Service;
+using OrderManager.UI;
+
+namespace OrderManager.Command.OrderCommand
+{
+    public class ShowOrderCommand : ICommand
+    {
+        private readonly IUserInterface _ui;
+        private readonly OrderService _orderService;
+        private readonly Guid _orderId;
+
+        public ShowOrderCommand( IUserInterface ui, OrderService orderService, Guid orderId )
+        {
+            _ui = ui;
+            _orderService = orderService;
+            _orderId = orderId;
+        }
+
+        public void Execute()
+        {
+            try
+            {
+                Order order = _orderService.GetOrderById( _orderId );
+
+                _ui.WriteLine( $"Номер заказа: {order.Id}" );
+                _ui.WriteLine( $"Товар: {order.Product}" );
+                _ui.WriteLine( $"Количество: {order.Quantity}" );
+                _ui.WriteLine( $"Адрес доставки: {order.Address}" );
+                _ui.WriteLine( $"Ожидаемая дата доставки: {order.ExpectedDelivery:dd.MM.yy}" );
+                _ui.WriteLine( $"Статус: {order.OrderStatus}" );
+            }
+            catch ( Exception ex )
+            {
+                _ui.WriteLine( ex.Message );
+            }
+        }
+    }
+}

@@ -1,0 +1,32 @@
+using OrderManager.Service;
+using OrderManager.UI;
+
+namespace OrderManager.Command.OrderCommand
+{
+    public class CancelOrderCommand : ICommand
+    {
+        private readonly IUserInterface _ui;
+        private readonly OrderService _orderService;
+        private readonly Guid _orderId;
+
+        public CancelOrderCommand( IUserInterface ui, OrderService orderService, Guid orderId )
+        {
+            _ui = ui;
+            _orderService = orderService;
+            _orderId = orderId;
+        }
+
+        public void Execute()
+        {
+            try
+            {
+                _orderService.DeleteOrder( _orderId );
+                _ui.WriteLine( "Заказ отменен." );
+            }
+            catch ( Exception ex )
+            {
+                _ui.WriteLine( ex.Message );
+            }
+        }
+    }
+}

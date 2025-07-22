@@ -30,19 +30,19 @@ namespace OrderManager.Command.CustomerCommand
                 if ( customer == null )
                 {
                     _ui.WriteLine( "Клиент не найден." );
-                    
+
                     return;
                 }
 
                 Menu customerMenu = new( _ui );
-                customerMenu.Add( "1", new MenuAction( _ui, "Просмотр заказов",
+                customerMenu.Add( "1", new MenuAction( "Просмотр заказов",
                     new ShowOrderListCommand( _ui, _orderService, _customerId ) ) );
-                customerMenu.Add( "2", new MenuAction( _ui, "Новый заказ заказа",
+                customerMenu.Add( "2", new MenuAction( "Новый заказ заказа",
                     new NewOrderCommand( _ui, _orderService, _customerId ) ) );
-                customerMenu.Add( "3", new MenuAction( _ui, "Удалить клиента",
-                    new RemoveCustomerCommand( _ui, _customerService,_orderService,  _customerId ) ), true );
-                customerMenu.Add( "0", new MenuAction( _ui, "Выход" ), true );
-                
+                customerMenu.Add( "3", new MenuAction( "Удалить клиента",
+                    new RemoveCustomerCommand( _ui, _customerService, _orderService, _customerId ) ), true );
+                customerMenu.Add( "0", new MenuAction( "Выход" ), true );
+
                 customerMenu.Execute();
             }
             catch ( Exception ex )

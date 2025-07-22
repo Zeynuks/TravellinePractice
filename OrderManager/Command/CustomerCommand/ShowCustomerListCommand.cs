@@ -35,11 +35,11 @@ namespace OrderManager.Command.CustomerCommand
                 for ( int i = 0; i < customers.Count; i++ )
                 {
                     Customer customer = customers[ i ];
-                    customerMenu.Add( $"{++i}", new MenuAction( _ui, $"{customer.Name}",
+                    customerMenu.Add( $"{++i}", new MenuAction( $"{customer.Name}",
                         new ShowCustomerMenuCommand( _ui, _customerService, _orderService, customer.Id ) ), true );
                 }
 
-                customerMenu.Add( "0", new MenuAction( _ui, "Выход" ), true );
+                customerMenu.Add( "0", new MenuAction( "Выход" ), true );
 
                 customerMenu.Execute();
             }

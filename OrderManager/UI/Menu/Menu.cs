@@ -34,16 +34,16 @@ namespace OrderManager.UI.Menu
                 if ( !string.IsNullOrEmpty( Title ) )
                     _ui.WriteLine( Title );
 
-                foreach ( var item in _items )
+                foreach ( KeyValuePair<string, (IMenuComponent Component, bool IsExit)> item in _items )
                 {
                     _ui.WriteLine( $"{item.Key}. {item.Value.Component.Title}" );
                 }
 
                 string? choice = _ui.ReadLine();
+                _ui.Clear();
 
                 if ( choice == null || !_items.TryGetValue( choice, out var entry ) )
                 {
-                    _ui.Clear();
                     _ui.WriteLine( "Неверный выбор, попробуйте снова." );
                     continue;
                 }

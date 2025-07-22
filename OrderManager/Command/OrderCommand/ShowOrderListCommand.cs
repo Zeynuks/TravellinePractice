@@ -34,13 +34,13 @@ namespace OrderManager.Command.OrderCommand
                 for ( int i = 0; i < orders.Count; i++ )
                 {
                     Order order = orders[ i ];
-                    orderMenu.Add( $"{++i}", new MenuAction( _ui,
+                    orderMenu.Add( $"{++i}", new MenuAction(
                         $"Номер заказа: {order.Product}, Статус: {order.OrderStatus}, " +
                         $"Дата доставки: {order.ExpectedDelivery:d}",
                         new ShowOrderMenuCommand( _ui, _orderService, order.Id ) ), true );
                 }
 
-                orderMenu.Add( "0", new MenuAction( _ui, "Выход" ), true );
+                orderMenu.Add( "0", new MenuAction( "Выход" ), true );
 
                 orderMenu.Execute();
             }

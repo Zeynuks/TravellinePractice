@@ -22,13 +22,13 @@ namespace OrderManager.Command.OrderCommand
             try
             {
                 Menu menu = new( _ui );
-                menu.Add( "1", new MenuAction( _ui, "Информация о заказе",
+                menu.Add( "1", new MenuAction( "Информация о заказе",
                     new ShowOrderCommand( _ui, _orderService, _orderId ) ) );
-                menu.Add( "2", new MenuAction( _ui, "Изменить дату или адрес доставки",
+                menu.Add( "2", new MenuAction( "Изменить дату или адрес доставки",
                     new EditOrderCommand( _ui, _orderService, _orderId ) ) );
-                menu.Add( "3", new MenuAction( _ui, "Отменить заказ",
+                menu.Add( "3", new MenuAction( "Отменить заказ",
                     new CancelOrderCommand( _ui, _orderService, _orderId ) ), true );
-                menu.Add( "0", new MenuAction( _ui, "Выход" ), true );
+                menu.Add( "0", new MenuAction( "Выход" ), true );
 
                 menu.Execute();
             }

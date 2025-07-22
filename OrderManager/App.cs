@@ -23,11 +23,11 @@ namespace OrderManager
         {
             Menu customerListMenu = new( _ui, "Выберите пользователя:" );
 
-            customerListMenu.Add( "1", new MenuAction( _ui, "Новый пользователь",
+            customerListMenu.Add( "1", new MenuAction( "Новый пользователь",
                 new NewCustomerCommand( _ui, _customerService, _orderService ) ) );
-            customerListMenu.Add( "2", new MenuAction( _ui, "Список пользователей",
+            customerListMenu.Add( "2", new MenuAction( "Список пользователей",
                 new ShowCustomerListCommand( _ui, _customerService, _orderService ) ) );
-            customerListMenu.Add( "0", new MenuAction( _ui, "Выход" ), true );
+            customerListMenu.Add( "0", new MenuAction( "Выход" ), true );
 
             customerListMenu.Execute();
             _ui.WriteLine( "Спасибо за использование нашего сервиса. До свидания!" );

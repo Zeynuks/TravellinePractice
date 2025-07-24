@@ -33,7 +33,7 @@ namespace OrderManager.Command.CustomerCommand
             try
             {
                 IReadOnlyList<Customer> customers = _customerService.GetAllCustomers();
-                if ( customers.Count == 0 )
+                if ( !customers.Any() )
                 {
                     _ui.WriteLine( "Список пользователей пуст." );
                     return Results.Continue();

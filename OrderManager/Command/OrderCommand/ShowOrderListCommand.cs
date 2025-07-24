@@ -33,7 +33,7 @@ namespace OrderManager.Command.OrderCommand
             try
             {
                 IReadOnlyList<Order> orders = _orderService.GetOrdersByCustomerId( _customerId );
-                if ( orders.Count == 0 )
+                if ( !orders.Any() )
                 {
                     _ui.WriteLine( "У клиента нет заказов." );
                     return Results.Continue();
@@ -48,7 +48,7 @@ namespace OrderManager.Command.OrderCommand
                         _orderService,
                         order.Id,
                         _registry );
-                    
+
                     items.Add( ( ( i + 1 ).ToString(),
                         new NavigateCommand( orderMenu.MenuId, orderMenu.Title ), false ) );
                 }

@@ -15,7 +15,7 @@ namespace OrderManager.Core.Service
         public IReadOnlyList<Order> GetOrdersByCustomerId( Guid customerId )
         {
             IReadOnlyList<Order> orders = _orderRepository.GetOrdersByCustomerId( customerId );
-            if ( orders == null || orders.Count == 0 )
+            if ( orders is null || !orders.Any() )
             {
                 throw new Exception( "У вас нет заказов." );
             }
@@ -26,7 +26,7 @@ namespace OrderManager.Core.Service
         public void DeleteOrder( Guid orderId )
         {
             Order? order = _orderRepository.GetOrderById( orderId );
-            if ( order == null )
+            if ( order is null )
             {
                 throw new Exception( "Заказ не найден." );
             }
@@ -43,7 +43,7 @@ namespace OrderManager.Core.Service
         public Order GetOrderById( Guid orderId )
         {
             Order? order = _orderRepository.GetOrderById( orderId );
-            if ( order == null )
+            if ( order is null )
             {
                 throw new Exception( "Заказ не найден." );
             }
@@ -54,7 +54,7 @@ namespace OrderManager.Core.Service
         public void UpdateOrder( Guid orderId, DateTime newDate, string? newAddress )
         {
             Order? order = _orderRepository.GetOrderById( orderId );
-            if ( order == null )
+            if ( order is null )
             {
                 throw new Exception( "Заказ не найден." );
             }

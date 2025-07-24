@@ -42,7 +42,7 @@ namespace OrderManager.Core.Service
         public bool RemoveCustomer( Guid customerId )
         {
             Customer? customer = _customerRepository.GetCustomerById( customerId );
-            if ( customer == null )
+            if ( customer is null )
             {
                 throw new Exception( "Клиент не найден." );
             }

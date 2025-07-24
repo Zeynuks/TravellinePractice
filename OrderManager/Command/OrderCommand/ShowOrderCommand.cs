@@ -34,7 +34,7 @@ namespace OrderManager.Command.OrderCommand
                 _ui.WriteLine( $"Адрес доставки: {order.Address}" );
                 _ui.WriteLine( $"Дата заказа: {order.CreatedAt}" );
                 _ui.WriteLine( $"Ожидаемая дата доставки: {order.ExpectedDelivery:dd.MM.yy}" );
-                _ui.WriteLine( $"Статус: {order.OrderStatus}" );
+                _ui.WriteLine( $"Статус: {order.Status}" );
             }
             catch ( Exception ex )
             {

@@ -31,12 +31,12 @@ namespace OrderManager.Core.Service
                 throw new Exception( "Заказ не найден." );
             }
 
-            if ( order.OrderStatus == Order.Status.Cancelled || order.OrderStatus == Order.Status.Delivered )
+            if ( order.Status is OrderStatus.Cancelled or OrderStatus.Delivered )
             {
                 throw new Exception( "Этот заказ нельзя отменить, он уже доставлен или отменен." );
             }
 
-            order.OrderStatus = Order.Status.Cancelled;
+            order.Status = OrderStatus.Cancelled;
             _orderRepository.UpdateOrder( order );
         }
 
@@ -59,7 +59,7 @@ namespace OrderManager.Core.Service
                 throw new Exception( "Заказ не найден." );
             }
 
-            if ( order.OrderStatus == Order.Status.Delivered || order.OrderStatus == Order.Status.Cancelled )
+            if ( order.Status == OrderStatus.Delivered || order.Status == OrderStatus.Cancelled )
             {
                 throw new Exception( "Этот заказ нельзя обновить, он уже доставлен или отменен." );
             }

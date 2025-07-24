@@ -2,13 +2,6 @@ namespace OrderManager.Core.Model
 {
     public class Order
     {
-        public enum Status
-        {
-            Shipped,
-            Delivered,
-            Cancelled,
-        }
-
         public Guid Id { get; }
         public string Product { get; }
         public int Quantity { get; set; }
@@ -16,7 +9,7 @@ namespace OrderManager.Core.Model
         public string Address { get; set; }
         public DateTime CreatedAt { get; }
         public DateTime ExpectedDelivery { get; set; }
-        public Status OrderStatus { get; set; }
+        public OrderStatus Status { get; set; }
 
         public Order( string product, int quantity, Guid customerId, string address )
         {
@@ -42,7 +35,7 @@ namespace OrderManager.Core.Model
             Address = address;
             CreatedAt = DateTime.Now;
             ExpectedDelivery = CreatedAt.Date.AddDays( 3 );
-            OrderStatus = Status.Shipped;
+            Status = OrderStatus.Shipped;
         }
     }
 }

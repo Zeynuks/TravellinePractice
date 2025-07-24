@@ -6,7 +6,7 @@ using OrderManager.Core.Service;
 
 namespace OrderManager.Command.OrderCommand
 {
-    public sealed class EditOrderCommand : ICommand
+    public class EditOrderCommand : ICommand
     {
         public string Title => "Изменить дату или адрес доставки";
         private readonly IUserInterface _ui;

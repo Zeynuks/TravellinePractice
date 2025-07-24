@@ -8,7 +8,7 @@ using OrderManager.Core.Service;
 
 namespace OrderManager.Command.OrderCommand
 {
-    public sealed class NewOrderCommand : ICommand
+    public class NewOrderCommand : ICommand
     {
         public string Title => "Новый заказ";
         private readonly IUserInterface _ui;

@@ -5,7 +5,7 @@ using OrderManager.Core.Service;
 
 namespace OrderManager.Command.OrderCommand
 {
-    public sealed class CancelOrderCommand : ICommand
+    public class CancelOrderCommand : ICommand
     {
         public string Title => "Отменить заказ";
         private readonly IUserInterface _ui;

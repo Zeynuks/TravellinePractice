@@ -5,7 +5,7 @@ using OrderManager.Core.Service;
 
 namespace OrderManager.Command.CustomerCommand
 {
-    public sealed class RemoveCustomerCommand : ICommand
+    public class RemoveCustomerCommand : ICommand
     {
         public string Title => "Удалить клиента";
         private readonly IUserInterface _ui;

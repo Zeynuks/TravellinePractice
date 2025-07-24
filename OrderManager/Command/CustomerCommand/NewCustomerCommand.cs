@@ -7,7 +7,7 @@ using OrderManager.Core.Service;
 
 namespace OrderManager.Command.CustomerCommand
 {
-    public sealed class NewCustomerCommand : ICommand
+    public class NewCustomerCommand : ICommand
     {
         public string Title => "Новый пользователь";
         private readonly IUserInterface _ui;

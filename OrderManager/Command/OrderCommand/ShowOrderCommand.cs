@@ -6,7 +6,7 @@ using OrderManager.Core.Service;
 
 namespace OrderManager.Command.OrderCommand
 {
-    public sealed class ShowOrderCommand : ICommand
+    public class ShowOrderCommand : ICommand
     {
         public string Title => "Информация о заказе";
         private readonly IUserInterface _ui;

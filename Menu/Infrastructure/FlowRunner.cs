@@ -6,7 +6,7 @@ namespace Menu.Infrastructure
     /// <summary>
     /// Управляет исполнением команд меню, поддерживая стек навигации.
     /// </summary>
-    public sealed class FlowRunner
+    public class FlowRunner
     {
         private readonly ICommandRegistry _registry;
         private readonly Stack<ICommand> _stack = new();

@@ -30,8 +30,8 @@ namespace Menu.Infrastructure
         {
             while (_stack.Count > 0)
             {
-                var current = _stack.Peek();
-                var res = current.Execute();
+                ICommand current = _stack.Peek();
+                CommandResult res = current.Execute();
 
                 switch (res.Action)
                 {
@@ -41,14 +41,14 @@ namespace Menu.Infrastructure
                         _stack.Pop();
                         continue;
                     case FlowAction.Navigate:
-                        if (res.NextMenuId == null || !_registry.TryGet(res.NextMenuId, out var next))
+                        if (res.NextMenuId is null || !_registry.TryGet(res.NextMenuId, out ICommand? next))
                         {
                             throw new InvalidOperationException($"Неизвестный id: {res.NextMenuId}");
                         }
 
                         _stack.Push(next!);
                         continue;
-                    case FlowAction.ExitApp:
+                    case FlowAction.Exit:
                         return;
                     default:
                         throw new ArgumentOutOfRangeException();

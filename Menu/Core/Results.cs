@@ -10,7 +10,7 @@ namespace Menu.Core
         /// <summary>Результат возврата к предыдущему меню.</summary>
         public static CommandResult Back()     => new(FlowAction.Back);
         /// <summary>Результат выхода из приложения.</summary>
-        public static CommandResult Exit()     => new(FlowAction.ExitApp);
+        public static CommandResult Exit()     => new(FlowAction.Exit);
         /// <summary>Результат перехода к меню с указанным идентификатором.</summary>
         /// <param name="id">Идентификатор целевого меню.</param>
         public static CommandResult Navigate(string id) => new(FlowAction.Navigate, id);

@@ -12,6 +12,6 @@ namespace Menu.Core
         /// <summary>Перейти к следующему меню по идентификатору.</summary>
         Navigate,
         /// <summary>Выйти из приложения.</summary>
-        ExitApp
+        Exit
     }
 }

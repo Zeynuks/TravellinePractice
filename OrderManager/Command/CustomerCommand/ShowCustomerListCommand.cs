@@ -2,9 +2,9 @@ using Menu.Commands;
 using Menu.Core;
 using Menu.Infrastructure;
 using Menu.UI;
+using OrderManager.Core;
 using OrderManager.Core.Model;
 using OrderManager.Core.Service;
-using OrderManager.Infrastructure;
 
 namespace OrderManager.Command.CustomerCommand
 {

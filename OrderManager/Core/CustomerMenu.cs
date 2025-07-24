@@ -6,7 +6,7 @@ using OrderManager.Command.OrderCommand;
 using OrderManager.Core.Model;
 using OrderManager.Core.Service;
 
-namespace OrderManager.Infrastructure
+namespace OrderManager.Core
 {
     public static class CustomerMenu
     {

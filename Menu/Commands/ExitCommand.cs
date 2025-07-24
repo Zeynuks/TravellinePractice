@@ -12,7 +12,7 @@ namespace Menu.Commands
         /// <returns>Результат действия выхода.</returns>
         public CommandResult Execute()
         {
-            return Results.Back();
+            return Results.Exit();
         }
     }
 }

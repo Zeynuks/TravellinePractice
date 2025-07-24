@@ -24,7 +24,7 @@ namespace Menu.Infrastructure
         }
 
         /// <summary>
-        /// Запускает цикл обработки команд до достижения действия <see cref="FlowAction.ExitApp"/>.
+        /// Запускает цикл обработки команд до достижения действия <see cref="FlowAction.Exit"/>.
         /// </summary>
         public void Run()
         {

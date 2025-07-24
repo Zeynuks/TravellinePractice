@@ -36,8 +36,7 @@ namespace OrderManager.UI
                 }
 
                 string? line = ReadLine();
-                if ( line is not null
-                     && T.TryParse( line, CultureInfo.CurrentCulture, out T value ) )
+                if ( line is not null && T.TryParse( line, CultureInfo.CurrentCulture, out T value ) )
                 {
                     return value;
                 }

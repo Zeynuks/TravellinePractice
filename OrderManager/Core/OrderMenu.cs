@@ -9,7 +9,10 @@ namespace OrderManager.Core
 {
     public static class OrderMenu
     {
-        public static MenuCommand BuildOrderMenu( IUserInterface ui, OrderService os, Guid orderId,
+        public static MenuCommand BuildOrderMenu( 
+            IUserInterface ui, 
+            OrderService os, 
+            Guid orderId,
             ICommandRegistry registry )
         {
             Order order = os.GetOrderById( orderId );

@@ -10,8 +10,12 @@ namespace OrderManager.Core
 {
     public static class CustomerMenu
     {
-        public static MenuCommand BuildCustomerMenu( IUserInterface ui, CustomerService cs, OrderService os,
-            Guid customerId, ICommandRegistry registry )
+        public static MenuCommand BuildCustomerMenu( 
+            IUserInterface ui, 
+            CustomerService cs, 
+            OrderService os,
+            Guid customerId, 
+            ICommandRegistry registry )
         {
             Customer? customer = cs.GetCustomerById( customerId );
             string title = customer is null ? "Клиент (не найден)" : $"Клиент: {customer.Name}";

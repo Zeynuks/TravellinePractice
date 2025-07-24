@@ -32,6 +32,7 @@ namespace OrderManager.Command.OrderCommand
                 _ui.WriteLine( $"Товар: {order.Product}" );
                 _ui.WriteLine( $"Количество: {order.Quantity}" );
                 _ui.WriteLine( $"Адрес доставки: {order.Address}" );
+                _ui.WriteLine( $"Дата заказа: {order.CreatedAt}" );
                 _ui.WriteLine( $"Ожидаемая дата доставки: {order.ExpectedDelivery:dd.MM.yy}" );
                 _ui.WriteLine( $"Статус: {order.OrderStatus}" );
             }

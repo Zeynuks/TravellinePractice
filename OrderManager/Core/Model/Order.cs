@@ -1,4 +1,4 @@
-namespace OrderManager.Model
+namespace OrderManager.Core.Model
 {
     public class Order
     {

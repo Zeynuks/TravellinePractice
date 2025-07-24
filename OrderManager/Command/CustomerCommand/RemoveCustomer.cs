@@ -1,16 +1,22 @@
-using OrderManager.Service;
-using OrderManager.UI;
+using Menu.Commands;
+using Menu.Core;
+using Menu.UI;
+using OrderManager.Core.Service;
 
 namespace OrderManager.Command.CustomerCommand
 {
-    public class RemoveCustomerCommand : ICommand
+    public sealed class RemoveCustomerCommand : ICommand
     {
+        public string Title => "Удалить клиента";
         private readonly IUserInterface _ui;
         private readonly CustomerService _customerService;
         private readonly OrderService _orderService;
         private readonly Guid _customerId;
 
-        public RemoveCustomerCommand( IUserInterface ui, CustomerService customerService, OrderService orderService,
+        public RemoveCustomerCommand(
+            IUserInterface ui,
+            CustomerService customerService,
+            OrderService orderService,
             Guid customerId )
         {
             _ui = ui;
@@ -19,19 +25,21 @@ namespace OrderManager.Command.CustomerCommand
             _customerId = customerId;
         }
 
-        public void Execute()
+        public CommandResult Execute()
         {
             try
             {
-                bool isRemoved = _customerService.RemoveCustomer( _customerId );
+                bool ok = _customerService.RemoveCustomer( _customerId );
                 _orderService.DeleteOrdersByCustomerId( _customerId );
 
-                _ui.WriteLine( isRemoved ? "Клиент успешно удален." : "Не удалось удалить клиента." );
+                _ui.WriteLine( ok ? "Клиент успешно удален." : "Не удалось удалить клиента." );
             }
             catch ( Exception ex )
             {
                 _ui.WriteLine( ex.Message );
             }
+
+            return Results.Back();
         }
     }
 }

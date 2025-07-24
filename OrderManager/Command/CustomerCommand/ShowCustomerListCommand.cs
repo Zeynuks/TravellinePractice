@@ -1,24 +1,34 @@
-using OrderManager.Model;
-using OrderManager.Service;
-using OrderManager.UI;
-using OrderManager.UI.Menu;
+using Menu.Commands;
+using Menu.Core;
+using Menu.Infrastructure;
+using Menu.UI;
+using OrderManager.Core.Model;
+using OrderManager.Core.Service;
+using OrderManager.Infrastructure;
 
 namespace OrderManager.Command.CustomerCommand
 {
-    public class ShowCustomerListCommand : ICommand
+    public sealed class ShowCustomerListCommand : ICommand
     {
+        public string Title => "Список пользователей";
         private readonly IUserInterface _ui;
         private readonly CustomerService _customerService;
         private readonly OrderService _orderService;
+        private readonly ICommandRegistry _registry;
 
-        public ShowCustomerListCommand( IUserInterface ui, CustomerService customerService, OrderService orderService )
+        public ShowCustomerListCommand(
+            IUserInterface ui,
+            CustomerService customerService,
+            OrderService orderService,
+            ICommandRegistry registry )
         {
             _ui = ui;
             _customerService = customerService;
             _orderService = orderService;
+            _registry = registry;
         }
 
-        public void Execute()
+        public CommandResult Execute()
         {
             try
             {
@@ -26,26 +36,37 @@ namespace OrderManager.Command.CustomerCommand
                 if ( customers.Count == 0 )
                 {
                     _ui.WriteLine( "Список пользователей пуст." );
-
-                    return;
+                    return Results.Continue();
                 }
 
-                Menu customerMenu = new( _ui );
-
+                List<(string, ICommand, bool)> items = [ ];
                 for ( int i = 0; i < customers.Count; i++ )
                 {
                     Customer customer = customers[ i ];
-                    customerMenu.Add( $"{++i}", new MenuAction( $"{customer.Name}",
-                        new ShowCustomerMenuCommand( _ui, _customerService, _orderService, customer.Id ) ), true );
+                    MenuCommand customerMenu = CustomerMenu.BuildCustomerMenu(
+                        _ui,
+                        _customerService,
+                        _orderService,
+                        customer.Id,
+                        _registry );
+                    
+                    items.Add( ( ( i + 1 ).ToString(),
+                        new NavigateCommand( customerMenu.MenuId, customerMenu.Title ), false ) );
                 }
 
-                customerMenu.Add( "0", new MenuAction( "Выход" ), true );
+                items.Add( ( "0", new BackCommand(), true ) );
 
-                customerMenu.Execute();
+                string menuId = $"customers-{Guid.NewGuid()}";
+                MenuCommand menu = new( _ui, menuId, "Выберите пользователя:", items );
+                _registry.Add( menu );
+
+                return Results.Navigate( menuId );
             }
             catch ( Exception ex )
             {
                 _ui.WriteLine( ex.Message );
+
+                return Results.Continue();
             }
         }
     }

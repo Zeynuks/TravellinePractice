@@ -1,38 +1,53 @@
-using OrderManager.Model;
-using OrderManager.Service;
-using OrderManager.UI;
+using Menu.Commands;
+using Menu.Core;
+using Menu.Infrastructure;
+using Menu.UI;
+using OrderManager.Core.Service;
+using OrderManager.Infrastructure;
 
 namespace OrderManager.Command.CustomerCommand
 {
-    public class NewCustomerCommand : ICommand
+    public sealed class NewCustomerCommand : ICommand
     {
+        public string Title => "Новый пользователь";
         private readonly IUserInterface _ui;
         private readonly CustomerService _customerService;
         private readonly OrderService _orderService;
+        private readonly ICommandRegistry _registry;
 
-        public NewCustomerCommand( IUserInterface ui, CustomerService customerService, OrderService orderService )
+        public NewCustomerCommand(
+            IUserInterface ui,
+            CustomerService customerService,
+            OrderService orderService,
+            ICommandRegistry registry )
         {
             _ui = ui;
             _customerService = customerService;
             _orderService = orderService;
+            _registry = registry;
         }
 
-        public void Execute()
+        public CommandResult Execute()
         {
             try
             {
-                string? customerName = _ui.ReadLine( "Введите имя клиента:" );
+                string? name = _ui.ReadLine( "Введите имя клиента: " );
+                Guid id = _customerService.CreateCustomer( name );
+                MenuCommand menu = CustomerMenu.BuildCustomerMenu(
+                    _ui,
+                    _customerService,
+                    _orderService,
+                    id,
+                    _registry
+                );
 
-                Guid customerId = _customerService.CreateCustomer( customerName );
-
-                ShowCustomerMenuCommand customerMenuCommand =
-                    new( _ui, _customerService, _orderService, customerId );
-
-                customerMenuCommand.Execute();
+                return Results.Navigate( menu.MenuId );
             }
             catch ( Exception ex )
             {
                 _ui.WriteLine( ex.Message );
+
+                return Results.Continue();
             }
         }
     }

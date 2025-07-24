@@ -1,38 +1,51 @@
-using OrderManager.Model;
-using OrderManager.Service;
-using OrderManager.UI;
+using Menu.Commands;
+using Menu.Core;
+using Menu.Infrastructure;
+using Menu.UI;
+using OrderManager.Core.Model;
+using OrderManager.Core.Service;
+using OrderManager.Infrastructure;
 
 namespace OrderManager.Command.OrderCommand
 {
-    public class NewOrderCommand : ICommand
+    public sealed class NewOrderCommand : ICommand
     {
+        public string Title => "Новый заказ";
         private readonly IUserInterface _ui;
         private readonly OrderService _orderService;
         private readonly Guid _customerId;
+        private readonly ICommandRegistry _registry;
 
-        public NewOrderCommand( IUserInterface ui, OrderService orderService, Guid customerId )
+        public NewOrderCommand(
+            IUserInterface ui,
+            OrderService orderService,
+            Guid customerId,
+            ICommandRegistry registry )
         {
             _ui = ui;
             _orderService = orderService;
             _customerId = customerId;
+            _registry = registry;
         }
 
-        public void Execute()
+        public CommandResult Execute()
         {
             try
             {
-                string? product = _ui.ReadLine( "Введите название товара:" );
-                int quantity = _ui.ReadValue<int>( "Введите количество:" );
-                string? address = _ui.ReadLine( "Введите адрес доставки:" );
+                string? product = _ui.ReadLine( "Введите название товара: " );
+                int quantity = _ui.ReadValue<int>( "Введите количество: " );
+                string? addr = _ui.ReadLine( "Введите адрес доставки: " );
 
-                Order newOrder = _orderService.CreateOrder( _customerId, product, quantity, address );
-                ShowOrderMenuCommand showOrderMenuCommand = new( _ui, _orderService, newOrder.Id );
+                Order order = _orderService.CreateOrder( _customerId, product, quantity, addr );
+                MenuCommand menu = OrderMenu.BuildOrderMenu( _ui, _orderService, order.Id, _registry );
 
-                showOrderMenuCommand.Execute();
+                return Results.Navigate( menu.MenuId );
             }
             catch ( Exception ex )
             {
                 _ui.WriteLine( ex.Message );
+
+                return Results.Continue();
             }
         }
     }

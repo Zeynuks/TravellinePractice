@@ -1,5 +1,9 @@
-﻿using OrderManager.Repository;
-using OrderManager.Service;
+﻿using Menu.Commands;
+using Menu.Infrastructure;
+using Menu.UI;
+using OrderManager.Command.CustomerCommand;
+using OrderManager.Core.Repository;
+using OrderManager.Core.Service;
 using OrderManager.UI;
 
 namespace OrderManager
@@ -16,8 +20,20 @@ namespace OrderManager
 
             IUserInterface ui = new ConsoleUi();
 
-            App app = new( ui, customerService, orderService );
-            app.Run();
+            CommandRegistry registry = new();
+
+            List<(string, ICommand, bool)> mainMenuItems =
+            [
+                ( "1", new NewCustomerCommand( ui, customerService, orderService, registry ), false ),
+                ( "2", new ShowCustomerListCommand( ui, customerService, orderService, registry ), false ),
+                ( "0", new ExitCommand(), false )
+            ];
+
+            MenuCommand mainMenu = new( ui, "main", "Главное меню:", mainMenuItems );
+            registry.Add( mainMenu );
+
+            new FlowRunner( mainMenu, registry ).Run();
+            ui.WriteLine( "Спасибо за использование нашего сервиса. До свидания!" );
         }
     }
 }

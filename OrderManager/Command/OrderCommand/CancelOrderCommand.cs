@@ -1,22 +1,28 @@
-using OrderManager.Service;
-using OrderManager.UI;
+using Menu.Commands;
+using Menu.Core;
+using Menu.UI;
+using OrderManager.Core.Service;
 
 namespace OrderManager.Command.OrderCommand
 {
-    public class CancelOrderCommand : ICommand
+    public sealed class CancelOrderCommand : ICommand
     {
+        public string Title => "Отменить заказ";
         private readonly IUserInterface _ui;
         private readonly OrderService _orderService;
         private readonly Guid _orderId;
 
-        public CancelOrderCommand( IUserInterface ui, OrderService orderService, Guid orderId )
+        public CancelOrderCommand(
+            IUserInterface ui,
+            OrderService orderService,
+            Guid orderId )
         {
             _ui = ui;
             _orderService = orderService;
             _orderId = orderId;
         }
 
-        public void Execute()
+        public CommandResult Execute()
         {
             try
             {
@@ -27,6 +33,8 @@ namespace OrderManager.Command.OrderCommand
             {
                 _ui.WriteLine( ex.Message );
             }
+
+            return Results.Back();
         }
     }
 }

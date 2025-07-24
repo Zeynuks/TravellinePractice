@@ -1,7 +1,7 @@
-using OrderManager.Model;
-using OrderManager.Repository;
+using OrderManager.Core.Model;
+using OrderManager.Core.Repository;
 
-namespace OrderManager.Service
+namespace OrderManager.Core.Service
 {
     public class CustomerService
     {

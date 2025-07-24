@@ -1,24 +1,34 @@
-using OrderManager.Model;
-using OrderManager.Service;
-using OrderManager.UI;
-using OrderManager.UI.Menu;
+using Menu.Commands;
+using Menu.Core;
+using Menu.Infrastructure;
+using Menu.UI;
+using OrderManager.Core.Model;
+using OrderManager.Core.Service;
+using OrderManager.Infrastructure;
 
 namespace OrderManager.Command.OrderCommand
 {
-    public class ShowOrderListCommand : ICommand
+    public sealed class ShowOrderListCommand : ICommand
     {
+        public string Title => "Просмотр заказов";
         private readonly IUserInterface _ui;
         private readonly OrderService _orderService;
         private readonly Guid _customerId;
+        private readonly ICommandRegistry _registry;
 
-        public ShowOrderListCommand( IUserInterface ui, OrderService orderService, Guid customerId )
+        public ShowOrderListCommand(
+            IUserInterface ui,
+            OrderService orderService,
+            Guid customerId,
+            ICommandRegistry registry )
         {
             _ui = ui;
             _orderService = orderService;
             _customerId = customerId;
+            _registry = registry;
         }
 
-        public void Execute()
+        public CommandResult Execute()
         {
             try
             {
@@ -26,27 +36,35 @@ namespace OrderManager.Command.OrderCommand
                 if ( orders.Count == 0 )
                 {
                     _ui.WriteLine( "У клиента нет заказов." );
-
-                    return;
+                    return Results.Continue();
                 }
 
-                Menu orderMenu = new( _ui );
+                List<(string, ICommand, bool)> items = [ ];
                 for ( int i = 0; i < orders.Count; i++ )
                 {
                     Order order = orders[ i ];
-                    orderMenu.Add( $"{++i}", new MenuAction(
-                        $"Номер заказа: {order.Product}, Статус: {order.OrderStatus}, " +
-                        $"Дата доставки: {order.ExpectedDelivery:d}",
-                        new ShowOrderMenuCommand( _ui, _orderService, order.Id ) ), true );
+                    MenuCommand orderMenu = OrderMenu.BuildOrderMenu(
+                        _ui,
+                        _orderService,
+                        order.Id,
+                        _registry );
+                    
+                    items.Add( ( ( i + 1 ).ToString(),
+                        new NavigateCommand( orderMenu.MenuId, orderMenu.Title ), false ) );
                 }
 
-                orderMenu.Add( "0", new MenuAction( "Выход" ), true );
+                items.Add( ( "0", new BackCommand(), true ) );
 
-                orderMenu.Execute();
+                string menuId = $"orders-{_customerId}";
+                MenuCommand menu = new( _ui, menuId, "Заказы клиента:", items );
+                _registry.Add( menu );
+
+                return Results.Navigate( menuId );
             }
             catch ( Exception ex )
             {
                 _ui.WriteLine( ex.Message );
+                return Results.Continue();
             }
         }
     }

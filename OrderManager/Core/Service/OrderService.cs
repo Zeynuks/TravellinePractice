@@ -1,7 +1,7 @@
-using OrderManager.Model;
-using OrderManager.Repository;
+using OrderManager.Core.Model;
+using OrderManager.Core.Repository;
 
-namespace OrderManager.Service
+namespace OrderManager.Core.Service
 {
     public class OrderService
     {
@@ -14,7 +14,7 @@ namespace OrderManager.Service
 
         public IReadOnlyList<Order> GetOrdersByCustomerId( Guid customerId )
         {
-            var orders = _orderRepository.GetOrdersByCustomerId( customerId );
+            IReadOnlyList<Order> orders = _orderRepository.GetOrdersByCustomerId( customerId );
             if ( orders == null || orders.Count == 0 )
             {
                 throw new Exception( "У вас нет заказов." );
@@ -25,7 +25,7 @@ namespace OrderManager.Service
 
         public void DeleteOrder( Guid orderId )
         {
-            var order = _orderRepository.GetOrderById( orderId );
+            Order? order = _orderRepository.GetOrderById( orderId );
             if ( order == null )
             {
                 throw new Exception( "Заказ не найден." );
@@ -42,7 +42,7 @@ namespace OrderManager.Service
 
         public Order GetOrderById( Guid orderId )
         {
-            var order = _orderRepository.GetOrderById( orderId );
+            Order? order = _orderRepository.GetOrderById( orderId );
             if ( order == null )
             {
                 throw new Exception( "Заказ не найден." );
@@ -53,7 +53,7 @@ namespace OrderManager.Service
 
         public void UpdateOrder( Guid orderId, DateTime newDate, string? newAddress )
         {
-            var order = _orderRepository.GetOrderById( orderId );
+            Order? order = _orderRepository.GetOrderById( orderId );
             if ( order == null )
             {
                 throw new Exception( "Заказ не найден." );

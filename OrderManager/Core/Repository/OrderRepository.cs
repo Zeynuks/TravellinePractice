@@ -1,6 +1,6 @@
-using OrderManager.Model;
+using OrderManager.Core.Model;
 
-namespace OrderManager.Repository
+namespace OrderManager.Core.Repository
 {
     public class OrderRepository
     {

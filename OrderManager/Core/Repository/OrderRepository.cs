@@ -34,6 +34,7 @@ namespace OrderManager.Core.Repository
                 .Where( order => order.CustomerId == customerId )
                 .Select( order => order.Id )
                 .ToList();
+            
             foreach ( Guid id in idsToRemove )
             {
                 _orders.Remove( id );

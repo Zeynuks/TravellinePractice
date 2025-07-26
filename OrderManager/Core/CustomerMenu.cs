@@ -20,12 +20,12 @@ namespace OrderManager.Core
             Customer? customer = cs.GetCustomerById( customerId );
             string title = customer is null ? "Клиент (не найден)" : $"Клиент: {customer.Name}";
 
-            List<(string, ICommand, bool)> items =
+            List<(string, ICommand)> items =
             [
-                ( "1", new NewOrderCommand( ui, os, customerId, registry ), false ),
-                ( "2", new ShowOrderListCommand( ui, os, customerId, registry ), false ),
-                ( "3", new RemoveCustomerCommand( ui, cs, os, customerId ), false ),
-                ( "0", new BackCommand(), true )
+                ( "1", new NewOrderCommand( ui, os, customerId, registry ) ),
+                ( "2", new ShowOrderListCommand( ui, os, customerId, registry ) ),
+                ( "3", new RemoveCustomerCommand( ui, cs, os, customerId ) ),
+                ( "0", new BackCommand() )
             ];
 
             MenuCommand menu = new( ui, $"customer-{customerId}", title, items );

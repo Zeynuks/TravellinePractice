@@ -8,7 +8,7 @@ namespace Menu.Commands
     /// </summary>
     public class MenuCommand : ICommand
     {
-        private record MenuOption( string Title, ICommand Command, bool IsExit );
+        private record MenuOption( string Title, ICommand Command );
 
         private readonly IUserInterface _ui;
         private readonly IReadOnlyDictionary<string, MenuOption> _options;
@@ -37,16 +37,16 @@ namespace Menu.Commands
             IUserInterface ui,
             string menuId,
             string? title,
-            IEnumerable<(string Key, ICommand Cmd, bool IsExit)> items )
+            IEnumerable<(string Key, ICommand Cmd)> items )
         {
             _ui = ui ?? throw new ArgumentNullException( nameof( ui ) );
             MenuId = menuId ?? throw new ArgumentNullException( nameof( menuId ) );
             Title = string.IsNullOrWhiteSpace( title ) ? "Выберите команду:" : title!;
 
             Dictionary<string, MenuOption> dict = new( StringComparer.OrdinalIgnoreCase );
-            foreach ( var (key, cmd, isExit) in items )
+            foreach ( var (key, cmd) in items )
             {
-                dict[ key ] = new MenuOption( cmd.Title, cmd, isExit );
+                dict[ key ] = new MenuOption( cmd.Title, cmd );
             }
 
             _options = dict;
@@ -70,9 +70,7 @@ namespace Menu.Commands
 
             if ( choice is not null && _options.TryGetValue( choice, out MenuOption? opt ) )
             {
-                CommandResult result = opt.Command.Execute();
-
-                return opt.IsExit ? Results.Back() : result;
+                return opt.Command.Execute();
             }
 
             _ui.WriteLine( "Неверный выбор, попробуйте снова." );

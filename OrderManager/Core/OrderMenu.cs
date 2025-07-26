@@ -19,12 +19,12 @@ namespace OrderManager.Core
             string title =
                 $"Заказ: {order.Product}, в количестве {order.Quantity}. Дата доставки: {order.ExpectedDelivery}";
 
-            List<(string, ICommand, bool)> items =
+            List<(string, ICommand)> items =
             [
-                ( "1", new ShowOrderCommand( ui, os, orderId ), false ),
-                ( "2", new EditOrderCommand( ui, os, orderId ), false ),
-                ( "3", new CancelOrderCommand( ui, os, orderId ), false ),
-                ( "0", new BackCommand(), true )
+                ( "1", new ShowOrderCommand( ui, os, orderId ) ),
+                ( "2", new EditOrderCommand( ui, os, orderId ) ),
+                ( "3", new CancelOrderCommand( ui, os, orderId ) ),
+                ( "0", new BackCommand() )
             ];
             MenuCommand menu = new( ui, $"order-{orderId}", $"Заказ: {title}", items );
             registry.Add( menu );

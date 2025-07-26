@@ -39,7 +39,7 @@ namespace OrderManager.Command.CustomerCommand
                     return Results.Continue();
                 }
 
-                List<(string, ICommand, bool)> items = [ ];
+                List<(string, ICommand)> items = [ ];
                 for ( int i = 0; i < customers.Count; i++ )
                 {
                     Customer customer = customers[ i ];
@@ -51,10 +51,10 @@ namespace OrderManager.Command.CustomerCommand
                         _registry );
                     
                     items.Add( ( ( i + 1 ).ToString(),
-                        new NavigateCommand( customerMenu.MenuId, customerMenu.Title ), false ) );
+                        new NavigateCommand( customerMenu.MenuId, customerMenu.Title ) ) );
                 }
 
-                items.Add( ( "0", new BackCommand(), true ) );
+                items.Add( ( "0", new BackCommand() ) );
 
                 string menuId = $"customers-{Guid.NewGuid()}";
                 MenuCommand menu = new( _ui, menuId, "Выберите пользователя:", items );

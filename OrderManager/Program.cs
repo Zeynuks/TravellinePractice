@@ -22,11 +22,11 @@ namespace OrderManager
 
             CommandRegistry registry = new();
 
-            List<(string, ICommand, bool)> mainMenuItems =
+            List<(string, ICommand)> mainMenuItems =
             [
-                ( "1", new NewCustomerCommand( ui, customerService, orderService, registry ), false ),
-                ( "2", new ShowCustomerListCommand( ui, customerService, orderService, registry ), false ),
-                ( "0", new ExitCommand(), false )
+                ( "1", new NewCustomerCommand( ui, customerService, orderService, registry ) ),
+                ( "2", new ShowCustomerListCommand( ui, customerService, orderService, registry ) ),
+                ( "0", new ExitCommand() )
             ];
 
             MenuCommand mainMenu = new( ui, "main", "Главное меню:", mainMenuItems );

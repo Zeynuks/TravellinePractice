@@ -7,12 +7,12 @@ namespace Menu.Infrastructure
     {
         /// <summary>Добавляет команду в реестр.</summary>
         /// <param name="cmd">Команда с уникальным <see cref="ICommand.Title"/> или <c>null</c>.</param>
-        void Add(ICommand cmd);
+        void Add( ICommand cmd );
 
         /// <summary>Пытается получить команду по её идентификатору.</summary>
         /// <param name="id">Идентификатор команды.</param>
         /// <param name="cmd">Найденная команда или <c>null</c>.</param>
         /// <returns><c>true</c>, если команда найдена; иначе <c>false</c>.</returns>
-        bool TryGet(string id, out ICommand? cmd);
+        bool TryGet( string id, out ICommand? cmd );
     }
 }

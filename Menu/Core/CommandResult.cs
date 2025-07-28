@@ -7,5 +7,5 @@ namespace Menu.Core
     /// <param name="NextMenuId">
     /// Идентификатор следующего меню (используется при навигации), либо <c>null</c>.
     /// </param>
-    public record CommandResult(FlowAction Action, string? NextMenuId = null);
+    public record CommandResult( FlowAction Action, string? NextMenuId = null );
 }

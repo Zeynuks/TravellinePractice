@@ -5,8 +5,10 @@ namespace Menu.Commands
     /// <summary>Команда возврата к предыдущему пункту меню.</summary>
     public class BackCommand : ICommand
     {
+        private const string _title = "Назад";
+
         /// <inheritdoc/>
-        public string Title => "Назад";
+        public string Title => _title;
 
         /// <summary>Выполняет действие возврата назад.</summary>
         /// <returns>Результат действия возврата.</returns>

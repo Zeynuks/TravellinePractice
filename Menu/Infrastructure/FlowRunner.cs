@@ -9,7 +9,7 @@ namespace Menu.Infrastructure
     public class FlowRunner
     {
         private readonly ICommandRegistry _registry;
-        private readonly Stack<ICommand> _stack = new();
+        private readonly Stack<ICommand> _menuStack = new();
 
         /// <summary>
         /// Создаёт новый экземпляр <see cref="FlowRunner"/>.
@@ -17,10 +17,10 @@ namespace Menu.Infrastructure
         /// <param name="start">Стартовая команда (корневое меню).</param>
         /// <param name="registry">Реестр для поиска команд по идентификатору.</param>
         /// <exception cref="ArgumentNullException">Если <paramref name="start"/> или <paramref name="registry"/> равны <c>null</c>.</exception>
-        public FlowRunner(ICommand start, ICommandRegistry registry)
+        public FlowRunner( ICommand start, ICommandRegistry registry )
         {
-            _registry = registry ;
-            _stack.Push(start);
+            _registry = registry;
+            _menuStack.Push( start );
         }
 
         /// <summary>
@@ -28,25 +28,25 @@ namespace Menu.Infrastructure
         /// </summary>
         public void Run()
         {
-            while (_stack.Count > 0)
+            while ( _menuStack.Any())
             {
-                ICommand current = _stack.Peek();
+                ICommand current = _menuStack.Peek();
                 CommandResult res = current.Execute();
 
-                switch (res.Action)
+                switch ( res.Action )
                 {
                     case FlowAction.Continue:
                         continue;
                     case FlowAction.Back:
-                        _stack.Pop();
+                        _menuStack.Pop();
                         continue;
                     case FlowAction.Navigate:
-                        if (res.NextMenuId is null || !_registry.TryGet(res.NextMenuId, out ICommand? next))
+                        if ( res.NextMenuId is null || !_registry.TryGet( res.NextMenuId, out ICommand? next ) )
                         {
-                            throw new InvalidOperationException($"Неизвестный id: {res.NextMenuId}");
+                            throw new InvalidOperationException( $"Неизвестный id: {res.NextMenuId}" );
                         }
 
-                        _stack.Push(next!);
+                        _menuStack.Push( next! );
                         continue;
                     case FlowAction.Exit:
                         return;

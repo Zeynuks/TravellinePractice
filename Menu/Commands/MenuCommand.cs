@@ -11,7 +11,7 @@ namespace Menu.Commands
         private record MenuOption( string Title, ICommand Command );
 
         private readonly IUserInterface _ui;
-        private readonly IReadOnlyDictionary<string, MenuOption> _options;
+        private readonly Dictionary<string, MenuOption> _options = new();
 
         /// <summary>Уникальный идентификатор меню.</summary>
         public string MenuId { get; }
@@ -36,20 +36,11 @@ namespace Menu.Commands
         public MenuCommand(
             IUserInterface ui,
             string menuId,
-            string? title,
-            IEnumerable<(string Key, ICommand Cmd)> items )
+            string? title )
         {
             _ui = ui ?? throw new ArgumentNullException( nameof( ui ) );
             MenuId = menuId ?? throw new ArgumentNullException( nameof( menuId ) );
             Title = string.IsNullOrWhiteSpace( title ) ? "Выберите команду:" : title!;
-
-            Dictionary<string, MenuOption> dict = new( StringComparer.OrdinalIgnoreCase );
-            foreach ( var (key, cmd) in items )
-            {
-                dict[ key ] = new MenuOption( cmd.Title, cmd );
-            }
-
-            _options = dict;
         }
 
         /// <summary>
@@ -63,7 +54,9 @@ namespace Menu.Commands
         {
             _ui.WriteLine( Title );
             foreach ( KeyValuePair<string, MenuOption> kv in _options )
+            {
                 _ui.WriteLine( $"{kv.Key}. {kv.Value.Title}" );
+            }
 
             string? choice = _ui.ReadLine( "> " );
             _ui.Clear();
@@ -76,6 +69,14 @@ namespace Menu.Commands
             _ui.WriteLine( "Неверный выбор, попробуйте снова." );
 
             return Results.Continue();
+        }
+
+        public void InsertOption( string key, ICommand command )
+        {
+            if ( !_options.ContainsKey( key ) )
+            {
+                _options[ key ] = new MenuOption( command.Title, command );
+            }
         }
     }
 }

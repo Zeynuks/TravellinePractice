@@ -29,10 +29,10 @@ namespace OrderManager.Command.CustomerCommand
         {
             try
             {
-                bool ok = _customerService.RemoveCustomer( _customerId );
+                bool isSuccess = _customerService.RemoveCustomer( _customerId );
                 _orderService.DeleteOrdersByCustomerId( _customerId );
 
-                _ui.WriteLine( ok ? "Клиент успешно удален." : "Не удалось удалить клиента." );
+                _ui.WriteLine( isSuccess ? "Клиент успешно удален." : "Не удалось удалить клиента." );
             }
             catch ( Exception ex )
             {

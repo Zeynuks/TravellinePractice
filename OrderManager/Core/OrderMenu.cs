@@ -9,24 +9,22 @@ namespace OrderManager.Core
 {
     public static class OrderMenu
     {
-        public static MenuCommand BuildOrderMenu( 
-            IUserInterface ui, 
-            OrderService os, 
+        public static MenuCommand BuildOrderMenu(
+            IUserInterface ui,
+            OrderService os,
             Guid orderId,
             ICommandRegistry registry )
         {
             Order order = os.GetOrderById( orderId );
-            string title =
-                $"Заказ: {order.Product}, в количестве {order.Quantity}. Дата доставки: {order.ExpectedDelivery}";
+            string title = $"Заказ: {order.Product}, в количестве {order.Quantity}. " +
+                           $"Дата доставки: {order.ExpectedDelivery}";
 
-            List<(string, ICommand)> items =
-            [
-                ( "1", new ShowOrderCommand( ui, os, orderId ) ),
-                ( "2", new EditOrderCommand( ui, os, orderId ) ),
-                ( "3", new CancelOrderCommand( ui, os, orderId ) ),
-                ( "0", new BackCommand() )
-            ];
-            MenuCommand menu = new( ui, $"order-{orderId}", $"Заказ: {title}", items );
+            MenuCommand menu = new( ui, $"order-{orderId}", $"Заказ: {title}" );
+            menu.InsertOption( "1", new ShowOrderCommand( ui, os, orderId ) );
+            menu.InsertOption( "2", new EditOrderCommand( ui, os, orderId ) );
+            menu.InsertOption( "3", new CancelOrderCommand( ui, os, orderId ) );
+            menu.InsertOption( "0", new BackCommand() );
+
             registry.Add( menu );
             return menu;
         }

@@ -17,7 +17,7 @@ namespace Menu.Commands
         /// </summary>
         /// <param name="targetMenuId">Идентификатор целевого меню.</param>
         /// <param name="title">Текст для отображения в меню.</param>
-        public NavigateCommand(string targetMenuId, string title)
+        public NavigateCommand( string targetMenuId, string title )
         {
             _targetMenuId = targetMenuId;
             Title = title;
@@ -25,6 +25,6 @@ namespace Menu.Commands
 
         /// <summary>Выполняет переход к целевому меню.</summary>
         /// <returns>Результат действия навигации.</returns>
-        public CommandResult Execute() => Results.Navigate(_targetMenuId);
+        public CommandResult Execute() => Results.Navigate( _targetMenuId );
     }
 }

@@ -10,6 +10,8 @@ namespace OrderManager
 {
     internal static class Program
     {
+        private const string _farewellMessage = "Спасибо за использование нашего сервиса. До свидания!";
+
         private static void Main()
         {
             CustomerRepository customerRepository = new();
@@ -22,18 +24,15 @@ namespace OrderManager
 
             CommandRegistry registry = new();
 
-            List<(string, ICommand)> mainMenuItems =
-            [
-                ( "1", new NewCustomerCommand( ui, customerService, orderService, registry ) ),
-                ( "2", new ShowCustomerListCommand( ui, customerService, orderService, registry ) ),
-                ( "0", new ExitCommand() )
-            ];
+            MenuCommand mainMenu = new( ui, "main", "Главное меню:" );
+            mainMenu.InsertOption( "1", new CreateCustomerCommand( ui, customerService, orderService, registry ) );
+            mainMenu.InsertOption( "2", new ShowCustomerListCommand( ui, customerService, orderService, registry ) );
+            mainMenu.InsertOption( "0", new ExitCommand() );
 
-            MenuCommand mainMenu = new( ui, "main", "Главное меню:", mainMenuItems );
             registry.Add( mainMenu );
 
             new FlowRunner( mainMenu, registry ).Run();
-            ui.WriteLine( "Спасибо за использование нашего сервиса. До свидания!" );
+            ui.WriteLine( _farewellMessage );
         }
     }
 }

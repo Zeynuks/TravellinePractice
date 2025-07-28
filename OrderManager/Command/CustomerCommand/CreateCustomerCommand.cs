@@ -7,7 +7,7 @@ using OrderManager.Core.Service;
 
 namespace OrderManager.Command.CustomerCommand
 {
-    public class NewCustomerCommand : ICommand
+    public class CreateCustomerCommand : ICommand
     {
         public string Title => "Новый пользователь";
         private readonly IUserInterface _ui;
@@ -15,7 +15,7 @@ namespace OrderManager.Command.CustomerCommand
         private readonly OrderService _orderService;
         private readonly ICommandRegistry _registry;
 
-        public NewCustomerCommand(
+        public CreateCustomerCommand(
             IUserInterface ui,
             CustomerService customerService,
             OrderService orderService,

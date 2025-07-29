@@ -10,6 +10,8 @@ namespace OrderManager.Core
 {
     public static class CustomerMenu
     {
+        private const string _backKey = "0";
+
         public static MenuCommand BuildCustomerMenu(
             IUserInterface ui,
             CustomerService cs,
@@ -24,7 +26,7 @@ namespace OrderManager.Core
             menu.InsertOption( "1", new NewOrderCommand( ui, os, customerId, registry ) );
             menu.InsertOption( "2", new ShowOrderListCommand( ui, os, customerId, registry ) );
             menu.InsertOption( "3", new RemoveCustomerCommand( ui, cs, os, customerId ) );
-            menu.InsertOption( "0", new BackCommand() );
+            menu.InsertOption( _backKey, new BackCommand() );
 
             registry.Add( menu );
             return menu;

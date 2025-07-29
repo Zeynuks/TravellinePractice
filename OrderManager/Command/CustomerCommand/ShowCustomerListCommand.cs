@@ -11,6 +11,7 @@ namespace OrderManager.Command.CustomerCommand
     public class ShowCustomerListCommand : ICommand
     {
         public string Title => "Список пользователей";
+        private const string _backKey = "0";
         private readonly IUserInterface _ui;
         private readonly CustomerService _customerService;
         private readonly OrderService _orderService;
@@ -55,7 +56,7 @@ namespace OrderManager.Command.CustomerCommand
                         new NavigateCommand( customerMenu.MenuId, customerMenu.Title ) );
                 }
 
-                menu.InsertOption( "0", new BackCommand() );
+                menu.InsertOption( _backKey, new BackCommand() );
 
                 _registry.Add( menu );
 

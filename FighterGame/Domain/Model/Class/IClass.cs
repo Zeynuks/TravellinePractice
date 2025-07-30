@@ -1,6 +1,4 @@
-﻿using FighterGame.Domain.Model.Armor;
-using FighterGame.Domain.Model.Types;
-using FighterGame.Domain.Model.Weapons;
+﻿using FighterGame.Domain.Model.Types;
 
 namespace FighterGame.Domain.Model.Class
 {

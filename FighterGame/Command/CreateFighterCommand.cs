@@ -1,9 +1,5 @@
 using FighterGame.Domain;
-using FighterGame.Domain.Model.Armor;
-using FighterGame.Domain.Model.Class;
-using FighterGame.Domain.Model.Races;
 using FighterGame.Domain.Model.Types;
-using FighterGame.Domain.Model.Weapons;
 using Menu.Commands;
 using Menu.Core;
 using Menu.Infrastructure.Menu;

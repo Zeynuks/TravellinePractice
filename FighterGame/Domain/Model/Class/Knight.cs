@@ -1,5 +1,4 @@
 using FighterGame.Domain.Model.Types;
-using FighterGame.Domain.Model.Weapons;
 
 namespace FighterGame.Domain.Model.Class
 {

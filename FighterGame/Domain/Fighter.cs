@@ -1,4 +1,3 @@
-using System;
 using FighterGame.Domain.Dice;
 using FighterGame.Domain.Model.Armor;
 using FighterGame.Domain.Model.Class;

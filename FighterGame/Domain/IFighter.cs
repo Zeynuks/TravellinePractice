@@ -7,7 +7,7 @@ namespace FighterGame.Domain
 {
     public interface IFighter
     {
-        string Name { get; set; }
+        string Name { get; }
         int Health { get; }
         IClass Class { get; }
         IRace Race { get; }

@@ -9,7 +9,7 @@ namespace FighterGame.Domain
 {
     public class Fighter : IFighter
     {
-        public string Name { get; set; }
+        public string Name { get; }
         public int Health { get; private set; }
         public IClass Class { get; }
         public IRace Race { get; }

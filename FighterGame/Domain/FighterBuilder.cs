@@ -14,7 +14,14 @@ namespace FighterGame.Domain
         private readonly ArmorFactory _armorFactory = new();
         private readonly WeaponFactory _weaponFactory = new();
 
-        public IFighter Build( string name, ClassType classType, RaceType raceType, ArmorType armorType, WeaponType weaponType, DamageType damageType )
+        public IFighter Build(
+            string name,
+            ClassType classType,
+            RaceType raceType,
+            ArmorType armorType,
+            WeaponType weaponType,
+            DamageType damageType
+        )
         {
             IClass fighterClass = _classFactory.CreateClass( classType );
             IRace fighterRace = _raceFactory.CreateRace( raceType );

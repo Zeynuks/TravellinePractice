@@ -26,12 +26,13 @@ namespace FighterGame.Command
 
         public CommandResult Execute()
         {
-            ArrowMenu fightersMenu = new(
+            MultiArrowMenu fightersMenu = new(
                 _ui,
                 $"fightersMenu-{Guid.NewGuid()}",
-                onSubmit: fighterIds => _battleEngine.StartBattle( fighterIds ),
+                new BackCommand(),
                 Title,
-                true );
+                onSubmit: fighterIds => _battleEngine.StartBattle( fighterIds )
+            );
 
             Dictionary<Guid, IFighter> fighters = _fighterRepository.GetAllFighters();
             if ( fighters.Count <= 0 )

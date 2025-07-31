@@ -14,7 +14,7 @@ namespace FighterGame.Command
         {
             _battleEngine = battleEngine;
             _fighter = fighter;
-            Title = IsSelected( _fighter.Id ) ? (_fighter.Name + " (selected)") : _fighter.Name;
+            Title = IsSelected( _fighter.Id ) ? _fighter.Name + " (selected)" : _fighter.Name;
         }
 
         public CommandResult Execute()

@@ -43,6 +43,7 @@ namespace FighterGame.Domain
             if ( _fighters.Count < 2 )
             {
                 _ui.WriteLine( "Недостаточно бойцов для начала боя" );
+
                 return;
             }
 
@@ -95,7 +96,9 @@ namespace FighterGame.Domain
                         winners.Add( first );
                     }
                     else
+                    {
                         winners.Add( ConductDuel( first, second ) );
+                    }
                 }
 
                 participants = winners;
@@ -118,13 +121,13 @@ namespace FighterGame.Domain
                 switch ( result )
                 {
                     case > 0:
-                        _ui.WriteLine(
-                            $"{attacker.Name} нанёс {defender.Name} {result}hp урона. (осталось {defender.Health} HP)" );
+                        _ui.WriteLine( $"{attacker.Name} нанёс {defender.Name} {result}hp урона. " +
+                                       $"(осталось {defender.Health} HP)" );
                         break;
                     case < 0:
                         int selfDmg = -result;
-                        _ui.WriteLine(
-                            $"Критическая неудача! {attacker.Name} наносит {selfDmg} урона самому себе. (осталось {attacker.Health} HP)" );
+                        _ui.WriteLine( $"Критическая неудача! {attacker.Name} наносит {selfDmg} урона самому себе. " +
+                                       $"(осталось {attacker.Health} HP)" );
                         break;
                     default:
                         _ui.WriteLine( $"{attacker.Name} промахнулся по {defender.Name}." );
@@ -147,7 +150,9 @@ namespace FighterGame.Domain
             return winner;
         }
 
-        private void AnnounceChampion( IFighter champion ) =>
+        private void AnnounceChampion( IFighter champion )
+        {
             _ui.WriteLine( $"\n{champion.Name} — победитель турнира!" );
+        }
     }
 }

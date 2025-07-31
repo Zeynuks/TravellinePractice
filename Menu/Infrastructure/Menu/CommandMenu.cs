@@ -7,12 +7,10 @@ namespace Menu.Infrastructure.Menu
     /// <summary>
     /// Команда меню: отображает список опций, считывает выбор и выполняет связанную команду.
     /// </summary>
-    public class KeyMenu : IMenu
+    public class CommandMenu : IMenu
     {
-        private record MenuOption( string Title, ICommand Command );
-
         private readonly IUserInterface _ui;
-        private readonly Dictionary<string, MenuOption> _options = new();
+        private readonly Dictionary<string, ICommand> _options = new();
 
         /// <summary>Уникальный идентификатор меню.</summary>
         public string MenuId { get; }
@@ -34,17 +32,12 @@ namespace Menu.Infrastructure.Menu
         /// <item><term>IsExit</term><description>признак возврата назад после выполнения.</description></item>
         /// </list>
         /// </param>
-        public KeyMenu(
+        public CommandMenu(
             IUserInterface ui,
             string menuId,
-            string? title
+            string? title = null
         )
         {
-            if ( string.IsNullOrWhiteSpace( menuId ) )
-            {
-                throw new ArgumentNullException( nameof( menuId ) );
-            }
-
             _ui = ui;
             MenuId = menuId;
             Title = string.IsNullOrWhiteSpace( title ) ? "Выберите команду:" : title!;
@@ -60,7 +53,7 @@ namespace Menu.Infrastructure.Menu
         public CommandResult Execute()
         {
             _ui.WriteLine( Title );
-            foreach ( KeyValuePair<string, MenuOption> kv in _options )
+            foreach ( KeyValuePair<string, ICommand> kv in _options )
             {
                 _ui.WriteLine( $"{kv.Key} - {kv.Value.Title}" );
             }
@@ -68,9 +61,9 @@ namespace Menu.Infrastructure.Menu
             string? choice = _ui.ReadLine( "> " );
             _ui.Clear();
 
-            if ( choice is not null && _options.TryGetValue( choice, out MenuOption? opt ) )
+            if ( choice is not null && _options.TryGetValue( choice, out ICommand? opt ) )
             {
-                return opt.Command.Execute();
+                return opt.Execute();
             }
 
             _ui.WriteLine( "Неверный выбор, попробуйте снова." );
@@ -82,7 +75,7 @@ namespace Menu.Infrastructure.Menu
         {
             if ( !_options.ContainsKey( key ) )
             {
-                _options[ key ] = new MenuOption( command.Title, command );
+                _options[ key ] = command;
             }
         }
     }

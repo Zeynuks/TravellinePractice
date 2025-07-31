@@ -2,12 +2,11 @@ using FighterGame.Domain;
 using Menu.Commands;
 using Menu.Core;
 using Menu.Infrastructure;
-using Menu.Infrastructure.Menu;
 using Menu.UI;
 
 namespace FighterGame.Command
 {
-    public class SelectFightersCommand : ICommand
+    public class PrepareToBattleCommand : ICommand
     {
         public string Title => "Подготовка к турниру";
         private readonly IUserInterface _ui;
@@ -15,7 +14,7 @@ namespace FighterGame.Command
         private readonly BattleEngine _battleEngine;
         private readonly FighterRepository _fighterRepository;
 
-        public SelectFightersCommand( IUserInterface ui, IMenuRegistry registry, BattleEngine battleEngine,
+        public PrepareToBattleCommand( IUserInterface ui, IMenuRegistry registry, BattleEngine battleEngine,
             FighterRepository fighterRepository )
         {
             _ui = ui;
@@ -26,28 +25,25 @@ namespace FighterGame.Command
 
         public CommandResult Execute()
         {
-            MultiArrowMenu fightersMenu = new(
-                _ui,
-                $"fightersMenu-{Guid.NewGuid()}",
-                new BackCommand(),
-                Title,
-                onSubmit: fighterIds => _battleEngine.StartBattle( fighterIds )
-            );
+            Menu.Infrastructure.Menu.CommandMenu fightersCommandMenu = new( _ui, "fighters-menu" );
 
-            Dictionary<Guid, IFighter> fighters = _fighterRepository.GetAllFighters();
+            List<IFighter> fighters = _fighterRepository.GetAllFighters();
             if ( fighters.Count <= 0 )
             {
                 return Results.Continue();
             }
 
-            foreach ( var (id, fighter) in fighters )
+            for ( int i = 0; i < fighters.Count; i++ )
             {
-                fightersMenu.AddOption( id, fighter.Name );
+                fightersCommandMenu.InsertOption( $"{i + 1}",
+                    new SelectFighterCommand( _battleEngine, fighters[ i ] ) );
             }
 
-            _registry.Add( fightersMenu );
+            fightersCommandMenu.InsertOption( $"{fighters.Count + 1}", new StartBattleCommand( _battleEngine ) );
+            fightersCommandMenu.InsertOption( "0", new BackCommand() );
+            _registry.Add( fightersCommandMenu );
 
-            return Results.Navigate( fightersMenu.MenuId );
+            return Results.Navigate( fightersCommandMenu.MenuId );
         }
     }
 }

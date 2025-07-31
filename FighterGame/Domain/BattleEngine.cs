@@ -5,37 +5,60 @@ namespace FighterGame.Domain
     public class BattleEngine
     {
         private readonly IUserInterface _ui;
-        private readonly FighterRepository _fighterRepository;
+        private readonly List<IFighter> _fighters = [ ];
 
-        public BattleEngine( IUserInterface ui, FighterRepository fighterRepository )
+        public BattleEngine( IUserInterface ui )
         {
             _ui = ui;
-            _fighterRepository = fighterRepository;
         }
 
-        public void StartBattle( IEnumerable<Guid> fighterIds )
+        public void AddParticipant( IFighter fighter )
+        {
+            if ( ContainsParticipant( fighter.Id ) )
+            {
+                throw new Exception( "Боец уже есть на арене" );
+            }
+
+            _fighters.Add( fighter );
+        }
+
+        public void DeleteParticipant( IFighter fighter )
+        {
+            if ( !ContainsParticipant( fighter.Id ) )
+            {
+                throw new Exception( "Боец не найден" );
+            }
+
+            _fighters.Remove( fighter );
+        }
+
+        public bool ContainsParticipant( Guid fighterId )
+        {
+            return _fighters.Any( f => f.Id == fighterId );
+        }
+
+        public void StartBattle()
         {
             _ui.Clear();
-            List<IFighter> fighters = _fighterRepository.GetFighters( fighterIds );
-            if ( fighters.Count < 2 )
+            if ( _fighters.Count < 2 )
             {
                 _ui.WriteLine( "Недостаточно бойцов для начала боя" );
                 return;
             }
 
-            List<IFighter> initiativeOrder = DetermineInitiativeOrder( fighters );
+            List<IFighter> initiativeOrder = DetermineInitiativeOrder( _fighters );
             DisplayInitiativeOrder( initiativeOrder );
 
             IFighter champion = RunTournament( initiativeOrder );
             AnnounceChampion( champion );
         }
 
-        private static List<IFighter> DetermineInitiativeOrder( IEnumerable<IFighter> fighters )
+        private static List<IFighter> DetermineInitiativeOrder( IEnumerable<IFighter> _fighters )
         {
-            return fighters.Select( IFighter => new
+            return _fighters.Select( fighter => new
                 {
-                    IFighter = IFighter,
-                    Roll = IFighter.RollInitiative()
+                    IFighter = fighter,
+                    Roll = fighter.RollInitiative()
                 } )
                 .OrderByDescending( x => x.Roll )
                 .Select( x => x.IFighter )

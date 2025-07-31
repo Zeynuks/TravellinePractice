@@ -16,19 +16,19 @@ namespace FighterGame
             IMenuRegistry registry = new MenuRegistry();
 
             FighterRepository fighterRepository = new();
-            BattleEngine battleEngine = new( ui, fighterRepository );
+            BattleEngine battleEngine = new( ui );
             FighterBuilder fighterBuilder = new();
 
-            KeyMenu mainKeyMenu = new( ui, "main", "Введите команду:" );
-            mainKeyMenu.InsertOption( "add-fighter",
+            Menu.Infrastructure.Menu.CommandMenu mainCommandMenu = new( ui, "main", "Введите команду:" );
+            mainCommandMenu.InsertOption( "1",
                 new CreateFighterCommand( ui, fighterRepository, fighterBuilder ) );
-            mainKeyMenu.InsertOption( "play",
-                new SelectFightersCommand( ui, registry, battleEngine, fighterRepository ) );
-            mainKeyMenu.InsertOption( "exit", new ExitCommand() );
+            mainCommandMenu.InsertOption( "2",
+                new PrepareToBattleCommand( ui, registry, battleEngine, fighterRepository ) );
+            mainCommandMenu.InsertOption( "exit", new ExitCommand() );
 
-            registry.Add( mainKeyMenu );
+            registry.Add( mainCommandMenu );
 
-            new FlowRunner( mainKeyMenu, registry ).Run();
+            new FlowRunner( mainCommandMenu, registry ).Run();
 
             ui.WriteLine( "Удачи!" );
         }

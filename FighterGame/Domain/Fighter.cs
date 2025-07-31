@@ -8,6 +8,7 @@ namespace FighterGame.Domain
 {
     public class Fighter : IFighter
     {
+        public Guid Id { get; }
         public string Name { get; }
         public int Health { get; private set; }
         public IClass Class { get; }
@@ -23,6 +24,7 @@ namespace FighterGame.Domain
             IWeapon fighterWeapon
         )
         {
+            Id = Guid.NewGuid();
             Name = fighterName;
             Class = fighterClass;
             Race = fighterRace;

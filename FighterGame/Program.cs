@@ -19,10 +19,10 @@ namespace FighterGame
             BattleEngine battleEngine = new( ui );
             FighterBuilder fighterBuilder = new();
 
-            Menu.Infrastructure.Menu.CommandMenu mainCommandMenu = new( ui, "main", "Введите команду:" );
-            mainCommandMenu.InsertOption( "1",
+            CommandMenu mainCommandMenu = new( ui, "main", "Введите команду:" );
+            mainCommandMenu.InsertOption( "add-fighter",
                 new CreateFighterCommand( ui, fighterRepository, fighterBuilder ) );
-            mainCommandMenu.InsertOption( "2",
+            mainCommandMenu.InsertOption( "play",
                 new PrepareToBattleCommand( ui, registry, battleEngine, fighterRepository ) );
             mainCommandMenu.InsertOption( "exit", new ExitCommand() );
 

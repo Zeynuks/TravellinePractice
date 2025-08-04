@@ -13,7 +13,8 @@ namespace FighterGame.Command
         private readonly IFighterRepository _fighterRepository;
         private readonly FighterDto _fighterDto;
         public string Title => "Подтвердить";
-
+        private const string MenuId = "create-fighter";
+        
         public BuildFighterCommand(
             IMenuRegistry registry,
             IFighterRepository fighterRepository,
@@ -28,7 +29,7 @@ namespace FighterGame.Command
         public CommandResult Execute()
         {
             _fighterRepository.AddFighter( new FighterBuilder().Build( _fighterDto ) );
-            _registry.Remove( "create-fighter" );
+            _registry.Remove( MenuId );
 
             return Results.Back();
         }

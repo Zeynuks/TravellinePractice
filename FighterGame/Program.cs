@@ -12,6 +12,7 @@ namespace FighterGame
     internal static class Program
     {
         private const string MenuId = "main";
+        private const string FarewellMessage = "Удачи!";
 
         public static void Main()
         {
@@ -27,7 +28,7 @@ namespace FighterGame
             registry.Add( mainCommandMenu );
 
             new FlowRunner( mainCommandMenu, registry ).Run();
-            ui.WriteLine( "Удачи!" );
+            ui.WriteLine( FarewellMessage );
         }
     }
 }

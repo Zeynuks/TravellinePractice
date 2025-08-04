@@ -28,7 +28,6 @@ namespace FighterGame.Command
         public CommandResult Execute()
         {
             _fighterRepository.AddFighter( new FighterBuilder().Build( _fighterDto ) );
-            _fighterDto = new FighterDto();
             _registry.Remove( "create-fighter" );
 
             return Results.Back();

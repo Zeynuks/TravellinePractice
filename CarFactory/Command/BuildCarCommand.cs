@@ -9,12 +9,12 @@ namespace CarFactory.Command
 {
     public class BuildCarCommand : ICommand
     {
+        private const string MenuId = "create-car";
         private readonly IUserInterface _ui;
         private readonly IMenuRegistry _registry;
         private readonly ICarRepository _repository;
         private readonly CarDto _carDto;
         public string Title => "Подтвердить";
-        private const string MenuId = "create-car";
 
         public BuildCarCommand( IUserInterface ui, IMenuRegistry registry, ICarRepository repository, CarDto carDto )
         {
@@ -31,12 +31,12 @@ namespace CarFactory.Command
                 _repository.AddCar( new CarBuilder().Build( _carDto ) );
                 _registry.Remove( MenuId );
 
-                return Results.Back();
+                return CommandResults.Back();
             }
             catch ( Exception ex )
             {
                 _ui.WriteLine( $"Ошибка: {ex.Message}" );
-                return Results.Back();
+                return CommandResults.Back();
             }
         }
     }

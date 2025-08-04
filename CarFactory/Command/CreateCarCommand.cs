@@ -10,11 +10,11 @@ namespace CarFactory.Command
 {
     public class CreateCarCommand : ICommand
     {
+        private const string MenuId = "create-car";
         private readonly IUserInterface _ui;
         private readonly IMenuRegistry _registry;
         private readonly ICarRepository _repository;
         public string Title => "Создать новую машину";
-        private const string MenuId = "create-car";
 
         public CreateCarCommand( IUserInterface ui, IMenuRegistry registry, ICarRepository repository )
         {
@@ -31,7 +31,7 @@ namespace CarFactory.Command
                 if ( menu != null )
                 {
                     menu.Title = Title;
-                    return Results.Navigate( menu.MenuId );
+                    return CommandResults.Navigate( menu.MenuId );
                 }
 
                 CarDto carDto = new();
@@ -46,12 +46,12 @@ namespace CarFactory.Command
                 createFighterMenu.InsertOption( "0", new BackCommand() );
                 _registry.Add( createFighterMenu );
 
-                return Results.Navigate( createFighterMenu.MenuId );
+                return CommandResults.Navigate( createFighterMenu.MenuId );
             }
             catch ( Exception ex )
             {
                 _ui.WriteLine( $"Ошибка: {ex.Message}" );
-                return Results.Continue();
+                return CommandResults.Continue();
             }
         }
     }

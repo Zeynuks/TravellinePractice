@@ -10,11 +10,11 @@ namespace CarFactory.Command
 {
     public class SelectBodyCommand : ICommand
     {
+        private const string MenuId = "select-body";
         private readonly IUserInterface _ui;
         private readonly IMenuRegistry _registry;
         private readonly CarDto _carDto;
         public string Title { get; private set; }
-        private const string MenuId = "select-body";
 
         public SelectBodyCommand( IUserInterface ui, IMenuRegistry registry, CarDto carDto )
         {
@@ -32,7 +32,7 @@ namespace CarFactory.Command
                 if ( menu != null )
                 {
                     menu.Title = Title;
-                    return Results.Navigate( menu.MenuId );
+                    return CommandResults.Navigate( menu.MenuId );
                 }
 
                 EnumMenu<BodyType> selectMenu = new( _ui, MenuId, value =>
@@ -42,12 +42,12 @@ namespace CarFactory.Command
                 } );
                 _registry.Add( selectMenu );
 
-                return Results.Navigate( selectMenu.MenuId );
+                return CommandResults.Navigate( selectMenu.MenuId );
             }
             catch ( Exception ex )
             {
                 _ui.WriteLine( $"Ошибка: {ex.Message}" );
-                return Results.Continue();
+                return CommandResults.Continue();
             }
         }
     }

@@ -30,12 +30,12 @@ namespace CarFactory.Command
                 _ui.WriteLine( $"Кузов: {_car.Body.GetType().Name}" );
                 _ui.WriteLine( $"Максимальная скорость: {_car.GetMaxSpeed()} км/ч\n" );
 
-                return Results.Continue();
+                return CommandResults.Continue();
             }
             catch ( Exception ex )
             {
                 _ui.WriteLine( $"Ошибка: {ex.Message}" );
-                return Results.Back();
+                return CommandResults.Back();
             }
         }
     }

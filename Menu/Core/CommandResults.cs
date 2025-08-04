@@ -3,7 +3,7 @@ namespace Menu.Core
     /// <summary>
     /// Фабричные методы для создания стандартных <see cref="CommandResult"/>.
     /// </summary>
-    public static class Results
+    public static class CommandResults
     {
         /// <summary>Результат продолжения текущего меню.</summary>
         public static CommandResult Continue() => new( FlowAction.Continue );

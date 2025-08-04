@@ -40,12 +40,12 @@ namespace CarFactory.Command
                 _carDto.Number = number;
                 Title = $"Введите номер машины ({_carDto.Number})";
 
-                return Results.Continue();
+                return CommandResults.Continue();
             }
             catch ( Exception ex )
             {
                 _ui.WriteLine( $"Ошибка: {ex.Message}" );
-                return Results.Continue();
+                return CommandResults.Continue();
             }
         }
 

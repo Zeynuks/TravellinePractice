@@ -15,6 +15,7 @@ namespace FighterGame.Command
         private readonly IMenuRegistry _registry;
         private readonly FighterDto _fighterDto;
         public string Title { get; private set; }
+        private const string MenuId = "select-class";
 
         public SelectClassCommand( IUserInterface ui, IMenuRegistry registry, FighterDto fighterDto )
         {
@@ -26,7 +27,7 @@ namespace FighterGame.Command
 
         public CommandResult Execute()
         {
-            if ( _registry.TryGet( "select-class", out IMenu? menu ) )
+            if ( _registry.TryGet( MenuId, out IMenu? menu ) )
             {
                 if ( menu is null )
                 {
@@ -38,7 +39,7 @@ namespace FighterGame.Command
                 return Results.Navigate( menu.MenuId );
             }
 
-            EnumMenu<ClassType> selectMenu = new( _ui, "select-class", value =>
+            EnumMenu<ClassType> selectMenu = new( _ui, MenuId, value =>
             {
                 _fighterDto.Class = value;
                 Title = $"Выберите класс ({_fighterDto.Class})";

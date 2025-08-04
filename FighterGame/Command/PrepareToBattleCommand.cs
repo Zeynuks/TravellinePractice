@@ -12,6 +12,7 @@ namespace FighterGame.Command
     public class PrepareToBattleCommand : ICommand
     {
         public string Title => "Подготовка к турниру";
+        private const string MenuId = "fighter-list-menu";
         private readonly IUserInterface _ui;
         private readonly IMenuRegistry _registry;
         private readonly BattleEngine _battleEngine;
@@ -31,7 +32,7 @@ namespace FighterGame.Command
 
         public CommandResult Execute()
         {
-            if ( _registry.TryGet( "fighter-list-menu", out IMenu? menu ) )
+            if ( _registry.TryGet( MenuId, out IMenu? menu ) )
             {
                 if ( menu is null )
                 {
@@ -41,7 +42,7 @@ namespace FighterGame.Command
                 return Results.Navigate( menu.MenuId );
             }
 
-            CommandMenu fightersCommandMenu = new( _ui, "fighter-list-menu" );
+            CommandMenu fightersCommandMenu = new( _ui, MenuId );
 
             List<IFighter> fighters = _fighterRepository.GetAllFighters();
             if ( fighters.Count <= 0 )

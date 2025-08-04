@@ -11,6 +11,8 @@ namespace FighterGame
 {
     internal static class Program
     {
+        private const string MenuId = "main";
+
         public static void Main()
         {
             IUserInterface ui = new ConsoleUi();
@@ -18,7 +20,7 @@ namespace FighterGame
 
             IFighterRepository fighterRepository = new FighterRepository();
 
-            CommandMenu mainCommandMenu = new( ui, "main", "Введите команду:" );
+            CommandMenu mainCommandMenu = new( ui, MenuId, "Введите команду:" );
             mainCommandMenu.InsertOption( "1", new CreateFighterCommand( ui, registry, fighterRepository ) );
             mainCommandMenu.InsertOption( "2", new PrepareToBattleCommand( ui, registry, fighterRepository ) );
             mainCommandMenu.InsertOption( "exit", new ExitCommand() );

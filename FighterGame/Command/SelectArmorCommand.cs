@@ -15,7 +15,8 @@ namespace FighterGame.Command
         private readonly IMenuRegistry _registry;
         private readonly FighterDto _fighterDto;
         public string Title { get; private set; }
-
+        private const string MenuId = "select-armor";
+        
         public SelectArmorCommand( IUserInterface ui, IMenuRegistry registry, FighterDto fighterDto )
         {
             _ui = ui;
@@ -26,7 +27,7 @@ namespace FighterGame.Command
 
         public CommandResult Execute()
         {
-            if ( _registry.TryGet( "select-armor", out IMenu? menu ) )
+            if ( _registry.TryGet( MenuId, out IMenu? menu ) )
             {
                 if ( menu is null )
                 {
@@ -38,7 +39,7 @@ namespace FighterGame.Command
                 return Results.Navigate( menu.MenuId );
             }
 
-            EnumMenu<ArmorType> selectMenu = new( _ui, "select-armor", value =>
+            EnumMenu<ArmorType> selectMenu = new( _ui, MenuId, value =>
             {
                 _fighterDto.Armor = value;
                 Title = $"Выберите броню ({_fighterDto.Armor})";

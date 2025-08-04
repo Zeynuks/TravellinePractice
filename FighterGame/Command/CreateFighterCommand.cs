@@ -12,7 +12,8 @@ namespace FighterGame.Command
     public sealed class CreateFighterCommand : ICommand
     {
         public string Title => "Добавить нового бойца на арену";
-
+        private const string MenuId = "create-fighter";
+        
         private readonly IUserInterface _ui;
         private readonly IMenuRegistry _registry;
         private readonly IFighterRepository _fighterRepository;
@@ -30,7 +31,7 @@ namespace FighterGame.Command
 
         public CommandResult Execute()
         {
-            if ( _registry.TryGet( "create-fighter", out IMenu? menu ) )
+            if ( _registry.TryGet( MenuId, out IMenu? menu ) )
             {
                 if ( menu is null )
                 {
@@ -41,7 +42,7 @@ namespace FighterGame.Command
             }
 
             FighterDto fighterDto = new();
-            CommandMenu createFighterMenu = new( _ui, "create-fighter", "Выберите желаемые параметры: " );
+            CommandMenu createFighterMenu = new( _ui, MenuId, "Выберите желаемые параметры: " );
 
             createFighterMenu.InsertOption( "1", new SelectNameCommand( _ui, fighterDto ) );
             createFighterMenu.InsertOption( "2", new SelectClassCommand( _ui, _registry, fighterDto ) );

@@ -3,7 +3,6 @@ using FighterGame.Domain.Model;
 using FighterGame.Domain.Model.Armor;
 using FighterGame.Domain.Model.Class;
 using FighterGame.Domain.Model.Races;
-using FighterGame.Domain.Model.Types;
 using FighterGame.Domain.Model.Weapons;
 
 namespace FighterGame.Domain

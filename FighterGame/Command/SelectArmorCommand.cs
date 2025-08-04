@@ -1,4 +1,3 @@
-using FighterGame.Domain;
 using FighterGame.Domain.Model;
 using FighterGame.Domain.Model.Types;
 using Menu.Commands;

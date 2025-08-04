@@ -1,5 +1,4 @@
 using Menu.Commands;
-using Menu.Core;
 
 namespace Menu.Infrastructure.Menu
 {

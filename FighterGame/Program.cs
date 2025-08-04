@@ -1,5 +1,4 @@
 ﻿using FighterGame.Command;
-using FighterGame.Domain;
 using FighterGame.Domain.Repository;
 using FighterGame.UI;
 using Menu.Commands;

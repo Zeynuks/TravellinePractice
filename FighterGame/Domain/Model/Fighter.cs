@@ -8,6 +8,12 @@ namespace FighterGame.Domain.Model
 {
     public class Fighter : IFighter
     {
+        private const double MinDamageVariation = -0.2;
+        private const double MaxDamageVariation = 0.3;
+        private const int CriticalLuckRoll = 20;
+        private const int CriticalUnLuckRoll = 1;
+        private const double ResistDamageMultiplier = 0.5;
+
         public Guid Id { get; }
         public string Name { get; }
         public int Health { get; private set; }
@@ -27,7 +33,7 @@ namespace FighterGame.Domain.Model
             {
                 throw new InvalidOperationException( "Имя не может быть пустым." );
             }
-            
+
             Name = fighterName;
             Class = fighterClass;
             Race = fighterRace;
@@ -50,14 +56,14 @@ namespace FighterGame.Domain.Model
         {
             int attackRoll = new DiceTypes.D20().Roll();
 
-            if ( attackRoll == 1 )
+            if ( attackRoll == CriticalUnLuckRoll )
             {
                 int selfDamage = CalculateDamage( this );
                 TakeDamage( selfDamage );
                 return -selfDamage;
             }
 
-            bool isCriticalHit = attackRoll == 20;
+            bool isCriticalHit = attackRoll == CriticalLuckRoll;
             bool isHit = isCriticalHit || attackRoll >= target.Armor.ArmorClass;
             if ( !isHit )
             {
@@ -77,11 +83,12 @@ namespace FighterGame.Domain.Model
         private int CalculateDamage( IFighter target )
         {
             double baseDmg = Weapon.Damage * Class.DamageModify;
-            double variation = Random.Shared.NextDouble() * 0.3 - 0.2;
+            double variation = Random.Shared.NextDouble() * MaxDamageVariation + MinDamageVariation;
             int dmg = ( int )( baseDmg * ( 1.0 + variation ) );
+
             if ( Weapon.DamageType == target.Race.DamageResist )
             {
-                dmg /= 2;
+                dmg = ( int )( dmg * ResistDamageMultiplier );
             }
 
             return dmg;

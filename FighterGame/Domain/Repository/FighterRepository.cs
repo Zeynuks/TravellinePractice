@@ -4,7 +4,7 @@ namespace FighterGame.Domain.Repository
 {
     public class FighterRepository : IFighterRepository
     {
-        private readonly List<IFighter> _fighters = new();
+        private readonly Dictionary<Guid, IFighter> _fighters = new();
 
         public void AddFighter( IFighter fighter )
         {
@@ -13,17 +13,15 @@ namespace FighterGame.Domain.Repository
                 throw new ArgumentNullException( nameof( fighter ), "Боец не может быть null." );
             }
 
-            if ( _fighters.Any( f => f.Id == fighter.Id ) )
+            if ( !_fighters.TryAdd( fighter.Id, fighter ) )
             {
                 throw new InvalidOperationException( $"Боец с Id {fighter.Id} уже существует." );
             }
-
-            _fighters.Add( fighter );
         }
 
         public IReadOnlyList<IFighter> GetAllFighters()
         {
-            return _fighters.AsReadOnly();
+            return _fighters.Values.ToList().AsReadOnly();
         }
     }
 }

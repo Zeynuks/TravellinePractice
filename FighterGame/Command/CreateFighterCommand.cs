@@ -15,12 +15,11 @@ namespace FighterGame.Command
         private readonly IMenuRegistry _registry;
         private readonly IFighterRepository _repository;
         public string Title => "Добавить нового бойца на арену";
-        
+
         public CreateFighterCommand(
             IUserInterface ui,
             IMenuRegistry registry,
-            IFighterRepository repository
-        )
+            IFighterRepository repository )
         {
             _ui = ui;
             _registry = registry;

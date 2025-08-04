@@ -21,8 +21,7 @@ namespace FighterGame.Command
             IUserInterface ui,
             IMenuRegistry registry,
             IFighterRepository fighterRepository,
-            FighterDto fighterDto
-        )
+            FighterDto fighterDto )
         {
             _ui = ui;
             _registry = registry;

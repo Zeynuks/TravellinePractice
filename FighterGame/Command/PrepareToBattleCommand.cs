@@ -21,8 +21,7 @@ namespace FighterGame.Command
         public PrepareToBattleCommand(
             IUserInterface ui,
             IMenuRegistry registry,
-            IFighterRepository fighterRepository
-        )
+            IFighterRepository fighterRepository )
         {
             _ui = ui;
             _registry = registry;
@@ -37,8 +36,7 @@ namespace FighterGame.Command
                 IMenu? menu = _registry.TryGet( MenuId, out menu ) ? menu : null;
                 if ( menu != null )
                 {
-                    menu.Title = Title;
-                    return Results.Navigate( menu.MenuId );
+                    _registry.Remove( MenuId );
                 }
 
                 CommandMenu fightersCommandMenu = new( _ui, MenuId );

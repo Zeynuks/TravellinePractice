@@ -34,13 +34,10 @@ namespace FighterGame.Command
         {
             try
             {
-                if ( _registry.TryGet( MenuId, out IMenu? menu ) )
+                IMenu? menu = _registry.TryGet( MenuId, out menu ) ? menu : null;
+                if ( menu != null )
                 {
-                    if ( menu is null )
-                    {
-                        throw new Exception( "Меню не найдено" );
-                    }
-
+                    menu.Title = Title;
                     return Results.Navigate( menu.MenuId );
                 }
 

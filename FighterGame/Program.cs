@@ -21,8 +21,8 @@ namespace FighterGame
             IFighterRepository fighterRepository = new FighterRepository();
 
             CommandMenu mainCommandMenu = new( ui, MenuId, "Введите команду:" );
-            mainCommandMenu.InsertOption( "1", new CreateFighterCommand( ui, registry, fighterRepository ) );
-            mainCommandMenu.InsertOption( "2", new PrepareToBattleCommand( ui, registry, fighterRepository ) );
+            mainCommandMenu.InsertOption( "add-fighter", new CreateFighterCommand( ui, registry, fighterRepository ) );
+            mainCommandMenu.InsertOption( "play", new PrepareToBattleCommand( ui, registry, fighterRepository ) );
             mainCommandMenu.InsertOption( "exit", new ExitCommand() );
             registry.Add( mainCommandMenu );
 

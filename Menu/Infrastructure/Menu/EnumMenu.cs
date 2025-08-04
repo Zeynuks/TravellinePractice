@@ -40,7 +40,7 @@ namespace Menu.Infrastructure.Menu
             _values = Enum.GetValues( typeof( TEnum ) )
                 .Cast<TEnum>()
                 .ToArray();
-            Title = string.IsNullOrWhiteSpace( title ) ? typeof( TEnum ).Name : title;
+            Title = string.IsNullOrWhiteSpace( title ) ? "Выберите значение: " : title;
         }
 
         /// <summary>Отображает список значений перечисления, читает ввод и вызывает onSubmit.</summary>

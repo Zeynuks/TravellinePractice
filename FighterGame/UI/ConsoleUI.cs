@@ -39,12 +39,12 @@ namespace FighterGame.UI
 
                 string? line = ReadLine();
 
-                if ( line != null && T.TryParse( line, CultureInfo.CurrentCulture, out T value ) )
+                if ( line == null || !T.TryParse( line, CultureInfo.CurrentCulture, out T value ) )
                 {
-                    return value;
+                    throw new ArgumentException( "Некорректный ввод. Введите значение типа " + typeof( T ).Name + "." );
                 }
 
-                WriteLine( "Некорректный ввод. Введите значение типа " + typeof( T ).Name + "." );
+                return value;
             }
         }
 

@@ -10,11 +10,11 @@ namespace FighterGame.Command
 {
     public class SelectArmorCommand : ICommand
     {
+        private const string MenuId = "select-armor";
         private readonly IUserInterface _ui;
         private readonly IMenuRegistry _registry;
         private readonly FighterDto _fighterDto;
         public string Title { get; private set; }
-        private const string MenuId = "select-armor";
 
         public SelectArmorCommand( IUserInterface ui, IMenuRegistry registry, FighterDto fighterDto )
         {

@@ -10,12 +10,12 @@ namespace FighterGame.Command
 {
     public class BuildFighterCommand : ICommand
     {
+        private const string MenuId = "create-fighter";
         private readonly IUserInterface _ui;
         private readonly IMenuRegistry _registry;
         private readonly IFighterRepository _fighterRepository;
         private readonly FighterDto _fighterDto;
         public string Title => "Подтвердить";
-        private const string MenuId = "create-fighter";
 
         public BuildFighterCommand(
             IUserInterface ui,

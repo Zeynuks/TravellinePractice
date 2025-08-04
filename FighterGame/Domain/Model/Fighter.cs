@@ -16,15 +16,18 @@ namespace FighterGame.Domain.Model
         public IArmor Armor { get; }
         public IWeapon Weapon { get; }
 
-        public Fighter(
-            string fighterName,
+        public Fighter( string fighterName,
             IClass fighterClass,
             IRace fighterRace,
             IArmor fighterArmor,
-            IWeapon fighterWeapon
-        )
+            IWeapon fighterWeapon )
         {
             Id = Guid.NewGuid();
+            if ( string.IsNullOrWhiteSpace( fighterName ) )
+            {
+                throw new InvalidOperationException( "Имя не может быть пустым." );
+            }
+            
             Name = fighterName;
             Class = fighterClass;
             Race = fighterRace;

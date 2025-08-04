@@ -11,7 +11,7 @@ namespace FighterGame.Command
     {
         private readonly IMenuRegistry _registry;
         private readonly IFighterRepository _fighterRepository;
-        private FighterDto _fighterDto;
+        private readonly FighterDto _fighterDto;
         public string Title => "Подтвердить";
 
         public BuildFighterCommand(

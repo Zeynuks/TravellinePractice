@@ -1,4 +1,5 @@
 using FighterGame.Domain;
+using FighterGame.Domain.Model;
 using Menu.Commands;
 using Menu.Core;
 
@@ -8,7 +9,7 @@ namespace FighterGame.Command
     {
         private readonly BattleEngine _battleEngine;
         private readonly IFighter _fighter;
-        public string Title { get; set; }
+        public string Title { get; private set; }
 
         public SelectFighterCommand( BattleEngine battleEngine, IFighter fighter )
         {

@@ -1,0 +1,51 @@
+using FighterGame.Domain;
+using FighterGame.Domain.Model;
+using FighterGame.Domain.Model.Types;
+using Menu.Commands;
+using Menu.Core;
+using Menu.Infrastructure;
+using Menu.Infrastructure.Menu;
+using Menu.UI;
+
+namespace FighterGame.Command
+{
+    public class SelectArmorCommand : ICommand
+    {
+        private readonly IUserInterface _ui;
+        private readonly IMenuRegistry _registry;
+        private readonly FighterDto _fighterDto;
+        public string Title { get; private set; }
+
+        public SelectArmorCommand( IUserInterface ui, IMenuRegistry registry, FighterDto fighterDto )
+        {
+            _ui = ui;
+            _registry = registry;
+            _fighterDto = fighterDto;
+            Title = $"Выберите броню ({_fighterDto.Armor})";
+        }
+
+        public CommandResult Execute()
+        {
+            if ( _registry.TryGet( "select-armor", out IMenu? menu ) )
+            {
+                if ( menu is null )
+                {
+                    throw new Exception( "Меню не найдено" );
+                }
+
+                menu.Title = Title;
+
+                return Results.Navigate( menu.MenuId );
+            }
+
+            EnumMenu<ArmorType> selectMenu = new( _ui, "select-armor", value =>
+            {
+                _fighterDto.Armor = value;
+                Title = $"Выберите броню ({_fighterDto.Armor})";
+            } );
+            _registry.Add( selectMenu );
+
+            return Results.Navigate( selectMenu.MenuId );
+        }
+    }
+}

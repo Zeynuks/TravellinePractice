@@ -4,7 +4,7 @@ using FighterGame.Domain.Model.Class;
 using FighterGame.Domain.Model.Races;
 using FighterGame.Domain.Model.Weapons;
 
-namespace FighterGame.Domain
+namespace FighterGame.Domain.Model
 {
     public class Fighter : IFighter
     {
@@ -62,7 +62,10 @@ namespace FighterGame.Domain
             }
 
             int damage = CalculateDamage( target );
-            if ( isCriticalHit ) damage *= 2;
+            if ( isCriticalHit )
+            {
+                damage *= 2;
+            }
 
             target.TakeDamage( damage );
             return damage;

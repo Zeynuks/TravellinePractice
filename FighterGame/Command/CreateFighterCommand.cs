@@ -1,7 +1,9 @@
 using FighterGame.Domain;
-using FighterGame.Domain.Model.Types;
+using FighterGame.Domain.Model;
+using FighterGame.Domain.Repository;
 using Menu.Commands;
 using Menu.Core;
+using Menu.Infrastructure;
 using Menu.Infrastructure.Menu;
 using Menu.UI;
 
@@ -12,69 +14,46 @@ namespace FighterGame.Command
         public string Title => "Добавить нового бойца на арену";
 
         private readonly IUserInterface _ui;
-        private readonly FighterRepository _fighterRepository;
-        private readonly FighterBuilder _fighterBuilder;
+        private readonly IMenuRegistry _registry;
+        private readonly IFighterRepository _fighterRepository;
 
         public CreateFighterCommand(
             IUserInterface ui,
-            FighterRepository fighterRepository,
-            FighterBuilder fighterBuilder
+            IMenuRegistry registry,
+            IFighterRepository fighterRepository
         )
         {
             _ui = ui;
+            _registry = registry;
             _fighterRepository = fighterRepository;
-            _fighterBuilder = fighterBuilder;
         }
 
         public CommandResult Execute()
         {
-            string name = _ui.ReadLine( "Введите имя персонажа (Алекс): " ) ?? "Алекс";
-            _ui.Clear();
+            if ( _registry.TryGet( "create-fighter", out IMenu? menu ) )
+            {
+                if ( menu is null )
+                {
+                    throw new Exception( "Меню не найдено" );
+                }
 
-            ClassType classType = EnumSelection<ClassType>(
-                "create-fighter-class",
-                "Выберите класс из списка:"
-            );
+                return Results.Navigate( menu.MenuId );
+            }
 
-            RaceType raceType = EnumSelection<RaceType>(
-                "create-fighter-race",
-                "Выберите расу из списка:"
-            );
+            FighterDto fighterDto = new();
+            CommandMenu createFighterMenu = new( _ui, "create-fighter", "Выберите желаемые параметры: " );
 
-            ArmorType armorType = EnumSelection<ArmorType>(
-                "create-fighter-armor",
-                "Выберите броню из списка:"
-            );
+            createFighterMenu.InsertOption( "1", new SelectNameCommand( _ui, fighterDto ) );
+            createFighterMenu.InsertOption( "2", new SelectClassCommand( _ui, _registry, fighterDto ) );
+            createFighterMenu.InsertOption( "3", new SelectRaceCommand( _ui, _registry, fighterDto ) );
+            createFighterMenu.InsertOption( "4", new SelectArmorCommand( _ui, _registry, fighterDto ) );
+            createFighterMenu.InsertOption( "5", new SelectWeaponCommand( _ui, _registry, fighterDto ) );
+            createFighterMenu.InsertOption( "6", new SelectDamageTypeCommand( _ui, _registry, fighterDto ) );
+            createFighterMenu.InsertOption( "7", new BuildFighterCommand( _registry, _fighterRepository, fighterDto ) );
+            createFighterMenu.InsertOption( "0", new BackCommand() );
+            _registry.Add( createFighterMenu );
 
-            WeaponType weaponType = EnumSelection<WeaponType>(
-                "create-fighter-weapon",
-                "Выберите оружие из списка:"
-            );
-
-            DamageType damageType = EnumSelection<DamageType>(
-                "create-fighter-damage",
-                "Выберите зачарование (тип урона):"
-            );
-
-            IFighter fighter = _fighterBuilder.Build( name, classType, raceType, armorType, weaponType, damageType );
-
-            _fighterRepository.AddFighter( fighter );
-
-            return Results.Continue();
-        }
-
-        private TEnum EnumSelection<TEnum>( string menuId, string title ) where TEnum : Enum
-        {
-            TEnum selected = default!;
-
-            new EnumMenu<TEnum>(
-                _ui,
-                menuId,
-                value => selected = value,
-                title
-            ).Execute();
-
-            return selected;
+            return Results.Navigate( createFighterMenu.MenuId );
         }
     }
 }

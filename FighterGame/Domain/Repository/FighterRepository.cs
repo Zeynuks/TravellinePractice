@@ -1,6 +1,8 @@
-namespace FighterGame.Domain
+using FighterGame.Domain.Model;
+
+namespace FighterGame.Domain.Repository
 {
-    public class FighterRepository
+    public class FighterRepository : IFighterRepository
     {
         private readonly List<IFighter> _fighters = new();
 
@@ -12,12 +14,6 @@ namespace FighterGame.Domain
         public List<IFighter> GetAllFighters()
         {
             return _fighters;
-        }
-
-        public List<IFighter> GetFighters( IEnumerable<Guid> fighterIds )
-        {
-            return _fighters.Where(f => fighterIds.Contains(f.Id))
-                .ToList();
         }
     }
 }

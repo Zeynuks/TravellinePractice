@@ -1,5 +1,6 @@
 ﻿using FighterGame.Command;
 using FighterGame.Domain;
+using FighterGame.Domain.Repository;
 using FighterGame.UI;
 using Menu.Commands;
 using Menu.Infrastructure;
@@ -15,21 +16,15 @@ namespace FighterGame
             IUserInterface ui = new ConsoleUi();
             IMenuRegistry registry = new MenuRegistry();
 
-            FighterRepository fighterRepository = new();
-            BattleEngine battleEngine = new( ui );
-            FighterBuilder fighterBuilder = new();
+            IFighterRepository fighterRepository = new FighterRepository();
 
-            Menu.Infrastructure.Menu.CommandMenu mainCommandMenu = new( ui, "main", "Введите команду:" );
-            mainCommandMenu.InsertOption( "1",
-                new CreateFighterCommand( ui, fighterRepository, fighterBuilder ) );
-            mainCommandMenu.InsertOption( "2",
-                new PrepareToBattleCommand( ui, registry, battleEngine, fighterRepository ) );
+            CommandMenu mainCommandMenu = new( ui, "main", "Введите команду:" );
+            mainCommandMenu.InsertOption( "1", new CreateFighterCommand( ui, registry, fighterRepository ) );
+            mainCommandMenu.InsertOption( "2", new PrepareToBattleCommand( ui, registry, fighterRepository ) );
             mainCommandMenu.InsertOption( "exit", new ExitCommand() );
-
             registry.Add( mainCommandMenu );
 
             new FlowRunner( mainCommandMenu, registry ).Run();
-
             ui.WriteLine( "Удачи!" );
         }
     }

@@ -1,4 +1,3 @@
-using Menu.Commands;
 using Menu.Infrastructure.Menu;
 
 namespace Menu.Infrastructure
@@ -9,12 +8,38 @@ namespace Menu.Infrastructure
 
         public void Add( IMenu cmd )
         {
-            _map[ cmd.MenuId ] = cmd;
+            if (cmd == null)
+            {
+                throw new ArgumentNullException(nameof(cmd), "Команда не может быть null.");
+            }
+
+            if (string.IsNullOrEmpty(cmd.MenuId))
+            {
+                throw new ArgumentException("У команды должен быть уникальный идентификатор.", nameof(cmd));
+            }
+
+            // Добавляем команду в реестр
+            _map[cmd.MenuId] = cmd;
         }
 
         public bool TryGet( string id, out IMenu? cmd )
         {
-            return _map.TryGetValue( id, out cmd );
+            if (string.IsNullOrEmpty(id))
+            {
+                throw new ArgumentException("Идентификатор не может быть пустым.", nameof(id));
+            }
+
+            return _map.TryGetValue(id, out cmd);
+        }
+
+        public bool Remove( string id )
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                throw new ArgumentException("Идентификатор не может быть пустым.", nameof(id));
+            }
+
+            return _map.Remove(id);
         }
     }
 }

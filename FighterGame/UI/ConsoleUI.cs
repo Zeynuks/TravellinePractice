@@ -47,7 +47,7 @@ namespace FighterGame.UI
                 WriteLine( "Некорректный ввод. Введите значение типа " + typeof( T ).Name + "." );
             }
         }
-        
+
         public ConsoleKey ReadKey( bool intercept = false )
         {
             return Console.ReadKey( intercept ).Key;

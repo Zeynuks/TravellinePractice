@@ -44,7 +44,7 @@ namespace FighterGame.Command
                 IReadOnlyList<IFighter> fighters = _fighterRepository.GetAllFighters();
                 if ( fighters.Count <= 0 )
                 {
-                    return Results.Continue();
+                    return CommandResults.Continue();
                 }
 
                 for ( int i = 0; i < fighters.Count; i++ )
@@ -58,12 +58,12 @@ namespace FighterGame.Command
                 fightersCommandMenu.InsertOption( "0", new BackCommand() );
                 _registry.Add( fightersCommandMenu );
 
-                return Results.Navigate( fightersCommandMenu.MenuId );
+                return CommandResults.Navigate( fightersCommandMenu.MenuId );
             }
             catch ( Exception ex )
             {
                 _ui.WriteLine( $"Ошибка: {ex.Message}" );
-                return Results.Continue();
+                return CommandResults.Continue();
             }
         }
     }

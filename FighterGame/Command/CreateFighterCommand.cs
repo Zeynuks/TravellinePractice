@@ -34,7 +34,7 @@ namespace FighterGame.Command
                 if ( menu != null )
                 {
                     menu.Title = Title;
-                    return Results.Navigate( menu.MenuId );
+                    return CommandResults.Navigate( menu.MenuId );
                 }
 
                 FighterDto fighterDto = new();
@@ -51,12 +51,12 @@ namespace FighterGame.Command
                 createFighterMenu.InsertOption( "0", new BackCommand() );
                 _registry.Add( createFighterMenu );
 
-                return Results.Navigate( createFighterMenu.MenuId );
+                return CommandResults.Navigate( createFighterMenu.MenuId );
             }
             catch ( Exception ex )
             {
                 _ui.WriteLine( $"Ошибка: {ex.Message}" );
-                return Results.Continue();
+                return CommandResults.Continue();
             }
         }
     }

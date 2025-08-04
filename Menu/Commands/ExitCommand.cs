@@ -14,7 +14,7 @@ namespace Menu.Commands
         /// <returns>Результат действия выхода.</returns>
         public CommandResult Execute()
         {
-            return Results.Exit();
+            return CommandResults.Exit();
         }
     }
 }

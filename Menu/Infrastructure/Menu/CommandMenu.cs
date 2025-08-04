@@ -68,7 +68,7 @@ namespace Menu.Infrastructure.Menu
 
             _ui.WriteLine( "Неверный выбор, попробуйте снова." );
 
-            return Results.Continue();
+            return CommandResults.Continue();
         }
 
         public void InsertOption( string key, ICommand command )

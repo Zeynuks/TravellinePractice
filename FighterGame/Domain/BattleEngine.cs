@@ -51,11 +51,19 @@ namespace FighterGame.Domain
 
             IFighter champion = RunTournament( initiativeOrder );
             AnnounceChampion( champion );
+            _ui.ReadKey();
+
+            foreach ( IFighter fighter in _fighters )
+            {
+                fighter.Heal( fighter.Race.MaxHealth );
+            }
+
+            _fighters.Clear();
         }
 
-        private static List<IFighter> DetermineInitiativeOrder( IEnumerable<IFighter> _fighters )
+        private static List<IFighter> DetermineInitiativeOrder( IEnumerable<IFighter> fighters )
         {
-            return _fighters.Select( fighter => new
+            return fighters.Select( fighter => new
                 {
                     IFighter = fighter,
                     Roll = fighter.RollInitiative()
@@ -74,6 +82,8 @@ namespace FighterGame.Domain
                     ? $"{initiativeOrder[ i ].Name} vs {initiativeOrder[ i + 1 ].Name}"
                     : $"{initiativeOrder[ i ].Name} получает пропуск" );
             }
+
+            _ui.ReadKey();
         }
 
         private IFighter RunTournament( List<IFighter> participants )
@@ -133,6 +143,7 @@ namespace FighterGame.Domain
                         break;
                 }
 
+                _ui.ReadKey();
                 ( attacker, defender ) = ( defender, attacker );
             }
 

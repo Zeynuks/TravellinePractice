@@ -1,10 +1,11 @@
-﻿using FighterGame.Domain.Model.Types;
+﻿using FighterGame.Domain.Dice;
+using FighterGame.Domain.Model.Types;
 
 namespace FighterGame.Domain.Model.Weapons
 {
     public interface IWeapon
     {
-        public int Damage { get; }
+        public IDice Damage { get; }
         public DamageType DamageType { get; }
     }
 }

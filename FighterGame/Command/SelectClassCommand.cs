@@ -32,7 +32,7 @@ namespace FighterGame.Command
                 if ( menu != null )
                 {
                     menu.Title = Title;
-                    return Results.Navigate( menu.MenuId );
+                    return CommandResults.Navigate( menu.MenuId );
                 }
 
                 EnumMenu<ClassType> selectMenu = new( _ui, MenuId, value =>
@@ -42,12 +42,12 @@ namespace FighterGame.Command
                 } );
                 _registry.Add( selectMenu );
 
-                return Results.Navigate( selectMenu.MenuId );
+                return CommandResults.Navigate( selectMenu.MenuId );
             }
             catch ( Exception ex)
             {
                 _ui.WriteLine( $"Ошибка: {ex.Message}" );
-                return Results.Continue();
+                return CommandResults.Continue();
             }
         }
     }

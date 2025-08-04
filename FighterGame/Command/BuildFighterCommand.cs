@@ -37,12 +37,12 @@ namespace FighterGame.Command
                 _fighterRepository.AddFighter( _fighterBuilder.Build( _fighterDto ) );
                 _registry.Remove( MenuId );
 
-                return Results.Back();
+                return CommandResults.Back();
             }
             catch ( Exception ex )
             {
                 _ui.WriteLine( $"Ошибка: {ex.Message}" );
-                return Results.Back();
+                return CommandResults.Back();
             }
         }
     }

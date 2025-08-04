@@ -5,7 +5,7 @@ namespace Menu.Infrastructure.Menu
 {
     /// <summary>
     /// Generic-меню для выбора значения перечисления TEnum.
-    /// При выборе вызывает onSubmit и возвращает Results.Back().
+    /// При выборе вызывает onSubmit и возвращает CommandResults.Back().
     /// </summary>
     public sealed class EnumMenu<TEnum> : IMenu
         where TEnum : Enum
@@ -64,7 +64,7 @@ namespace Menu.Infrastructure.Menu
                     {
                         TEnum selected = _values[ choice - 1 ];
                         _onSubmit( selected );
-                        return Results.Back();
+                        return CommandResults.Back();
                     }
                 }
 

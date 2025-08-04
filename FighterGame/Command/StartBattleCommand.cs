@@ -23,12 +23,12 @@ namespace FighterGame.Command
             {
                 _battleEngine.StartBattle();
 
-                return Results.Back();
+                return CommandResults.Back();
             }
             catch ( Exception ex )
             {
                 _ui.WriteLine( $"Ошибка: {ex.Message}" );
-                return Results.Continue();
+                return CommandResults.Continue();
             }
         }
     }

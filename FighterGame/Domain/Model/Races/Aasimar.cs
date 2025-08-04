@@ -7,6 +7,6 @@ namespace FighterGame.Domain.Model.Races
     {
         public int MaxHealth => 16;
         public DamageType DamageResist => DamageType.Radiant;
-        public IDice HealDice => new DiceTypes.D8();
+        public IDice HealDice => new D8();
     }
 }

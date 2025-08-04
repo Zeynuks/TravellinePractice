@@ -36,12 +36,12 @@ namespace FighterGame.Command
                     Title = _fighter.Name + " (selected)";
                 }
 
-                return Results.Continue();
+                return CommandResults.Continue();
             }
             catch ( Exception ex )
             {
                 _ui.WriteLine( $"Ошибка: {ex.Message}" );
-                return Results.Continue();
+                return CommandResults.Continue();
             }
         }
 

@@ -5,7 +5,7 @@ namespace FighterGame.Domain.Model.Weapons
 {
     public class Club: IWeapon
     {
-        public int Damage => new DiceTypes.D8().Roll();
+        public IDice Damage => new D8();
         public DamageType DamageType { get; }
         
         public Club( DamageType damageType )

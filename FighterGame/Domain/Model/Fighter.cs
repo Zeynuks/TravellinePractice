@@ -44,7 +44,7 @@ namespace FighterGame.Domain.Model
 
         public int RollInitiative()
         {
-            return new DiceTypes.D20().Roll();
+            return new D20().Roll();
         }
 
         public int RollHealing()
@@ -54,7 +54,7 @@ namespace FighterGame.Domain.Model
 
         public int Attack( IFighter target )
         {
-            int attackRoll = new DiceTypes.D20().Roll();
+            int attackRoll = new D20().Roll();
 
             if ( attackRoll == CriticalUnLuckRoll )
             {
@@ -82,7 +82,7 @@ namespace FighterGame.Domain.Model
 
         private int CalculateDamage( IFighter target )
         {
-            double baseDmg = Weapon.Damage * Class.DamageModify;
+            double baseDmg = Weapon.Damage.Roll() * Class.DamageModify;
             double variation = Random.Shared.NextDouble() * MaxDamageVariation + MinDamageVariation;
             int dmg = ( int )( baseDmg * ( 1.0 + variation ) );
 

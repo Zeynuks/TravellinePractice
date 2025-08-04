@@ -24,12 +24,12 @@ namespace FighterGame.Command
 
             if ( string.IsNullOrWhiteSpace( name ) )
             {
-                return Results.Continue();
+                return CommandResults.Continue();
             }
 
             _fighterDto.Name = name;
             Title = $"Выберите имя ({_fighterDto.Name})";
-            return Results.Continue();
+            return CommandResults.Continue();
         }
     }
 }

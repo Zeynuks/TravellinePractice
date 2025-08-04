@@ -4,21 +4,11 @@ namespace FighterGame.Domain.Model
 {
     public class FighterDto
     {
-        public string Name { get; set; }
-        public ClassType Class { get; set; }
-        public RaceType Race { get; set; }
-        public ArmorType Armor { get; set; }
-        public WeaponType Weapon { get; set; }
-        public DamageType Damage { get; set; }
-
-        public FighterDto()
-        {
-            Name = "Алекс";
-            Class = ClassType.Knight;
-            Race = RaceType.Human;
-            Armor = ArmorType.PaddedArmor;
-            Weapon = WeaponType.Sword;
-            Damage = DamageType.Physical;
-        }
+        public string Name { get; set; } = "Алекс";
+        public ClassType Class { get; set; } = ClassType.Knight;
+        public RaceType Race { get; set; } = RaceType.Human;
+        public ArmorType Armor { get; set; } = ArmorType.PaddedArmor;
+        public WeaponType Weapon { get; set; } = WeaponType.Sword;
+        public DamageType Damage { get; set; } = DamageType.Physical;
     }
 }

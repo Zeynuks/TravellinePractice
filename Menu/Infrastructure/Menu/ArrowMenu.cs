@@ -43,7 +43,7 @@ namespace Menu.Infrastructure.Menu
         {
             if ( _options.Count == 0 )
             {
-                return Results.Continue();
+                return CommandResults.Continue();
             }
 
             int selectedIndex = 0;
@@ -63,14 +63,14 @@ namespace Menu.Infrastructure.Menu
                         selectedIndex = ( selectedIndex + 1 ) % _options.Count;
                         break;
                     case ConsoleKey.Backspace:
-                        return Results.Back();
+                        return CommandResults.Back();
                     case ConsoleKey.Enter:
                         MenuOption selected = _options[ selectedIndex ];
                         CommandResult result = selected.Command.Execute();
                         return result;
                     default:
                         _ui.WriteLine( "Неверный выбор, попробуйте снова." );
-                        return Results.Continue();
+                        return CommandResults.Continue();
                 }
             }
         }

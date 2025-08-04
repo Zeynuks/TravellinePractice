@@ -25,6 +25,6 @@ namespace Menu.Commands
 
         /// <summary>Выполняет переход к целевому меню.</summary>
         /// <returns>Результат действия навигации.</returns>
-        public CommandResult Execute() => Results.Navigate( _targetMenuId );
+        public CommandResult Execute() => CommandResults.Navigate( _targetMenuId );
     }
 }

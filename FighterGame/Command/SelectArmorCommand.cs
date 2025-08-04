@@ -16,7 +16,7 @@ namespace FighterGame.Command
         private readonly FighterDto _fighterDto;
         public string Title { get; private set; }
         private const string MenuId = "select-armor";
-        
+
         public SelectArmorCommand( IUserInterface ui, IMenuRegistry registry, FighterDto fighterDto )
         {
             _ui = ui;
@@ -27,26 +27,29 @@ namespace FighterGame.Command
 
         public CommandResult Execute()
         {
-            if ( _registry.TryGet( MenuId, out IMenu? menu ) )
+            try
             {
-                if ( menu is null )
+                IMenu? menu = _registry.TryGet( MenuId, out menu ) ? menu : null;
+                if ( menu != null )
                 {
-                    throw new Exception( "Меню не найдено" );
+                    menu.Title = Title;
+                    return Results.Navigate( menu.MenuId );
                 }
 
-                menu.Title = Title;
+                EnumMenu<ArmorType> selectMenu = new( _ui, MenuId, value =>
+                {
+                    _fighterDto.Armor = value;
+                    Title = $"Выберите броню ({_fighterDto.Armor})";
+                } );
+                _registry.Add( selectMenu );
 
-                return Results.Navigate( menu.MenuId );
+                return Results.Navigate( selectMenu.MenuId );
             }
-
-            EnumMenu<ArmorType> selectMenu = new( _ui, MenuId, value =>
+            catch ( Exception ex )
             {
-                _fighterDto.Armor = value;
-                Title = $"Выберите броню ({_fighterDto.Armor})";
-            } );
-            _registry.Add( selectMenu );
-
-            return Results.Navigate( selectMenu.MenuId );
+                _ui.WriteLine( $"Ошибка: {ex.Message}" );
+                return Results.Continue();
+            }
         }
     }
 }

@@ -4,23 +4,27 @@ using FighterGame.Domain.Repository;
 using Menu.Commands;
 using Menu.Core;
 using Menu.Infrastructure;
+using Menu.UI;
 
 namespace FighterGame.Command
 {
     public class BuildFighterCommand : ICommand
     {
+        private readonly IUserInterface _ui;
         private readonly IMenuRegistry _registry;
         private readonly IFighterRepository _fighterRepository;
         private readonly FighterDto _fighterDto;
         public string Title => "Подтвердить";
         private const string MenuId = "create-fighter";
-        
+
         public BuildFighterCommand(
+            IUserInterface ui,
             IMenuRegistry registry,
             IFighterRepository fighterRepository,
             FighterDto fighterDto
         )
         {
+            _ui = ui;
             _registry = registry;
             _fighterRepository = fighterRepository;
             _fighterDto = fighterDto;
@@ -28,10 +32,18 @@ namespace FighterGame.Command
 
         public CommandResult Execute()
         {
-            _fighterRepository.AddFighter( new FighterBuilder().Build( _fighterDto ) );
-            _registry.Remove( MenuId );
+            try
+            {
+                _fighterRepository.AddFighter( new FighterBuilder().Build( _fighterDto ) );
+                _registry.Remove( MenuId );
 
-            return Results.Back();
+                return Results.Back();
+            }
+            catch ( Exception ex )
+            {
+                _ui.WriteLine($"Ошибка: {ex.Message}");
+                return Results.Back();
+            }
         }
     }
 }

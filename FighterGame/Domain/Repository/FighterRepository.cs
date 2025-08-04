@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using FighterGame.Domain.Model;
 
 namespace FighterGame.Domain.Repository
@@ -8,12 +11,22 @@ namespace FighterGame.Domain.Repository
 
         public void AddFighter( IFighter fighter )
         {
+            if ( fighter == null )
+            {
+                throw new ArgumentNullException( nameof( fighter ), "Боец не может быть null." );
+            }
+
+            if ( _fighters.Any( f => f.Id == fighter.Id ) )
+            {
+                throw new InvalidOperationException( $"Боец с Id {fighter.Id} уже существует." );
+            }
+
             _fighters.Add( fighter );
         }
 
-        public List<IFighter> GetAllFighters()
+        public IReadOnlyList<IFighter> GetAllFighters()
         {
-            return _fighters;
+            return _fighters.AsReadOnly();
         }
     }
 }

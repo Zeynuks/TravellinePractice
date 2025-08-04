@@ -30,7 +30,6 @@ namespace FighterGame.Command
 
             _fighterDto.Name = name;
             Title = $"Выберите имя ({_fighterDto.Name})";
-
             return Results.Continue();
         }
     }

@@ -32,35 +32,43 @@ namespace FighterGame.Command
 
         public CommandResult Execute()
         {
-            if ( _registry.TryGet( MenuId, out IMenu? menu ) )
+            try
             {
-                if ( menu is null )
+                if ( _registry.TryGet( MenuId, out IMenu? menu ) )
                 {
-                    throw new Exception( "Меню не найдено" );
+                    if ( menu is null )
+                    {
+                        throw new Exception( "Меню не найдено" );
+                    }
+
+                    return Results.Navigate( menu.MenuId );
                 }
 
-                return Results.Navigate( menu.MenuId );
+                CommandMenu fightersCommandMenu = new( _ui, MenuId );
+
+                IReadOnlyList<IFighter> fighters = _fighterRepository.GetAllFighters();
+                if ( fighters.Count <= 0 )
+                {
+                    return Results.Continue();
+                }
+
+                for ( int i = 0; i < fighters.Count; i++ )
+                {
+                    fightersCommandMenu.InsertOption( $"{i + 1}",
+                        new SelectFighterCommand( _battleEngine, fighters[ i ] ) );
+                }
+
+                fightersCommandMenu.InsertOption( $"{fighters.Count + 1}", new StartBattleCommand( _battleEngine ) );
+                fightersCommandMenu.InsertOption( "0", new BackCommand() );
+                _registry.Add( fightersCommandMenu );
+
+                return Results.Navigate( fightersCommandMenu.MenuId );
             }
-
-            CommandMenu fightersCommandMenu = new( _ui, MenuId );
-
-            List<IFighter> fighters = _fighterRepository.GetAllFighters();
-            if ( fighters.Count <= 0 )
+            catch ( Exception ex)
             {
+                _ui.WriteLine( $"Ошибка: {ex.Message}" );
                 return Results.Continue();
             }
-
-            for ( int i = 0; i < fighters.Count; i++ )
-            {
-                fightersCommandMenu.InsertOption( $"{i + 1}",
-                    new SelectFighterCommand( _battleEngine, fighters[ i ] ) );
-            }
-
-            fightersCommandMenu.InsertOption( $"{fighters.Count + 1}", new StartBattleCommand( _battleEngine ) );
-            fightersCommandMenu.InsertOption( "0", new BackCommand() );
-            _registry.Add( fightersCommandMenu );
-
-            return Results.Navigate( fightersCommandMenu.MenuId );
         }
     }
 }

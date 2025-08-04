@@ -2,7 +2,7 @@ namespace FighterGame.Domain.Dice
 {
     public abstract class BaseDice : IDice
     {
-        public int Sides { get; }
+        private int Sides { get; }
 
         protected BaseDice( int sides )
         {
@@ -10,7 +10,7 @@ namespace FighterGame.Domain.Dice
             Sides = sides;
         }
 
-        public virtual int Roll()
+        public int Roll()
         {
             return Random.Shared.Next( 1, Sides + 1 );
         }

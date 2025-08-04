@@ -1,3 +1,4 @@
+using FighterGame.Domain.Model;
 using Menu.UI;
 
 namespace FighterGame.Domain

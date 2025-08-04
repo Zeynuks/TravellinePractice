@@ -3,7 +3,7 @@ using FighterGame.Domain.Model.Class;
 using FighterGame.Domain.Model.Races;
 using FighterGame.Domain.Model.Weapons;
 
-namespace FighterGame.Domain
+namespace FighterGame.Domain.Model
 {
     public interface IFighter
     {

@@ -1,7 +1,10 @@
 using FighterGame.Domain;
+using FighterGame.Domain.Model;
+using FighterGame.Domain.Repository;
 using Menu.Commands;
 using Menu.Core;
 using Menu.Infrastructure;
+using Menu.Infrastructure.Menu;
 using Menu.UI;
 
 namespace FighterGame.Command
@@ -12,20 +15,33 @@ namespace FighterGame.Command
         private readonly IUserInterface _ui;
         private readonly IMenuRegistry _registry;
         private readonly BattleEngine _battleEngine;
-        private readonly FighterRepository _fighterRepository;
+        private readonly IFighterRepository _fighterRepository;
 
-        public PrepareToBattleCommand( IUserInterface ui, IMenuRegistry registry, BattleEngine battleEngine,
-            FighterRepository fighterRepository )
+        public PrepareToBattleCommand(
+            IUserInterface ui,
+            IMenuRegistry registry,
+            IFighterRepository fighterRepository
+        )
         {
             _ui = ui;
             _registry = registry;
-            _battleEngine = battleEngine;
+            _battleEngine = new BattleEngine(ui);
             _fighterRepository = fighterRepository;
         }
 
         public CommandResult Execute()
         {
-            Menu.Infrastructure.Menu.CommandMenu fightersCommandMenu = new( _ui, "fighters-menu" );
+            if ( _registry.TryGet( "fighter-list-menu", out IMenu? menu ) )
+            {
+                if ( menu is null )
+                {
+                    throw new Exception( "Меню не найдено" );
+                }
+
+                return Results.Navigate( menu.MenuId );
+            }
+
+            CommandMenu fightersCommandMenu = new( _ui, "fighter-list-menu" );
 
             List<IFighter> fighters = _fighterRepository.GetAllFighters();
             if ( fighters.Count <= 0 )

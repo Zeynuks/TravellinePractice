@@ -16,7 +16,7 @@ namespace Menu.Infrastructure.Menu
         public string MenuId { get; }
 
         /// <summary>Заголовок меню.</summary>
-        public string Title { get; }
+        public string Title { get; set; }
 
         /// <summary>
         /// Создаёт новую команду меню.

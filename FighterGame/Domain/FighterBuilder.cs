@@ -1,4 +1,5 @@
 using FighterGame.Domain.Factory;
+using FighterGame.Domain.Model;
 using FighterGame.Domain.Model.Armor;
 using FighterGame.Domain.Model.Class;
 using FighterGame.Domain.Model.Races;
@@ -14,21 +15,14 @@ namespace FighterGame.Domain
         private readonly ArmorFactory _armorFactory = new();
         private readonly WeaponFactory _weaponFactory = new();
 
-        public IFighter Build(
-            string name,
-            ClassType classType,
-            RaceType raceType,
-            ArmorType armorType,
-            WeaponType weaponType,
-            DamageType damageType
-        )
+        public IFighter Build( FighterDto fighterDto )
         {
-            IClass fighterClass = _classFactory.CreateClass( classType );
-            IRace fighterRace = _raceFactory.CreateRace( raceType );
-            IArmor fighterArmor = _armorFactory.CreateArmor( armorType );
-            IWeapon fighterWeapon = _weaponFactory.CreateWeapon( weaponType, damageType );
+            IClass fighterClass = _classFactory.CreateClass( fighterDto.Class );
+            IRace fighterRace = _raceFactory.CreateRace( fighterDto.Race );
+            IArmor fighterArmor = _armorFactory.CreateArmor( fighterDto.Armor );
+            IWeapon fighterWeapon = _weaponFactory.CreateWeapon( fighterDto.Weapon, fighterDto.Damage );
 
-            return new Fighter( name, fighterClass, fighterRace, fighterArmor, fighterWeapon );
+            return new Fighter( fighterDto.Name, fighterClass, fighterRace, fighterArmor, fighterWeapon );
         }
     }
 }

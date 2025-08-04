@@ -26,7 +26,7 @@ namespace FighterGame.Command
         {
             _ui = ui;
             _registry = registry;
-            _battleEngine = new BattleEngine(ui);
+            _battleEngine = new BattleEngine( ui );
             _fighterRepository = fighterRepository;
         }
 
@@ -55,16 +55,17 @@ namespace FighterGame.Command
                 for ( int i = 0; i < fighters.Count; i++ )
                 {
                     fightersCommandMenu.InsertOption( $"{i + 1}",
-                        new SelectFighterCommand( _battleEngine, fighters[ i ] ) );
+                        new SelectFighterCommand( _ui, _battleEngine, fighters[ i ] ) );
                 }
 
-                fightersCommandMenu.InsertOption( $"{fighters.Count + 1}", new StartBattleCommand( _battleEngine ) );
+                fightersCommandMenu.InsertOption( $"{fighters.Count + 1}",
+                    new StartBattleCommand( _ui, _battleEngine ) );
                 fightersCommandMenu.InsertOption( "0", new BackCommand() );
                 _registry.Add( fightersCommandMenu );
 
                 return Results.Navigate( fightersCommandMenu.MenuId );
             }
-            catch ( Exception ex)
+            catch ( Exception ex )
             {
                 _ui.WriteLine( $"Ошибка: {ex.Message}" );
                 return Results.Continue();

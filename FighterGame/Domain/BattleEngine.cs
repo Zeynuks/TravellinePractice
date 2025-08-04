@@ -43,9 +43,7 @@ namespace FighterGame.Domain
             _ui.Clear();
             if ( _fighters.Count < 2 )
             {
-                _ui.WriteLine( "Недостаточно бойцов для начала боя" );
-
-                return;
+                throw new Exception( "Недостаточно бойцов для начала боя" );
             }
 
             List<IFighter> initiativeOrder = DetermineInitiativeOrder( _fighters );

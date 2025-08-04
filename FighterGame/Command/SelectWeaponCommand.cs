@@ -9,7 +9,7 @@ using Menu.UI;
 
 namespace FighterGame.Command
 {
-    public class SelectWeaponCommand: ICommand
+    public class SelectWeaponCommand : ICommand
     {
         private readonly IUserInterface _ui;
         private readonly IMenuRegistry _registry;
@@ -27,21 +27,29 @@ namespace FighterGame.Command
 
         public CommandResult Execute()
         {
-            IMenu? menu = _registry.TryGet( MenuId, out menu ) ? menu : null;
-            if ( menu != null )
+            try
             {
-                menu.Title = Title;
-                return Results.Navigate( menu.MenuId );
+                IMenu? menu = _registry.TryGet( MenuId, out menu ) ? menu : null;
+                if ( menu != null )
+                {
+                    menu.Title = Title;
+                    return Results.Navigate( menu.MenuId );
+                }
+
+                EnumMenu<WeaponType> selectMenu = new( _ui, MenuId, value =>
+                {
+                    _fighterDto.Weapon = value;
+                    Title = $"Выберите класс ({_fighterDto.Weapon})";
+                } );
+                _registry.Add( selectMenu );
+
+                return Results.Navigate( selectMenu.MenuId );
             }
-            
-            EnumMenu<WeaponType> selectMenu = new( _ui, MenuId, value =>
+            catch ( Exception ex )
             {
-                _fighterDto.Weapon = value;
-                Title = $"Выберите класс ({_fighterDto.Weapon})";
-            } );
-            _registry.Add( selectMenu );
-            
-            return Results.Navigate( selectMenu.MenuId );
+                _ui.WriteLine( $"Ошибка: {ex.Message}" );
+                return Results.Continue();
+            }
         }
     }
 }

@@ -41,7 +41,7 @@ namespace FighterGame.Command
             }
             catch ( Exception ex )
             {
-                _ui.WriteLine($"Ошибка: {ex.Message}");
+                _ui.WriteLine( $"Ошибка: {ex.Message}" );
                 return Results.Back();
             }
         }

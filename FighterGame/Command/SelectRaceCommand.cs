@@ -27,21 +27,29 @@ namespace FighterGame.Command
 
         public CommandResult Execute()
         {
-            IMenu? menu = _registry.TryGet( MenuId, out menu ) ? menu : null;
-            if ( menu != null )
+            try
             {
-                menu.Title = Title;
-                return Results.Navigate( menu.MenuId );
+                IMenu? menu = _registry.TryGet( MenuId, out menu ) ? menu : null;
+                if ( menu != null )
+                {
+                    menu.Title = Title;
+                    return Results.Navigate( menu.MenuId );
+                }
+
+                EnumMenu<RaceType> selectMenu = new( _ui, MenuId, value =>
+                {
+                    _fighterDto.Race = value;
+                    Title = $"Выберите расу ({_fighterDto.Race})";
+                } );
+                _registry.Add( selectMenu );
+
+                return Results.Navigate( selectMenu.MenuId );
             }
-
-            EnumMenu<RaceType> selectMenu = new( _ui, MenuId, value =>
+            catch ( Exception ex )
             {
-                _fighterDto.Race = value;
-                Title = $"Выберите расу ({_fighterDto.Race})";
-            } );
-            _registry.Add( selectMenu );
-
-            return Results.Navigate( selectMenu.MenuId );
+                _ui.WriteLine( $"Ошибка: {ex.Message}" );
+                return Results.Continue();
+            }
         }
     }
 }

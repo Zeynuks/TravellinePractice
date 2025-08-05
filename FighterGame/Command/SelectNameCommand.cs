@@ -9,6 +9,7 @@ namespace FighterGame.Command
     {
         private readonly IUserInterface _ui;
         private readonly FighterDto _fighterDto;
+        
         public string Title { get; private set; }
 
         public SelectNameCommand( IUserInterface ui, FighterDto fighterDto )

@@ -11,9 +11,11 @@ namespace FighterGame.Command
     public class SelectWeaponCommand : ICommand
     {
         private const string MenuId = "select-weapon";
+        
         private readonly IUserInterface _ui;
         private readonly IMenuRegistry _registry;
         private readonly FighterDto _fighterDto;
+        
         public string Title { get; private set; }
 
         public SelectWeaponCommand( IUserInterface ui, IMenuRegistry registry, FighterDto fighterDto )

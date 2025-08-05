@@ -11,6 +11,7 @@ namespace FighterGame.Command
         private readonly IUserInterface _ui;
         private readonly BattleEngine _battleEngine;
         private readonly IFighter _fighter;
+        
         public string Title { get; private set; }
 
         public SelectFighterCommand( IUserInterface ui, BattleEngine battleEngine, IFighter fighter )

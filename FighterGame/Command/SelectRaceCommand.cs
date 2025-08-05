@@ -11,9 +11,11 @@ namespace FighterGame.Command
     public class SelectRaceCommand : ICommand
     {
         private const string MenuId = "select-race";
+        
         private readonly IUserInterface _ui;
         private readonly IMenuRegistry _registry;
         private readonly FighterDto _fighterDto;
+        
         public string Title { get; private set; }
 
         public SelectRaceCommand( IUserInterface ui, IMenuRegistry registry, FighterDto fighterDto )

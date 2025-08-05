@@ -9,6 +9,7 @@ namespace FighterGame.Command
     {
         private readonly IUserInterface _ui;
         private readonly BattleEngine _battleEngine;
+        
         public string Title => "Продолжить";
 
         public StartBattleCommand( IUserInterface ui, BattleEngine battleEngine )

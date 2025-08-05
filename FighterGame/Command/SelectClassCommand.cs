@@ -11,9 +11,11 @@ namespace FighterGame.Command
     public class SelectClassCommand : ICommand
     {
         private const string MenuId = "select-class";
+        
         private readonly IUserInterface _ui;
         private readonly IMenuRegistry _registry;
         private readonly FighterDto _fighterDto;
+        
         public string Title { get; private set; }
 
         public SelectClassCommand( IUserInterface ui, IMenuRegistry registry, FighterDto fighterDto )

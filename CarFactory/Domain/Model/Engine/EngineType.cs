@@ -7,11 +7,13 @@ namespace CarFactory.Domain.Model.Engine
         [Description( "Бензиновый двигатель" )]
         Petrol,
 
-        [Description( "Дизельный двигатель" )] Diesel,
+        [Description( "Дизельный двигатель" )]
+        Diesel,
 
         [Description( "Электрический двигатель" )]
         Electric,
 
-        [Description( "Гибридный двигатель" )] Hybrid
+        [Description( "Гибридный двигатель" )]
+        Hybrid
     }
 }

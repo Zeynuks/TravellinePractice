@@ -13,6 +13,7 @@ namespace CarFactory.Domain.Model.Transmission
         [Description( "Полуавтоматическая коробка передач" )]
         SemiAutomatic,
 
-        [Description( "Вариатор (CVT)" )] Cvt
+        [Description( "Вариатор (CVT)" )]
+        Cvt
     }
 }

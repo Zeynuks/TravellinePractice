@@ -11,11 +11,11 @@ namespace FighterGame.Command
     public class SelectClassCommand : ICommand
     {
         private const string MenuId = "select-class";
-        
+
         private readonly IUserInterface _ui;
         private readonly IMenuRegistry _registry;
         private readonly FighterDto _fighterDto;
-        
+
         public string Title { get; private set; }
 
         public SelectClassCommand( IUserInterface ui, IMenuRegistry registry, FighterDto fighterDto )
@@ -23,7 +23,8 @@ namespace FighterGame.Command
             _ui = ui;
             _registry = registry;
             _fighterDto = fighterDto;
-            Title = $"Выберите класс ({EnumParser.GetEnumDescription( _fighterDto.Class )})";
+            Title = $"Выберите класс " +
+                    $"({EnumParser.GetEnumDescription( _fighterDto.Class ) ?? _fighterDto.Class.ToString()})";
         }
 
         public CommandResult Execute()
@@ -40,13 +41,14 @@ namespace FighterGame.Command
                 EnumMenu<ClassType> selectMenu = new( _ui, MenuId, value =>
                 {
                     _fighterDto.Class = value;
-                    Title = $"Выберите класс ({EnumParser.GetEnumDescription( _fighterDto.Class )})";
+                    Title = $"Выберите класс " +
+                            $"({EnumParser.GetEnumDescription( _fighterDto.Class ) ?? _fighterDto.Class.ToString()})";
                 } );
                 _registry.Add( selectMenu );
 
                 return CommandResults.Navigate( selectMenu.MenuId );
             }
-            catch ( Exception ex)
+            catch ( Exception ex )
             {
                 _ui.WriteLine( $"Ошибка: {ex.Message}" );
                 return CommandResults.Continue();

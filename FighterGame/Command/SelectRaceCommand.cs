@@ -11,11 +11,11 @@ namespace FighterGame.Command
     public class SelectRaceCommand : ICommand
     {
         private const string MenuId = "select-race";
-        
+
         private readonly IUserInterface _ui;
         private readonly IMenuRegistry _registry;
         private readonly FighterDto _fighterDto;
-        
+
         public string Title { get; private set; }
 
         public SelectRaceCommand( IUserInterface ui, IMenuRegistry registry, FighterDto fighterDto )
@@ -23,7 +23,8 @@ namespace FighterGame.Command
             _ui = ui;
             _registry = registry;
             _fighterDto = fighterDto;
-            Title = $"Выберите расу ({EnumParser.GetEnumDescription( _fighterDto.Race )})";
+            Title = $"Выберите расу " +
+                    $"({EnumParser.GetEnumDescription( _fighterDto.Race ) ?? _fighterDto.Race.ToString()})";
         }
 
         public CommandResult Execute()
@@ -40,7 +41,8 @@ namespace FighterGame.Command
                 EnumMenu<RaceType> selectMenu = new( _ui, MenuId, value =>
                 {
                     _fighterDto.Race = value;
-                    Title = $"Выберите расу ({EnumParser.GetEnumDescription( _fighterDto.Race )})";
+                    Title = $"Выберите расу " +
+                            $"({EnumParser.GetEnumDescription( _fighterDto.Race ) ?? _fighterDto.Class.ToString()})";
                 } );
                 _registry.Add( selectMenu );
 

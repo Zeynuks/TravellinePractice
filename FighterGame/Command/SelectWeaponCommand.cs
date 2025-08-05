@@ -11,11 +11,11 @@ namespace FighterGame.Command
     public class SelectWeaponCommand : ICommand
     {
         private const string MenuId = "select-weapon";
-        
+
         private readonly IUserInterface _ui;
         private readonly IMenuRegistry _registry;
         private readonly FighterDto _fighterDto;
-        
+
         public string Title { get; private set; }
 
         public SelectWeaponCommand( IUserInterface ui, IMenuRegistry registry, FighterDto fighterDto )
@@ -23,7 +23,8 @@ namespace FighterGame.Command
             _ui = ui;
             _registry = registry;
             _fighterDto = fighterDto;
-            Title = $"Выберите оружие ({EnumParser.GetEnumDescription( _fighterDto.Weapon )})";
+            Title = $"Выберите оружие " +
+                    $"({EnumParser.GetEnumDescription( _fighterDto.Weapon ) ?? _fighterDto.Weapon.ToString()})";
         }
 
         public CommandResult Execute()
@@ -40,7 +41,8 @@ namespace FighterGame.Command
                 EnumMenu<WeaponType> selectMenu = new( _ui, MenuId, value =>
                 {
                     _fighterDto.Weapon = value;
-                    Title = $"Выберите оружие ({EnumParser.GetEnumDescription( _fighterDto.Weapon )})";
+                    Title = $"Выберите оружие " +
+                            $"({EnumParser.GetEnumDescription( _fighterDto.Weapon ) ?? _fighterDto.Weapon.ToString()})";
                 } );
                 _registry.Add( selectMenu );
 

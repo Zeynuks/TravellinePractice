@@ -11,11 +11,11 @@ namespace FighterGame.Command
     public class SelectDamageTypeCommand : ICommand
     {
         private const string MenuId = "select-damage";
-        
+
         private readonly IUserInterface _ui;
         private readonly IMenuRegistry _registry;
         private readonly FighterDto _fighterDto;
-        
+
         public string Title { get; private set; }
 
         public SelectDamageTypeCommand( IUserInterface ui, IMenuRegistry registry, FighterDto fighterDto )
@@ -23,7 +23,8 @@ namespace FighterGame.Command
             _ui = ui;
             _registry = registry;
             _fighterDto = fighterDto;
-            Title = $"Выберите желаемый тип урона ({EnumParser.GetEnumDescription( _fighterDto.Damage )})";
+            Title = $"Выберите желаемый тип урона (" +
+                    $"{EnumParser.GetEnumDescription( _fighterDto.Damage ) ?? _fighterDto.Class.ToString()})";
         }
 
         public CommandResult Execute()

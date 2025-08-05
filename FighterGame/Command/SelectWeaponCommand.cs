@@ -23,7 +23,7 @@ namespace FighterGame.Command
             _ui = ui;
             _registry = registry;
             _fighterDto = fighterDto;
-            Title = $"Выберите оружие ({_fighterDto.Weapon})";
+            Title = $"Выберите оружие ({EnumParser.GetEnumDescription( _fighterDto.Weapon )})";
         }
 
         public CommandResult Execute()
@@ -40,7 +40,7 @@ namespace FighterGame.Command
                 EnumMenu<WeaponType> selectMenu = new( _ui, MenuId, value =>
                 {
                     _fighterDto.Weapon = value;
-                    Title = $"Выберите класс ({_fighterDto.Weapon})";
+                    Title = $"Выберите оружие ({EnumParser.GetEnumDescription( _fighterDto.Weapon )})";
                 } );
                 _registry.Add( selectMenu );
 

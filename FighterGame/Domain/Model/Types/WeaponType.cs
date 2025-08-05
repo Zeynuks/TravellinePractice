@@ -1,11 +1,17 @@
+using System.ComponentModel;
+
 namespace FighterGame.Domain.Model.Types
 {
     public enum WeaponType
     {
-        Unarmed,
-        Sword,
-        Spear,
-        Dagger,
-        Club
+        [Description( "Без оружия" )] Unarmed,
+
+        [Description( "Меч" )] Sword,
+
+        [Description( "Копьё" )] Spear,
+
+        [Description( "Кинжал" )] Dagger,
+
+        [Description( "Дубина" )] Club
     }
 }

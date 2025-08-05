@@ -12,9 +12,11 @@ namespace CarFactory.Command
     public class SelectTransmissionCommand : ICommand
     {
         private const string MenuId = "select-transmission";
+        
         private readonly IUserInterface _ui;
         private readonly CarDto _carDto;
         private readonly IMenuRegistry _registry;
+        
         public string Title { get; private set; }
 
         public SelectTransmissionCommand( IUserInterface ui, IMenuRegistry registry, CarDto carDto )
@@ -22,7 +24,8 @@ namespace CarFactory.Command
             _ui = ui;
             _registry = registry;
             _carDto = carDto;
-            Title = $"Выберите коробку передач ({_carDto.Transmission})";
+            Title = $"Выберите коробку передач " +
+                    $"({EnumParser.GetEnumDescription( _carDto.Transmission ) ?? _carDto.Transmission.ToString()})";
         }
 
         public CommandResult Execute()
@@ -39,7 +42,8 @@ namespace CarFactory.Command
                 EnumMenu<TransmissionType> selectMenu = new( _ui, MenuId, value =>
                 {
                     _carDto.Transmission = value;
-                    Title = $"Выберите коробку передач ({_carDto.Transmission})";
+                    Title = $"Выберите коробку передач " +
+                            $"({EnumParser.GetEnumDescription( _carDto.Transmission ) ?? _carDto.Transmission.ToString()})";
                 } );
                 _registry.Add( selectMenu );
 

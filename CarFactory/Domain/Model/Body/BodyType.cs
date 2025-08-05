@@ -1,10 +1,15 @@
+using System.ComponentModel;
+
 namespace CarFactory.Domain.Model.Body
 {
     public enum BodyType
     {
-        Sedan,
-        Hatchback,
-        Coupe,
-        Suv
+        [Description( "Седан" )] Sedan,
+
+        [Description( "Хэтчбек" )] Hatchback,
+
+        [Description( "Купе" )] Coupe,
+
+        [Description( "Внедорожник" )] Suv
     }
 }

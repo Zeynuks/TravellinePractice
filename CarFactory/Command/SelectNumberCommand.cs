@@ -12,6 +12,7 @@ namespace CarFactory.Command
     {
         private readonly IUserInterface _ui;
         private readonly CarDto _carDto;
+        
         public string Title { get; private set; }
 
         public SelectNumberCommand( IUserInterface ui, CarDto carDto )

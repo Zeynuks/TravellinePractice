@@ -11,9 +11,11 @@ namespace CarFactory.Command
     public class SelectEngineCommand : ICommand
     {
         private const string MenuId = "select-engine";
+        
         private readonly IUserInterface _ui;
         private readonly IMenuRegistry _registry;
         private readonly CarDto _carDto;
+        
         public string Title { get; private set; }
 
         public SelectEngineCommand( IUserInterface ui, IMenuRegistry registry, CarDto carDto )
@@ -21,7 +23,8 @@ namespace CarFactory.Command
             _ui = ui;
             _registry = registry;
             _carDto = carDto;
-            Title = $"Выберите двигатель ({_carDto.Engine})";
+            Title = $"Выберите двигатель " +
+                    $"({EnumParser.GetEnumDescription( _carDto.Engine ) ?? _carDto.Engine.ToString()})";
         }
 
         public CommandResult Execute()
@@ -38,7 +41,8 @@ namespace CarFactory.Command
                 EnumMenu<EngineType> selectMenu = new( _ui, MenuId, value =>
                 {
                     _carDto.Engine = value;
-                    Title = $"Выберите двигатель ({_carDto.Engine})";
+                    Title = $"Выберите двигатель " +
+                            $"({EnumParser.GetEnumDescription( _carDto.Engine ) ?? _carDto.Engine.ToString()})";
                 } );
                 _registry.Add( selectMenu );
 

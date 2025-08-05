@@ -52,7 +52,8 @@ namespace Menu.Infrastructure.Menu
 
                 for ( int i = 0; i < _values.Length; i++ )
                 {
-                    _ui.WriteLine( ( i + 1 ) + " - " + _values[ i ] );
+                    string displayValue = EnumParser.GetEnumDescription( _values[ i ] ) ?? _values[ i ].ToString();
+                    _ui.WriteLine( ( i + 1 ) + " - " + displayValue );
                 }
 
                 string? input = _ui.ReadLine( "> " );
@@ -62,8 +63,8 @@ namespace Menu.Infrastructure.Menu
                 {
                     if ( choice >= 1 && choice <= _values.Length )
                     {
-                        TEnum selected = _values[ choice - 1 ];
-                        _onSubmit( selected );
+                        TEnum value = _values[ choice - 1 ];
+                        _onSubmit( value );
                         return CommandResults.Back();
                     }
                 }

@@ -9,6 +9,7 @@ namespace CarFactory.Command
     {
         private readonly IUserInterface _ui;
         private readonly ICar _car;
+        
         public string Title { get; }
 
         public ShowCarInfoCommand( IUserInterface ui, ICar car )

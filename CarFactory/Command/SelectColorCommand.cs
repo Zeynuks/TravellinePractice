@@ -13,9 +13,11 @@ namespace CarFactory.Command
     public class SelectColorCommand : ICommand
     {
         private const string MenuId = "select-color";
+        
         private readonly IUserInterface _ui;
         private readonly IMenuRegistry _registry;
         private readonly CarDto _carDto;
+        
         public string Title { get; private set; }
 
         public SelectColorCommand( IUserInterface ui, IMenuRegistry registry, CarDto carDto )
@@ -23,7 +25,8 @@ namespace CarFactory.Command
             _ui = ui;
             _registry = registry;
             _carDto = carDto;
-            Title = $"Выберите цвет ({_carDto.Color})";
+            Title = $"Выберите цвет " +
+                    $"({EnumParser.GetEnumDescription( _carDto.Color ) ?? _carDto.Color.ToString()})";
         }
 
         public CommandResult Execute()
@@ -40,7 +43,8 @@ namespace CarFactory.Command
                 EnumMenu<Color> selectMenu = new( _ui, MenuId, value =>
                 {
                     _carDto.Color = value;
-                    Title = $"Выберите цвет ({_carDto.Color})";
+                    Title = $"Выберите цвет " +
+                            $"({EnumParser.GetEnumDescription( _carDto.Color ) ?? _carDto.Color.ToString()})";
                 } );
                 _registry.Add( selectMenu );
 

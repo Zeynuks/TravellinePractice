@@ -11,9 +11,11 @@ namespace CarFactory.Command
     public class SelectBodyCommand : ICommand
     {
         private const string MenuId = "select-body";
+        
         private readonly IUserInterface _ui;
         private readonly IMenuRegistry _registry;
         private readonly CarDto _carDto;
+        
         public string Title { get; private set; }
 
         public SelectBodyCommand( IUserInterface ui, IMenuRegistry registry, CarDto carDto )
@@ -21,7 +23,8 @@ namespace CarFactory.Command
             _ui = ui;
             _registry = registry;
             _carDto = carDto;
-            Title = $"Выберите корпус ({_carDto.Body})";
+            Title = $"Выберите корпус " +
+                    $"({EnumParser.GetEnumDescription( _carDto.Body ) ?? _carDto.Body.ToString()})";
         }
 
         public CommandResult Execute()
@@ -38,7 +41,8 @@ namespace CarFactory.Command
                 EnumMenu<BodyType> selectMenu = new( _ui, MenuId, value =>
                 {
                     _carDto.Body = value;
-                    Title = $"Выберите корпус ({_carDto.Body})";
+                    Title = $"Выберите корпус " +
+                            $"({EnumParser.GetEnumDescription( _carDto.Body ) ?? _carDto.Body.ToString()})";
                 } );
                 _registry.Add( selectMenu );
 

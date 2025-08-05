@@ -11,9 +11,11 @@ namespace CarFactory.Command
     public class CreateCarCommand : ICommand
     {
         private const string MenuId = "create-car";
+        
         private readonly IUserInterface _ui;
         private readonly IMenuRegistry _registry;
         private readonly ICarRepository _repository;
+        
         public string Title => "Создать новую машину";
 
         public CreateCarCommand( IUserInterface ui, IMenuRegistry registry, ICarRepository repository )

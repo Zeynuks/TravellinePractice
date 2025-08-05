@@ -1,10 +1,17 @@
+using System.ComponentModel;
+
 namespace CarFactory.Domain.Model.Engine
 {
     public enum EngineType
     {
+        [Description( "Бензиновый двигатель" )]
         Petrol,
-        Diesel,
+
+        [Description( "Дизельный двигатель" )] Diesel,
+
+        [Description( "Электрический двигатель" )]
         Electric,
-        Hybrid
+
+        [Description( "Гибридный двигатель" )] Hybrid
     }
 }

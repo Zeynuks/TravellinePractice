@@ -8,6 +8,9 @@ namespace CarFactory.Domain.Model
 {
     public class Car : ICar
     {
+        private const double BodyWeightScalingFactor = 1500.0;
+        private const double TransmissionSpeedFactor = 10.0;
+
         public string Number { get; }
         public Color Color { get; }
         public ITransmission Transmission { get; }
@@ -30,8 +33,8 @@ namespace CarFactory.Domain.Model
 
         public int GetMaxSpeed()
         {
-            double transmissionFactor = ( Transmission.NumberOfGears / 10.0 );
-            double bodyWeightFactor = 1 - ( Body.Weight / 3000.0 );
+            double transmissionFactor = ( Transmission.NumberOfGears / TransmissionSpeedFactor );
+            double bodyWeightFactor = 1 - ( Body.Weight / BodyWeightScalingFactor );
 
             int maxSpeed = ( int )( Engine.BaseMaxSpeed * transmissionFactor * bodyWeightFactor );
 

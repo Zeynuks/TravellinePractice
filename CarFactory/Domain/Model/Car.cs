@@ -8,7 +8,7 @@ namespace CarFactory.Domain.Model
 {
     public class Car : ICar
     {
-        private const double BodyWeightScalingFactor = 1500.0;
+        private const double BodyWeightScalingFactor = 3000.0;
         private const double TransmissionSpeedFactor = 10.0;
 
         public string Number { get; }

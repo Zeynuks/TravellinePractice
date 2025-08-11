@@ -9,7 +9,7 @@ namespace CarFactory.Command
     {
         private readonly IUserInterface _ui;
         private readonly ICar _car;
-        
+
         public string Title { get; }
 
         public ShowCarInfoCommand( IUserInterface ui, ICar car )
@@ -27,6 +27,7 @@ namespace CarFactory.Command
                 _ui.WriteLine( $"Номер: {_car.Number}" );
                 _ui.WriteLine( $"Цвет: {_car.Color}" );
                 _ui.WriteLine( $"Коробка передач: {_car.Transmission.GetType().Name}" );
+                _ui.WriteLine( $"Количество передач: {_car.Transmission.NumberOfGears}" );
                 _ui.WriteLine( $"Двигатель: {_car.Engine.GetType().Name}" );
                 _ui.WriteLine( $"Кузов: {_car.Body.GetType().Name}" );
                 _ui.WriteLine( $"Максимальная скорость: {_car.GetMaxSpeed()} км/ч\n" );

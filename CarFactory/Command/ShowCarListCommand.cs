@@ -11,11 +11,11 @@ namespace CarFactory.Command
     public class ShowCarListCommand : ICommand
     {
         private const string MenuId = "car-list-menu";
-        
+
         private readonly IUserInterface _ui;
         private readonly IMenuRegistry _registry;
         private readonly ICarRepository _carRepository;
-        
+
         public string Title => "Список машин";
 
         public ShowCarListCommand( IUserInterface ui, IMenuRegistry registry, ICarRepository carRepository )
@@ -32,8 +32,7 @@ namespace CarFactory.Command
                 IMenu? menu = _registry.TryGet( MenuId, out menu ) ? menu : null;
                 if ( menu != null )
                 {
-                    menu.Title = Title;
-                    return CommandResults.Navigate( menu.MenuId );
+                    _registry.Remove( MenuId );
                 }
 
                 CommandMenu carsCommandMenu = new( _ui, MenuId );

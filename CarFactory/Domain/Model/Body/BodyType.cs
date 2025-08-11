@@ -4,16 +4,16 @@ namespace CarFactory.Domain.Model.Body
 {
     public enum BodyType
     {
-        [Description( "Седан" )] 
+        [Description( "Седан" )]
         Sedan,
 
-        [Description( "Хэтчбек" )] 
+        [Description( "Хэтчбек" )]
         Hatchback,
 
-        [Description( "Купе" )] 
+        [Description( "Купе" )]
         Coupe,
 
-        [Description( "Внедорожник" )] 
+        [Description( "Внедорожник" )]
         Suv
     }
 }

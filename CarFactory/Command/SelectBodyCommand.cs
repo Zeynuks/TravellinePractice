@@ -11,11 +11,11 @@ namespace CarFactory.Command
     public class SelectBodyCommand : ICommand
     {
         private const string MenuId = "select-body";
-        
+
         private readonly IUserInterface _ui;
         private readonly IMenuRegistry _registry;
         private readonly CarDto _carDto;
-        
+
         public string Title { get; private set; }
 
         public SelectBodyCommand( IUserInterface ui, IMenuRegistry registry, CarDto carDto )

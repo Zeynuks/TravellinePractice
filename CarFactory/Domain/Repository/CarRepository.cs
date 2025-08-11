@@ -13,7 +13,7 @@ namespace CarFactory.Domain.Repository
                 throw new ArgumentNullException( nameof( car ), "Некорректная конфигурация." );
             }
 
-            if ( !_cars.TryAdd(car.Number, car) )
+            if ( !_cars.TryAdd( car.Number, car ) )
             {
                 throw new InvalidOperationException( $"Автомобиль с номером {car.Number} уже существует." );
             }

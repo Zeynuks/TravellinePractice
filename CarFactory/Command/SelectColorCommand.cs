@@ -13,11 +13,11 @@ namespace CarFactory.Command
     public class SelectColorCommand : ICommand
     {
         private const string MenuId = "select-color";
-        
+
         private readonly IUserInterface _ui;
         private readonly IMenuRegistry _registry;
         private readonly CarDto _carDto;
-        
+
         public string Title { get; private set; }
 
         public SelectColorCommand( IUserInterface ui, IMenuRegistry registry, CarDto carDto )

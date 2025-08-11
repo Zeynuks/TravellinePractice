@@ -12,11 +12,11 @@ namespace CarFactory.Command
     public class SelectTransmissionCommand : ICommand
     {
         private const string MenuId = "select-transmission";
-        
+
         private readonly IUserInterface _ui;
         private readonly CarDto _carDto;
         private readonly IMenuRegistry _registry;
-        
+
         public string Title { get; private set; }
 
         public SelectTransmissionCommand( IUserInterface ui, IMenuRegistry registry, CarDto carDto )

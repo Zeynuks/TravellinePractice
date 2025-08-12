@@ -1,5 +1,4 @@
 using CarFactory.Domain;
-using CarFactory.Domain.Model.Engine;
 using CarFactory.Domain.Model.Transmission;
 using Menu.Commands;
 using Menu.Core;

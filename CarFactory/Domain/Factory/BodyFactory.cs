@@ -1,4 +1,3 @@
-using CarFactory.Domain.Model;
 using CarFactory.Domain.Model.Body;
 
 namespace CarFactory.Domain.Factory

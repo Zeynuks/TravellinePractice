@@ -1,6 +1,4 @@
-using System.Drawing;
 using CarFactory.Domain;
-using CarFactory.Domain.Model.Body;
 using Menu.Commands;
 using Menu.Core;
 using Menu.Infrastructure;

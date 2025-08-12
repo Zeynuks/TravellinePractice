@@ -3,7 +3,6 @@ using System.Text.RegularExpressions;
 using CarFactory.Domain;
 using Menu.Commands;
 using Menu.Core;
-using Menu.Infrastructure;
 using Menu.UI;
 
 namespace CarFactory.Command

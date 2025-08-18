@@ -15,9 +15,9 @@ namespace FighterGame.Domain
 
         public void AddParticipant( IFighter fighter )
         {
-            if ( ContainsParticipant( fighter.Id ) )
+            if (ContainsParticipant(fighter.Id))
             {
-                throw new Exception( "Боец уже есть на арене" );
+                throw new InvalidOperationException($"Боец с ID {fighter.Id} уже есть на арене.");
             }
 
             _fighters.Add( fighter );
@@ -27,7 +27,7 @@ namespace FighterGame.Domain
         {
             if ( !ContainsParticipant( fighter.Id ) )
             {
-                throw new Exception( "Боец не найден" );
+                throw new InvalidOperationException( "Боец не найден" );
             }
 
             _fighters.Remove( fighter );
@@ -43,7 +43,7 @@ namespace FighterGame.Domain
             _ui.Clear();
             if ( _fighters.Count < 2 )
             {
-                throw new Exception( "Недостаточно бойцов для начала боя" );
+                throw new InvalidOperationException( "Недостаточно бойцов для начала боя" );
             }
 
             List<IFighter> initiativeOrder = DetermineInitiativeOrder( _fighters );

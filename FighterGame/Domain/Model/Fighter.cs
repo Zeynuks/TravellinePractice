@@ -96,6 +96,11 @@ namespace FighterGame.Domain.Model
 
         public void TakeDamage( int dmg )
         {
+            if ( dmg < 0 )
+            {
+                throw new ArgumentOutOfRangeException( nameof( dmg ), "Урон не может быть отрицательным." );
+            }
+
             Health -= dmg;
             if ( Health < 0 )
             {
@@ -105,6 +110,12 @@ namespace FighterGame.Domain.Model
 
         public void Heal( int amount )
         {
+            if ( amount < 0 )
+            {
+                throw new ArgumentOutOfRangeException( nameof( amount ),
+                    "Значение лечения не может быть отрицательным." );
+            }
+
             Health += amount;
             if ( Health > Race.MaxHealth )
             {

@@ -12,12 +12,12 @@ namespace FighterGame.Command
     public class PrepareToBattleCommand : ICommand
     {
         private const string MenuId = "fighter-list-menu";
-        
+
         private readonly IUserInterface _ui;
         private readonly IMenuRegistry _registry;
         private readonly BattleEngine _battleEngine;
         private readonly IFighterRepository _fighterRepository;
-        
+
         public string Title => "Подготовка к турниру";
 
         public PrepareToBattleCommand(
@@ -46,7 +46,7 @@ namespace FighterGame.Command
                 IReadOnlyList<IFighter> fighters = _fighterRepository.GetAllFighters();
                 if ( fighters.Count <= 0 )
                 {
-                    return CommandResults.Continue();
+                    throw new InvalidOperationException( "Бойцов не обнаружено." );
                 }
 
                 for ( int i = 0; i < fighters.Count; i++ )

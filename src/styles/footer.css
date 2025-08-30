@@ -1,0 +1,15 @@
+.footer {
+    display: flex;
+    justify-content: center;
+    padding: var(--space-16) var(--space-24);
+    background-color: var(--color-black-900);
+}
+
+.footer__copyright {
+    line-height: 56px;
+    font-size: var(--fs-20);
+    font-family: var(--font-sans), sans-serif;
+    color: var(--color-yellow-100);
+    font-weight: var(--fw-500);
+    text-decoration: none;
+}

@@ -1,0 +1,37 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--space-16) var(--space-24);
+    background-color: var(--color-black-900);
+}
+
+.header__logo {
+    line-height: 56px;
+    font-size: var(--fs-36);
+    font-family: var(--font-sans), sans-serif;
+    color: var(--color-yellow-100);
+    font-weight: var(--fw-700);
+    text-decoration: none;
+}
+
+.header__actions {
+    margin: auto 0;
+    text-align: center;
+}
+
+.header__login,
+.header__logout {
+    background: none;
+    border: none;
+    font-family: var(--font-sans), sans-serif;
+    font-size: var(--fs-24);
+    color: var(--color-yellow-100);
+    font-weight: var(--fw-700);
+    cursor: pointer;
+}
+
+.header__hello {
+    display: block;
+    font-size: var(--fs-16);
+    color: var(--color-yellow-100);
+}

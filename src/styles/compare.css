@@ -1,0 +1,59 @@
+.compare {
+    padding: var(--space-24);
+    background-color: var(--color-yellow-100);
+    text-align: center;
+}
+
+.compare__form {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: var(--space-16) var(--space-24);
+    align-items: flex-start;
+}
+
+.compare__label {
+    align-self: start;
+    text-align: right;
+    font: var(--fw-600) var(--fs-14)/var(--lh-12) var(--font-sans);
+    color: var(--color-black-900);
+    letter-spacing: .06em;
+}
+
+.compare__field {
+    text-align: left;
+}
+
+.compare__error {
+    margin-top: var(--space-6);
+    font: var(--fw-600) var(--fs-12)/var(--lh-12) var(--font-sans);
+    color: var(--color-red-500);
+}
+
+.compare__submit {
+    height: 44px;
+    border: 1px solid var(--border-color-strong);
+    background: var(--surface-muted);
+    color: var(--color-white-100);
+    font: var(--fw-700) var(--fs-14)/1 var(--font-sans);
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    grid-column: 2 / 3;
+    justify-self: stretch;
+}
+
+.compare__submit:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+}
+
+.compare__result {
+    text-align: left;
+    margin-top: var(--space-16);
+    padding: var(--space-16);
+    background: #1e1e1e;
+    color: #d4d4d4;
+    white-space: pre;
+    border-radius: 6px;
+    overflow-x: auto;
+}

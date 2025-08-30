@@ -1,0 +1,111 @@
+:root {
+    --color-white-100: #ffffff;
+    --color-yellow-100: #fafad2;
+    --color-red-800: #8b0000;
+    --color-orange-700: #ff8c00;
+    --color-blue-500: #3d85c6;
+    --color-gray-500: #808080;
+    --color-red-500: #ff0000;
+    --color-black-900: #201c29;
+
+    --font-sans: "Open Sans", sans-serif;
+
+    --fs-12: 12px;
+    --fs-14: 14px;
+    --fs-16: 16px;
+    --fs-20: 20px;
+    --fs-24: 24px;
+    --fs-36: 36px;
+    --fs-48: 48px;
+
+    --lh-12: 1.2;
+    --lh-14: 1.4;
+    --lh-15: 1.5;
+
+    --fw-400: 400;
+    --fw-500: 500;
+    --fw-600: 600;
+    --fw-700: 700;
+    --fw-900: 900;
+
+    --space-4: 4px;
+    --space-6: 6px;
+    --space-12: 12px;
+    --space-16: 16px;
+    --space-24: 24px;
+    --space-48: 48px;
+
+    --control-height: 36px;
+    --border-color: #bbb;
+    --border-color-strong: #333;
+    --surface: #fff;
+    --surface-muted: #777;
+    --radius-2: 2px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: var(--font-sans), sans-serif;
+    color: var(--color-black-900);
+    background-color: var(--color-white-100);
+}
+
+.hero__title,
+.login__title {
+    font-family: var(--font-sans), sans-serif;
+    font-weight: var(--fw-700);
+    color: var(--color-black-900);
+}
+
+.hero__title {
+    font-size: var(--fs-48);
+    margin-bottom: var(--space-48);
+}
+
+.login__title {
+    font-size: var(--fs-24);
+    margin: var(--space-24) 0 var(--space-16);
+}
+
+.login__input,
+.compare__textarea {
+    display: block;
+    width: 400px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-2);
+    outline: none;
+    color: var(--color-black-900);
+}
+
+.login__input {
+    height: var(--control-height);
+    font: var(--fw-400) var(--fs-16)/var(--lh-15) var(--font-sans);
+}
+
+.compare__textarea {
+    min-height: 260px;
+    padding: var(--space-12);
+    font: var(--fw-400) var(--fs-14)/var(--lh-14) var(--font-sans);
+    background: var(--surface);
+    resize: vertical;
+}
+
+.main {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

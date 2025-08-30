@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Task 1</title>
+    <link rel="stylesheet" href="./src/styles/common.css"/>
+
+    <link rel="stylesheet" href="./src/styles/header.css"/>
+    <link rel="stylesheet" href="./src/styles/hero.css"/>
+    <link rel="stylesheet" href="./src/styles/login.css"/>
+    <link rel="stylesheet" href="./src/styles/compare.css"/>
+    <link rel="stylesheet" href="./src/styles/footer.css"/>
+</head>
+<body>
+
+<header class="header">
+    <a class="header__logo" href="#">JSON-DIFF</a>
+
+    <div class="header__actions">
+        <button class="header__action header__login">Log in</button>
+        <div class="header__user" hidden>
+            <span class="header__hello">
+                Hello, <span class="header__name"></span>!
+            </span>
+            <button class="header__action header__logout">Log out</button>
+        </div>
+    </div>
+</header>
+
+<main class="main">
+    <section class="hero" >
+        <h1 class="hero__title">
+            Compare
+            <span class="hero__title--red">
+                two JSON objects
+            </span>
+            and see the
+            <span class="hero__title--orange">
+                differences
+            </span>
+        </h1>
+
+        <button class="hero__button" hidden>Start</button>
+    </section>
+
+    <section class="login" hidden>
+        <h2 class="login__title">Login Form</h2>
+
+        <form class="login__form" novalidate>
+            <label class="login__label" for="login-input">LOGIN</label>
+            <div class="login__field">
+                <input class="login__input" id="login-input" name="login" required/>
+                <span class="login__error-message" hidden>Обязательное поле</span>
+            </div>
+
+            <button class="login__submit" type="submit">SIGN IN</button>
+        </form>
+    </section>
+
+    <section class="compare" hidden>
+        <form class="compare__form" novalidate>
+            <label class="compare__label" for="old-json">OLD JSON</label>
+            <div class="compare__field">
+                <textarea class="compare__textarea" id="old-json" name="old-json" rows="12"></textarea>
+                <span class="compare__error" hidden>Некорректный JSON</span>
+            </div>
+
+            <label class="compare__label" for="new-json">NEW JSON</label>
+            <div class="compare__field">
+                <textarea class="compare__textarea" id="new-json" name="new-json" rows="12"></textarea>
+                <span class="compare__error" hidden>Некорректный JSON</span>
+            </div>
+
+            <button class="compare__submit" type="submit">SHOW DIFFERENCE</button>
+        </form>
+
+        <pre class="compare__result" hidden></pre>
+    </section>
+
+</main>
+
+<footer class="footer">
+    <span class="footer__copyright">
+        Copyright 2025 ©
+    </span>
+</footer>
+
+<script type="module" src="./src/main.ts"></script>
+</body>
+</html>

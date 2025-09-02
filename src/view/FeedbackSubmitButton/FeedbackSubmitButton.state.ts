@@ -1,8 +1,8 @@
-import {useFeedbackStore} from "../feedback-store";
-import {useSubscribeStore} from "../store";
+import {useFeedbackStore} from "../../feedback-store";
+import {useSubscribeStore} from "../../store";
 import {useEffect, useState} from "react";
-import type {ButtonType} from "./Button/Button.tsx";
-import type {Feedback} from "../domain";
+import type {ButtonType} from "../components/Button/Button.tsx";
+import type {Feedback} from "../../domain";
 
 export const useFeedbackSubmitButtonState = () => {
     const label = "Отправить";

@@ -1,6 +1,6 @@
 import {useId} from "react";
-import {useFeedbackScore} from "../../hooks/useFeedbackScore.ts";
-import {useFeedbackStore} from "../../feedback-store";
+import {useFeedbackScore} from "../../../hooks/useFeedbackScore.ts";
+import {useFeedbackStore} from "../../../feedback-store";
 
 export const useSpeechSliderState = () => {
     const id = useId();

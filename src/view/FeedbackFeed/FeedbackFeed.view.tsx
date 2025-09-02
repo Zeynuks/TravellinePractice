@@ -1,5 +1,5 @@
 import classes from "./FeedbackFeed.module.scss";
-import {Feedback} from "../Feedback/Feedback.tsx";
+import {Feedback} from "../components/Feedback/Feedback.tsx";
 import type {FeedbackFeedProps} from "./FeedbackFeed.tsx";
 
 export const FeedbackFeedView = ({feedbackFeed}: FeedbackFeedProps) => (

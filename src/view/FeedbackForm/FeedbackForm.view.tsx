@@ -1,12 +1,12 @@
-import {CleanlinessSlider} from "./Sliders/CleanlinessSlider.tsx";
-import {ServiceSlider} from "./Sliders/ServiceSlider.tsx";
-import {SpeedSlider} from "./Sliders/SpeedSlider.tsx";
-import {LocationSlider} from "./Sliders/LocationSlider.tsx";
-import {SpeechSlider} from "./Sliders/SpeechSlider.tsx";
+import {CleanlinessSlider} from "../components/Sliders/CleanlinessSlider.tsx";
+import {ServiceSlider} from "../components/Sliders/ServiceSlider.tsx";
+import {SpeedSlider} from "../components/Sliders/SpeedSlider.tsx";
+import {LocationSlider} from "../components/Sliders/LocationSlider.tsx";
+import {SpeechSlider} from "../components/Sliders/SpeechSlider.tsx";
 import classes from "./FeedbackForm.module.scss"
-import {UserNameField} from "./UserNameField.tsx";
-import {ContentTextArea} from "./ContentTextArea.tsx";
-import {FeedbackSubmitButton} from "./FeedbackSubmitButton.tsx";
+import {UserNameField} from "../UserNameField/UserNameField.tsx";
+import {ContentTextArea} from "../ContentTextArea/ContentTextArea.tsx";
+import {FeedbackSubmitButton} from "../FeedbackSubmitButton/FeedbackSubmitButton.tsx";
 
 /*
 * Есть проблема лишнего ререндера, но это свойство кастомного store,

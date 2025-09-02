@@ -1,5 +1,5 @@
-import {useFeedbackUserName} from "../hooks";
-import {useFeedbackStore} from "../feedback-store";
+import {useFeedbackUserName} from "../../hooks";
+import {useFeedbackStore} from "../../feedback-store";
 import {useId} from "react";
 
 export const useFirstNameFieldState = () => {

@@ -1,0 +1,33 @@
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/700.css";
+
+:root {
+  --font-primary: "Inter", sans-serif;
+
+  --color-text-primary: #404040;
+  --color-text-muted: #909090;
+  --color-text-inverse: #FFFFFF;
+
+  --border-color: #DCDCDC;
+  --background-primary: #FFFFFF;
+
+  --button-accent-color: #1E65B7;
+  --button-muted-color: #C0C0C0;
+
+  --shadow: inset 0 0 0 1px var(--border-color);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#root {
+  padding-top: 100px;
+
+  > * {
+    margin-inline: auto;
+  }
+}

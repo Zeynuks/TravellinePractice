@@ -1,0 +1,44 @@
+.feedback {
+  vertical-align: middle;
+
+  > * {
+    font-family: var(--font-primary), sans-serif;
+    color: var(--color-text-primary);
+  }
+}
+
+.avatar {
+  display: inline-block;
+  margin-right: 18px;
+}
+
+.info {
+  margin-top: 17px;
+  vertical-align: top;
+  display: inline-block;
+}
+
+.userName {
+  line-height: 100%;
+  max-width: 300px;
+  font-weight: 500;
+  font-size: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.content {
+  margin-top: 10px;
+  height: fit-content;
+  width: 450px;
+  font-weight: 400;
+  white-space: pre-line;
+  margin-right: 10px;
+}
+
+.score {
+  vertical-align: text-bottom;
+  text-align: right;
+  font-weight: 500;
+  font-size: 24px;
+}

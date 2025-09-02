@@ -1,0 +1,37 @@
+.field {
+  width: 100%;
+  position: relative;
+  font-family: var(--font-primary), sans-serif;
+}
+
+.label {
+  font-size: 10px;
+  position: absolute;
+  top: -7px;
+  left: 7px;
+  background-color: var(--background-primary);
+  color: var(--color-text-muted);
+}
+
+.textArea {
+  width: 100%;
+  min-height: 113px;
+  resize: none;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding-block: 11px;
+  padding-inline: 15px 10px;
+  font-size: 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  color: var(--color-text-primary);
+  white-space: pre-line;
+}
+
+.textArea:focus {
+  outline: 1px solid var(--color-text-muted);
+}
+
+.textArea::placeholder {
+  color: var(--color-text-muted);
+}

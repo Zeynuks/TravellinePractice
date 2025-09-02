@@ -1,0 +1,17 @@
+.field {
+  margin-bottom: 0;
+}
+
+.button {
+  background-color: var(--button-accent-color);
+  height: 100%;
+  padding: 8px 30px;
+  border-radius: 5px;
+  border: none;
+  color: var(--color-text-inverse);
+  box-shadow: var(--shadow);
+
+  &:disabled {
+    background-color: var(--button-muted-color);
+  }
+}

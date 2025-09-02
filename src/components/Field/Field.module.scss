@@ -1,0 +1,33 @@
+.field {
+  width: 100%;
+  flex: 1;
+  position: relative;
+  font-family: var(--font-primary), sans-serif;
+}
+
+.label {
+  font-size: 10px;
+  position: absolute;
+  top: -7px;
+  left: 7px;
+  background-color: var(--background-primary);
+  color: var(--color-text-muted);
+}
+
+.input {
+  width: 100%;
+  padding: 6px 15px;
+  font-size: 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  color: var(--color-text-primary);
+  text-overflow: ellipsis;
+}
+
+.input:focus {
+  outline: 1px solid var(--color-text-muted);
+}
+
+.input::placeholder {
+  color: var(--color-text-muted);
+}

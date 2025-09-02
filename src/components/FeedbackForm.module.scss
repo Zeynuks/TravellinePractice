@@ -1,0 +1,21 @@
+.rating {
+  width: 100%;
+
+  > :not(:last-child) {
+    margin-bottom: 27px;
+  }
+}
+
+.about {
+  width: 100%;
+  text-align: end;
+
+
+  > * {
+    margin-bottom: 27px;
+  }
+
+  > * + * {
+    margin-bottom: 20px;
+  }
+}

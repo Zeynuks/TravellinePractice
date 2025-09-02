@@ -1,0 +1,14 @@
+.feed {
+  width: fit-content;
+  margin-top: 35px;
+
+  > :not(:last-child) {
+    margin-bottom: 43px;
+  }
+
+  @supports selector(:has(*)) {
+    &:has(> :nth-child(2)) > :last-child {
+      margin-bottom: 231px;
+    }
+  }
+}

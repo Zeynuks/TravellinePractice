@@ -1,5 +1,5 @@
 import {useFeedbackStore} from "../../feedback-store";
-import {useFeedbackContent} from "../../hooks/useFeedbackContent.ts";
+import {useFeedbackContent} from "../../hooks";
 import {useId} from "react";
 
 export const useContentTextAreaState = () => {

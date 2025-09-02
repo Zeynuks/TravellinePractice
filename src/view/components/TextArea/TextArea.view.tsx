@@ -1,7 +1,7 @@
 import classes from "./TextArea.module.scss";
 import type {useTextAreaState} from "./TextArea.state.ts";
 import {useRef} from "react";
-import {useAutosize} from "../../../hooks/useAutosize.ts";
+import {useAutosize} from "../../../hooks";
 
 export const TextAreaView = ({
                                  id,

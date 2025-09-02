@@ -1,6 +1,6 @@
 import {useFeedbackStore} from "../../feedback-store";
 import {useFeedbackFeedStore} from "../../feedback-feed-store";
-import {defaultFeedback} from "../../domain/DefaultFeedback.ts";
+import {defaultFeedback} from "../../domain";
 
 export const useFeedbackForm = () => {
     const label = "Помогите нам сделать процесс бронирования лучше";

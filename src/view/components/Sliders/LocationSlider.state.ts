@@ -1,5 +1,5 @@
 import {useId} from "react";
-import {useFeedbackScore} from "../../../hooks/useFeedbackScore.ts";
+import {useFeedbackScore} from "../../../hooks";
 import {useFeedbackStore} from "../../../feedback-store";
 
 export const useLocationSliderState = () => {

@@ -6,4 +6,4 @@ export type FeedbackFeedProps = {
     feedbackFeed: Array<Feedback>;
 }
 
-export const FeedbackFeed = (props: FeedbackFeedProps) => <FeedbackFeedView {...useFeedbackFeed(props)}/>
+export const FeedbackFeed = () => <FeedbackFeedView {...useFeedbackFeed()}/>

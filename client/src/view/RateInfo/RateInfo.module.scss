@@ -1,0 +1,52 @@
+.container {
+  width: 100%;
+  text-align: left;
+
+  > * + *{
+    margin-left: 75px;
+  }
+}
+
+.inner {
+  display: inline-block;
+  text-align: start;
+}
+
+.label {
+  user-select: none;
+  display: block;
+  font-family: var(--font-secondary), sans-serif;
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  font-weight: 200;
+  margin-bottom: 10px;
+}
+
+.currentRate {
+  font-family: var(--font-numeric), sans-serif;
+  font-size: 32px;
+  letter-spacing: 0.04em;
+  margin-left: 6px;
+}
+
+@mixin TodayChange {
+  font-family: var(--font-numeric), sans-serif;
+  font-size: 32px;
+  letter-spacing: 0.04em;
+  color: var(--color-text-primary);
+}
+
+.arrow {
+  user-select: none;
+  width: 24px;
+}
+
+.TodayChangeUp {
+  @include TodayChange;
+  color: var(--success-color);
+}
+
+.TodayChangeDown {
+  @include TodayChange;
+  color: var(--error-color);
+}

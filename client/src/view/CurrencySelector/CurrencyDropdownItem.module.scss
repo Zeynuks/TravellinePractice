@@ -1,0 +1,33 @@
+.item {
+  width: 100%;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+
+
+  > * {
+    font-family: var(--font-secondary), sans-serif;
+    color: var(--color-text-primary);
+    font-size: 16px;
+  }
+}
+
+.info {
+  > * {
+    vertical-align: middle;
+    display: inline-block;
+  }
+}
+
+.flag {
+  height: 30px;
+}
+
+.name {
+  margin-left: 16px;
+}
+
+.code {
+  align-items: center;
+  color: var(--color-text-secondary);
+}

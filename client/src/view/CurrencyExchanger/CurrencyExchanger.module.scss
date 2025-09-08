@@ -1,0 +1,36 @@
+.container {
+  width: fit-content;
+  text-align: center;
+}
+
+.title {
+  font-family: var(--font-primary), sans-serif;
+  font-weight: 200;
+  color: var(--color-text-primary);
+  display: block;
+  margin-bottom: 26px;
+}
+
+.description {
+  font-family: var(--font-secondary), sans-serif;
+  font-weight: 300;
+  color: var(--color-text-secondary);
+  display: block;
+  margin-bottom: 120px;
+}
+
+.exchanger {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 60px 40px;
+
+  > * {
+    max-width: 537px;
+  }
+}
+
+.test {
+  width: 537px;
+  height: 100px;
+  background-color: red;
+}

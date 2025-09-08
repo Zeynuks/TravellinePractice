@@ -1,0 +1,37 @@
+:root {
+  --font-primary: "Outfit";
+  --font-secondary: "Roboto";
+  --font-numeric: "Urbanist";
+
+  --color-text-primary: #414142;
+  --color-text-secondary: #A0A0A1;
+
+  --border-color: rgba(160, 160, 161, 0.5);
+  --background-primary: #FBFBFB;
+  --background-secondary: #FFFFFF;
+
+  --error-color: #EA5151;
+  --success-color: #52B788;
+  --underline-color: #1672C2;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  background-color: var(--background-primary);
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#root {
+
+  > * {
+    margin-inline: auto;
+  }
+}

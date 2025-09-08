@@ -1,4 +1,4 @@
-﻿namespace WebApi.Models.Currencies
+﻿namespace CurrencyExchanger.Models.Currency
 {
     public class PriceChange
     {

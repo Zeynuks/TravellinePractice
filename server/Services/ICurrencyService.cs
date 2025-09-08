@@ -1,13 +1,12 @@
-﻿using server.Entities;
-using WebApi.Models.Currencies;
-using WebApi.Models.Currency;
+﻿using CurrencyExchanger.Entities;
+using CurrencyExchanger.Models.Currency;
 
-namespace server.Services
+namespace CurrencyExchanger.Services
 {
     public interface ICurrencyService
     {
         IEnumerable<Currency> GetAll();
-        Currency GetByCode(string code);
-        IEnumerable<PriceChange> GetPriceChanges(GetPricesRequest model);
+        Currency GetByCode( string code );
+        IEnumerable<PriceChange> GetPriceChanges( GetPricesRequest model );
     }
 }

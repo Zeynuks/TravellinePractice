@@ -1,4 +1,4 @@
-﻿namespace server.Entities
+﻿namespace CurrencyExchanger.Entities
 {
     public class CurrencyPrice
     {
@@ -10,6 +10,6 @@
 
         public DateTime DateTime { get; set; } = DateTime.UtcNow;
 
-        public Currency Currency { get; set; } = new Currency();
+        public Currency Currency { get; set; } = new();
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace server.Entities
+namespace CurrencyExchanger.Entities
 {
     public class Currency
     {

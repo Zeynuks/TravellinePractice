@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace WebApi.Models.Currency
+namespace CurrencyExchanger.Models.Currency
 {
     // TODO: зачем модели
     public class GetPricesRequest

@@ -1,37 +1,45 @@
-using server.Services;
-using WebApi.Helpers;
+using CurrencyExchanger.Helpers;
+using CurrencyExchanger.Services;
 
-var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddDbContext<DataContext>();
-builder.Services.AddCors();
-
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-builder.Services.AddScoped<ICurrencyService, CurrencyService>();
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+namespace CurrencyExchanger
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    internal static class Program
+    {
+        public static void Main( string[] args )
+        {
+            WebApplicationBuilder builder = WebApplication.CreateBuilder( args );
+
+            builder.Services.AddDbContext<DataContext>();
+            builder.Services.AddCors();
+
+            builder.Services.AddControllers();
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
+
+            builder.Services.AddScoped<ICurrencyService, CurrencyService>();
+
+            WebApplication app = builder.Build();
+
+            if ( app.Environment.IsDevelopment() )
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI();
+            }
+
+            app.UseCors( x => x
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader() );
+
+            app.UseMiddleware<ErrorHandlerMiddleware>();
+
+            app.UseHttpsRedirection();
+            app.UseAuthorization();
+            app.MapControllers();
+
+            CurrencyHelper.AddCurrencyData( app );
+
+            app.Run();
+        }
+    }
 }
-
-app.UseCors(x => x
-    .AllowAnyOrigin()
-    .AllowAnyMethod()
-    .AllowAnyHeader());
-
-app.UseMiddleware<ErrorHandlerMiddleware>();
-
-app.UseHttpsRedirection();
-app.UseAuthorization();
-app.MapControllers();
-
-CurrencyHelper.AddCurrencyData(app);
-
-app.Run();

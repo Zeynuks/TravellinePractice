@@ -1,15 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using server.Services;
-using WebApi.Models.Currency;
+﻿using CurrencyExchanger.Entities;
+using CurrencyExchanger.Models.Currency;
+using CurrencyExchanger.Services;
+using Microsoft.AspNetCore.Mvc;
 
-namespace server.Controllers
+namespace CurrencyExchanger.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route( "[controller]" )]
     public class CurrencyController : ControllerBase
     {
         private ICurrencyService _currencyService;
-        public CurrencyController(ICurrencyService currencyService)
+
+        public CurrencyController( ICurrencyService currencyService )
         {
             _currencyService = currencyService;
         }
@@ -17,24 +19,24 @@ namespace server.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            var users = _currencyService.GetAll();
-            return Ok(users);
+            IEnumerable<Currency>? users = _currencyService.GetAll();
+            return Ok( users );
         }
 
         [HttpGet]
-        [Route("{code}")]
-        public IActionResult GetByCode(string code)
+        [Route( "{code}" )]
+        public IActionResult GetByCode( string code )
         {
-            var user = _currencyService.GetByCode(code);
-            return Ok(user);
+            Currency? user = _currencyService.GetByCode( code );
+            return Ok( user );
         }
 
         [HttpGet]
-        [Route("/prices")]
-        public IActionResult GetPriceChanges([FromQuery] GetPricesRequest model)
+        [Route( "/prices" )]
+        public IActionResult GetPriceChanges( [FromQuery] GetPricesRequest model )
         {
-            var result = _currencyService.GetPriceChanges(model);
-            return Ok(result);
+            IEnumerable<PriceChange>? result = _currencyService.GetPriceChanges( model );
+            return Ok( result );
         }
     }
 }

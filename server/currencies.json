@@ -1,0 +1,898 @@
+[
+  {
+    "Code": "AED",
+    "Name": "UAE dirham",
+    "Description": "United Arab Emirates; peg to USD.",
+    "MinPrice": 98,
+    "MaxPrice": 102,
+    "Symbol": "د.إ"
+  },
+  {
+    "Code": "ALL",
+    "Name": "Albanian lek",
+    "Description": "Albania's currency.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "Lek"
+  },
+  {
+    "Code": "AMD",
+    "Name": "Armenian dram",
+    "Description": "Armenia's currency.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "֏"
+  },
+  {
+    "Code": "AOA",
+    "Name": "Angolan kwanza",
+    "Description": "Angola's currency; oil-linked.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "Kz"
+  },
+  {
+    "Code": "ARS",
+    "Name": "Argentine peso",
+    "Description": "Argentina's currency; high inflation, multiple FX rates history.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "$"
+  },
+  {
+    "Code": "AUD",
+    "Name": "Australian dollar",
+    "Description": "Commodity-linked currency; active in Asia-Pacific trade.",
+    "MinPrice": 95,
+    "MaxPrice": 105,
+    "Symbol": "$"
+  },
+  {
+    "Code": "AZN",
+    "Name": "Azerbaijani manat",
+    "Description": "Azerbaijan's currency; oil-linked, managed float.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "₼"
+  },
+  {
+    "Code": "BAM",
+    "Name": "Bosnia and Herzegovina convertible mark",
+    "Description": "Currency board, euro-linked.",
+    "MinPrice": 98,
+    "MaxPrice": 102,
+    "Symbol": "KM"
+  },
+  {
+    "Code": "BBD",
+    "Name": "Barbados dollar",
+    "Description": "Barbados' currency; peg to USD.",
+    "MinPrice": 98,
+    "MaxPrice": 102,
+    "Symbol": "Bds$"
+  },
+  {
+    "Code": "BDT",
+    "Name": "Bangladeshi taka",
+    "Description": "Bangladesh's currency; growing manufacturing base.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "৳"
+  },
+  {
+    "Code": "BGN",
+    "Name": "Bulgarian lev",
+    "Description": "Currency board arrangement; effectively euro-pegged.",
+    "MinPrice": 98,
+    "MaxPrice": 102,
+    "Symbol": "лв"
+  },
+  {
+    "Code": "BHD",
+    "Name": "BHD",
+    "Description": "BHD currency.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": ""
+  },
+  {
+    "Code": "BOB",
+    "Name": "Bolivian boliviano",
+    "Description": "Bolivia's currency.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "Bs"
+  },
+  {
+    "Code": "BRL",
+    "Name": "Brazilian real",
+    "Description": "Brazil's currency; commodity and growth sensitive.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "R$"
+  },
+  {
+    "Code": "BWP",
+    "Name": "Botswana pula",
+    "Description": "Botswana's currency; crawling band.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "P"
+  },
+  {
+    "Code": "BYN",
+    "Name": "Belarusian ruble",
+    "Description": "Belarus' currency.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "Br"
+  },
+  {
+    "Code": "BZD",
+    "Name": "Belize dollar",
+    "Description": "Belize's currency; pegged to USD.",
+    "MinPrice": 98,
+    "MaxPrice": 102,
+    "Symbol": "BZ$"
+  },
+  {
+    "Code": "CAD",
+    "Name": "Canadian dollar",
+    "Description": "Commodity-linked currency; closely tied to energy and materials.",
+    "MinPrice": 95,
+    "MaxPrice": 105,
+    "Symbol": "$"
+  },
+  {
+    "Code": "CHF",
+    "Name": "Swiss franc",
+    "Description": "Switzerland's currency; traditional safe-haven asset.",
+    "MinPrice": 95,
+    "MaxPrice": 105,
+    "Symbol": "Fr"
+  },
+  {
+    "Code": "CLP",
+    "Name": "Chilean peso",
+    "Description": "Chile's currency; copper-linked.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "$"
+  },
+  {
+    "Code": "CNY",
+    "Name": "Chinese yuan renminbi",
+    "Description": "China's currency; usage growing in international trade.",
+    "MinPrice": 95,
+    "MaxPrice": 105,
+    "Symbol": "¥"
+  },
+  {
+    "Code": "COP",
+    "Name": "Colombian peso",
+    "Description": "Colombia's currency; oil-linked.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "$"
+  },
+  {
+    "Code": "CRC",
+    "Name": "Costa Rican colón",
+    "Description": "Costa Rica's currency.",
+    "MinPrice": 90,
+    "MaxPrice": 110,
+    "Symbol": "₡"
+  },
+  {
+    "Code": "CZK",
+    "Name": "Czech koruna",
+    "Description": "Czechia's currency; open, industrial economy.",
+    "MinPrice": 90,
+    "MaxPrice": 110,
+    "Symbol": "Kč"
+  },
+  {
+    "Code": "DKK",
+    "Name": "Danish krone",
+    "Description": "Pegged closely to the euro via ERM II.",
+    "MinPrice": 98,
+    "MaxPrice": 102,
+    "Symbol": "kr"
+  },
+  {
+    "Code": "DOP",
+    "Name": "Dominican peso",
+    "Description": "Dominican Republic's currency.",
+    "MinPrice": 90,
+    "MaxPrice": 110,
+    "Symbol": "RD$"
+  },
+  {
+    "Code": "DZD",
+    "Name": "Algerian dinar",
+    "Description": "Algeria's currency; hydrocarbon-linked.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "DA"
+  },
+  {
+    "Code": "EGP",
+    "Name": "Egyptian pound",
+    "Description": "Egypt's currency; devaluations in recent years.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "E£"
+  },
+  {
+    "Code": "ETB",
+    "Name": "Ethiopian birr",
+    "Description": "Ethiopia's currency.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "Br"
+  },
+  {
+    "Code": "EUR",
+    "Name": "Euro",
+    "Description": "Common currency of the eurozone; second-most traded currency.",
+    "MinPrice": 95,
+    "MaxPrice": 105,
+    "Symbol": "€"
+  },
+  {
+    "Code": "FJD",
+    "Name": "Fiji dollar",
+    "Description": "Fiji's currency.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "FJ$"
+  },
+  {
+    "Code": "GBP",
+    "Name": "Pound sterling",
+    "Description": "United Kingdom's currency; one of the oldest still in use.",
+    "MinPrice": 95,
+    "MaxPrice": 105,
+    "Symbol": "£"
+  },
+  {
+    "Code": "GEL",
+    "Name": "Georgian lari",
+    "Description": "Georgia's currency.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "₾"
+  },
+  {
+    "Code": "GHS",
+    "Name": "Ghanaian cedi",
+    "Description": "Ghana's currency; inflation/IMF program.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "₵"
+  },
+  {
+    "Code": "GTQ",
+    "Name": "Guatemalan quetzal",
+    "Description": "Guatemala's currency.",
+    "MinPrice": 90,
+    "MaxPrice": 110,
+    "Symbol": "Q"
+  },
+  {
+    "Code": "HKD",
+    "Name": "Hong Kong dollar",
+    "Description": "Pegged in a narrow band to USD via currency board.",
+    "MinPrice": 98,
+    "MaxPrice": 102,
+    "Symbol": "HK$"
+  },
+  {
+    "Code": "HNL",
+    "Name": "Honduran lempira",
+    "Description": "Honduras' currency.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "L"
+  },
+  {
+    "Code": "HRK",
+    "Name": "HRK",
+    "Description": "HRK currency.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": ""
+  },
+  {
+    "Code": "HUF",
+    "Name": "Hungarian forint",
+    "Description": "Hungary's currency; CEE region.",
+    "MinPrice": 90,
+    "MaxPrice": 110,
+    "Symbol": "Ft"
+  },
+  {
+    "Code": "IDR",
+    "Name": "Indonesian rupiah",
+    "Description": "Indonesia's currency; commodity and rate-sensitive.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "Rp"
+  },
+  {
+    "Code": "ILS",
+    "Name": "Israeli new shekel",
+    "Description": "Free-floating, tech/export-linked.",
+    "MinPrice": 90,
+    "MaxPrice": 110,
+    "Symbol": "₪"
+  },
+  {
+    "Code": "INR",
+    "Name": "Indian rupee",
+    "Description": "India's currency; large, fast-growing economy.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "₹"
+  },
+  {
+    "Code": "IQD",
+    "Name": "Iraqi dinar",
+    "Description": "Iraq's currency; oil-linked.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "ع.د"
+  },
+  {
+    "Code": "IRR",
+    "Name": "Iranian rial",
+    "Description": "Iran's currency; sanctions and multiple rates.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "﷼"
+  },
+  {
+    "Code": "ISK",
+    "Name": "Icelandic króna",
+    "Description": "Iceland's currency.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "kr"
+  },
+  {
+    "Code": "JMD",
+    "Name": "Jamaican dollar",
+    "Description": "Jamaica's currency.",
+    "MinPrice": 90,
+    "MaxPrice": 110,
+    "Symbol": "J$"
+  },
+  {
+    "Code": "JOD",
+    "Name": "Jordanian dinar",
+    "Description": "Jordan's currency; peg to USD.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "د.ا"
+  },
+  {
+    "Code": "JPY",
+    "Name": "Japanese yen",
+    "Description": "Japan's currency; highly traded with safe-haven characteristics.",
+    "MinPrice": 95,
+    "MaxPrice": 105,
+    "Symbol": "¥"
+  },
+  {
+    "Code": "KES",
+    "Name": "Kenyan shilling",
+    "Description": "Kenya's currency.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "KSh"
+  },
+  {
+    "Code": "KGS",
+    "Name": "Kyrgyzstani som",
+    "Description": "Kyrgyzstan's currency.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "c"
+  },
+  {
+    "Code": "KRW",
+    "Name": "South Korean won",
+    "Description": "South Korea's currency; export-driven economy.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "₩"
+  },
+  {
+    "Code": "KWD",
+    "Name": "Kuwaiti dinar",
+    "Description": "High unit value; basket peg dominated by USD.",
+    "MinPrice": 98,
+    "MaxPrice": 102,
+    "Symbol": "د.ك"
+  },
+  {
+    "Code": "KZT",
+    "Name": "Kazakhstani tenge",
+    "Description": "Kazakhstan's currency; oil-linked.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "₸"
+  },
+  {
+    "Code": "LBP",
+    "Name": "Lebanese pound",
+    "Description": "Lebanon's currency; multiple rates.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "ل.ل"
+  },
+  {
+    "Code": "LKR",
+    "Name": "Sri Lankan rupee",
+    "Description": "Sri Lanka's currency; restructuring period.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "Rs"
+  },
+  {
+    "Code": "LSL",
+    "Name": "Lesotho loti",
+    "Description": "Pegged to ZAR; Common Monetary Area.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "L"
+  },
+  {
+    "Code": "MAD",
+    "Name": "Moroccan dirham",
+    "Description": "Morocco's currency; managed float.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "DH"
+  },
+  {
+    "Code": "MDL",
+    "Name": "Moldovan leu",
+    "Description": "Moldova's currency.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "L"
+  },
+  {
+    "Code": "MKD",
+    "Name": "Macedonian denar",
+    "Description": "North Macedonia's currency.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "ден"
+  },
+  {
+    "Code": "MNT",
+    "Name": "Mongolian tögrög",
+    "Description": "Mongolia's currency; commodity-linked.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "₮"
+  },
+  {
+    "Code": "MRU",
+    "Name": "Mauritanian ouguiya",
+    "Description": "Mauritania's currency.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "UM"
+  },
+  {
+    "Code": "MUR",
+    "Name": "Mauritian rupee",
+    "Description": "Mauritius' currency.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "₨"
+  },
+  {
+    "Code": "MWK",
+    "Name": "Malawian kwacha",
+    "Description": "Malawi's currency.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "MK"
+  },
+  {
+    "Code": "MXN",
+    "Name": "Mexican peso",
+    "Description": "Liquid EM currency; NAFTA/US trade exposure.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "$"
+  },
+  {
+    "Code": "MYR",
+    "Name": "Malaysian ringgit",
+    "Description": "Malaysia's currency; diversified economy.",
+    "MinPrice": 90,
+    "MaxPrice": 110,
+    "Symbol": "RM"
+  },
+  {
+    "Code": "MZN",
+    "Name": "Mozambican metical",
+    "Description": "Mozambique's currency.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "MT"
+  },
+  {
+    "Code": "NGN",
+    "Name": "Nigerian naira",
+    "Description": "Nigeria's currency; FX reforms and volatility.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "₦"
+  },
+  {
+    "Code": "NIO",
+    "Name": "Nicaraguan córdoba",
+    "Description": "Nicaragua's currency.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "C$"
+  },
+  {
+    "Code": "NOK",
+    "Name": "Norwegian krone",
+    "Description": "Oil-linked Nordic currency; sensitive to energy prices.",
+    "MinPrice": 95,
+    "MaxPrice": 105,
+    "Symbol": "kr"
+  },
+  {
+    "Code": "NZD",
+    "Name": "New Zealand dollar",
+    "Description": "Commodity-linked currency; sensitive to dairy and agriculture.",
+    "MinPrice": 95,
+    "MaxPrice": 105,
+    "Symbol": "$"
+  },
+  {
+    "Code": "OMR",
+    "Name": "Omani rial",
+    "Description": "High unit value; peg to USD.",
+    "MinPrice": 98,
+    "MaxPrice": 102,
+    "Symbol": "ر.ع."
+  },
+  {
+    "Code": "PEN",
+    "Name": "Peruvian sol",
+    "Description": "Peru's currency; historically stable.",
+    "MinPrice": 90,
+    "MaxPrice": 110,
+    "Symbol": "S/"
+  },
+  {
+    "Code": "PGK",
+    "Name": "Papua New Guinean kina",
+    "Description": "Papua New Guinea's currency.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "K"
+  },
+  {
+    "Code": "PHP",
+    "Name": "Philippine peso",
+    "Description": "Philippines' currency; remittances significant.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "₱"
+  },
+  {
+    "Code": "PKR",
+    "Name": "Pakistani rupee",
+    "Description": "Pakistan's currency; EM with IMF programs.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "₨"
+  },
+  {
+    "Code": "PLN",
+    "Name": "Polish zloty",
+    "Description": "Largest CEE currency; free-floating.",
+    "MinPrice": 90,
+    "MaxPrice": 110,
+    "Symbol": "zł"
+  },
+  {
+    "Code": "PYG",
+    "Name": "Paraguayan guaraní",
+    "Description": "Paraguay's currency.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "₲"
+  },
+  {
+    "Code": "QAR",
+    "Name": "Qatari riyal",
+    "Description": "Qatar's currency; peg to USD.",
+    "MinPrice": 98,
+    "MaxPrice": 102,
+    "Symbol": "ر.ق"
+  },
+  {
+    "Code": "RON",
+    "Name": "Romanian leu",
+    "Description": "Romania's currency; CEE region.",
+    "MinPrice": 90,
+    "MaxPrice": 110,
+    "Symbol": "lei"
+  },
+  {
+    "Code": "RSD",
+    "Name": "Serbian dinar",
+    "Description": "Serbia's currency.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "дин."
+  },
+  {
+    "Code": "RUB",
+    "Name": "Russian ruble",
+    "Description": "Russia's currency; sensitive to energy exports and sanctions.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "₽"
+  },
+  {
+    "Code": "SAR",
+    "Name": "Saudi riyal",
+    "Description": "Tightly pegged to USD; oil economy.",
+    "MinPrice": 98,
+    "MaxPrice": 102,
+    "Symbol": "﷼"
+  },
+  {
+    "Code": "SBD",
+    "Name": "Solomon Islands dollar",
+    "Description": "Solomon Islands' currency.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "SI$"
+  },
+  {
+    "Code": "SCR",
+    "Name": "Seychellois rupee",
+    "Description": "Seychelles' currency.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "₨"
+  },
+  {
+    "Code": "SEK",
+    "Name": "Swedish krona",
+    "Description": "Sweden's currency; free-floating Nordic currency.",
+    "MinPrice": 95,
+    "MaxPrice": 105,
+    "Symbol": "kr"
+  },
+  {
+    "Code": "SGD",
+    "Name": "Singapore dollar",
+    "Description": "Singapore's currency; managed float with strong policy credibility.",
+    "MinPrice": 95,
+    "MaxPrice": 105,
+    "Symbol": "S$"
+  },
+  {
+    "Code": "SYP",
+    "Name": "Syrian pound",
+    "Description": "Syria's currency.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "ل.س"
+  },
+  {
+    "Code": "SZL",
+    "Name": "Eswatini lilangeni",
+    "Description": "Pegged to ZAR; Common Monetary Area.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "E"
+  },
+  {
+    "Code": "THB",
+    "Name": "Thai baht",
+    "Description": "Thailand's currency; tourism and exports.",
+    "MinPrice": 90,
+    "MaxPrice": 110,
+    "Symbol": "฿"
+  },
+  {
+    "Code": "TMT",
+    "Name": "Turkmenistani manat",
+    "Description": "Turkmenistan's currency.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "m."
+  },
+  {
+    "Code": "TND",
+    "Name": "Tunisian dinar",
+    "Description": "Tunisia's currency; North Africa.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "DT"
+  },
+  {
+    "Code": "TOP",
+    "Name": "Tongan paʻanga",
+    "Description": "Tonga's currency.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "T$"
+  },
+  {
+    "Code": "TRY",
+    "Name": "Turkish lira",
+    "Description": "Turkey's currency; historically high inflation and volatility.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "₺"
+  },
+  {
+    "Code": "TTD",
+    "Name": "Trinidad and Tobago dollar",
+    "Description": "Trinidad and Tobago's currency.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "TT$"
+  },
+  {
+    "Code": "TWD",
+    "Name": "New Taiwan dollar",
+    "Description": "Taiwan's currency; tech-heavy exports.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "NT$"
+  },
+  {
+    "Code": "TZS",
+    "Name": "Tanzanian shilling",
+    "Description": "Tanzania's currency.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "TSh"
+  },
+  {
+    "Code": "UAH",
+    "Name": "Ukrainian hryvnia",
+    "Description": "Ukraine's currency; war-time volatility.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "₴"
+  },
+  {
+    "Code": "UGX",
+    "Name": "Ugandan shilling",
+    "Description": "Uganda's currency.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "USh"
+  },
+  {
+    "Code": "USD",
+    "Name": "United States dollar",
+    "Description": "World's primary reserve currency; widely used in trade and finance.",
+    "MinPrice": 95,
+    "MaxPrice": 105,
+    "Symbol": "$"
+  },
+  {
+    "Code": "UYU",
+    "Name": "Uruguayan peso",
+    "Description": "Uruguay's currency.",
+    "MinPrice": 90,
+    "MaxPrice": 110,
+    "Symbol": "$U"
+  },
+  {
+    "Code": "UZS",
+    "Name": "Uzbekistani so'm",
+    "Description": "Uzbekistan's currency.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "so'm"
+  },
+  {
+    "Code": "VES",
+    "Name": "Venezuelan bolívar",
+    "Description": "Venezuela's currency; hyperinflation history.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "Bs."
+  },
+  {
+    "Code": "VND",
+    "Name": "Vietnamese dong",
+    "Description": "Vietnam's currency; export-led growth.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "₫"
+  },
+  {
+    "Code": "VUV",
+    "Name": "Vanuatu vatu",
+    "Description": "Vanuatu's currency.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "VT"
+  },
+  {
+    "Code": "WST",
+    "Name": "Samoan tālā",
+    "Description": "Samoa's currency.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "T"
+  },
+  {
+    "Code": "XAF",
+    "Name": "Central African CFA franc",
+    "Description": "Used by CEMAC; effectively euro-pegged.",
+    "MinPrice": 98,
+    "MaxPrice": 102,
+    "Symbol": "CFA"
+  },
+  {
+    "Code": "XCD",
+    "Name": "East Caribbean dollar",
+    "Description": "ECCU currency; peg to USD.",
+    "MinPrice": 98,
+    "MaxPrice": 102,
+    "Symbol": "EC$"
+  },
+  {
+    "Code": "XOF",
+    "Name": "West African CFA franc",
+    "Description": "Used by WAEMU; effectively euro-pegged.",
+    "MinPrice": 98,
+    "MaxPrice": 102,
+    "Symbol": "CFA"
+  },
+  {
+    "Code": "XPF",
+    "Name": "CFP franc",
+    "Description": "French Pacific; peg to EUR.",
+    "MinPrice": 98,
+    "MaxPrice": 102,
+    "Symbol": "₣"
+  },
+  {
+    "Code": "YER",
+    "Name": "Yemeni rial",
+    "Description": "Yemen's currency.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "﷼"
+  },
+  {
+    "Code": "ZAR",
+    "Name": "South African rand",
+    "Description": "South Africa's currency; volatile, commodity-sensitive.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "R"
+  },
+  {
+    "Code": "ZMW",
+    "Name": "Zambian kwacha",
+    "Description": "Zambia's currency; copper-linked.",
+    "MinPrice": 80,
+    "MaxPrice": 120,
+    "Symbol": "ZK"
+  }
+]

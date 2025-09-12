@@ -1,11 +1,13 @@
 import {CurrencyExchangerView} from "./CurrencyExchanger.view.tsx";
-import {fetchExchangeRates} from "../../api/currency.ts";
+import {fetchAllCurrencies, fetchExchangeRates} from "../../api/currency.ts";
 import {usePaymentCurrency, usePurchasedCurrency} from "../../hooks";
 import {useExchangeRateStore} from "../../exchange-rate-store";
 import {useEffect} from "react";
+import {useCurrenciesStore} from "../../currencies-store";
 
 export const CurrencyExchanger = () => {
     const exchangeRateStore = useExchangeRateStore();
+    const currenciesStore = useCurrenciesStore();
     const fromCurrency = usePaymentCurrency();
     const toCurrency = usePurchasedCurrency();
 
@@ -27,17 +29,11 @@ export const CurrencyExchanger = () => {
 
     const fetchCurrencies = async () => {
         try {
-            const data = await fetchExchangeRates({
-                PaymentCurrency: fromCurrency.code,
-                PurchasedCurrency: toCurrency.code
-            });
+            const data = await fetchAllCurrencies();
 
-            exchangeRateStore.set({
-                ...exchangeRateStore.getSnapshot(),
-                rates: data
-            });
+            currenciesStore.set(data);
         } catch (error) {
-            console.error('Error fetching exchange rates:', error);
+            console.error('Error fetching currencies:', error);
         }
     };
 
@@ -45,7 +41,7 @@ export const CurrencyExchanger = () => {
     useEffect(() => {
         fetchRates();
 
-        const intervalId = setInterval(fetchRates, 60000);
+        const intervalId = setInterval(fetchRates, 60 * 1000);
 
         return () => clearInterval(intervalId);
     }, [fromCurrency.code, toCurrency.code]);
@@ -53,7 +49,7 @@ export const CurrencyExchanger = () => {
     useEffect(() => {
         fetchCurrencies();
 
-        const intervalId = setInterval(fetchCurrencies, 6000000);
+        const intervalId = setInterval(fetchCurrencies, 24 * 60 * 60 * 1000);
 
         return () => clearInterval(intervalId);
     }, []);

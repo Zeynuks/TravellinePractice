@@ -9,7 +9,7 @@ export const CurrencyExchanger = () => {
     const fromCurrency = usePaymentCurrency();
     const toCurrency = usePurchasedCurrency();
 
-    const fetchData = async () => {
+    const fetchRates = async () => {
         try {
             const data = await fetchExchangeRates({
                 PaymentCurrency: fromCurrency.code,
@@ -25,13 +25,38 @@ export const CurrencyExchanger = () => {
         }
     };
 
-    useEffect(() => {
-        fetchData();
+    const fetchCurrencies = async () => {
+        try {
+            const data = await fetchExchangeRates({
+                PaymentCurrency: fromCurrency.code,
+                PurchasedCurrency: toCurrency.code
+            });
 
-        const intervalId = setInterval(fetchData, 60000);
+            exchangeRateStore.set({
+                ...exchangeRateStore.getSnapshot(),
+                rates: data
+            });
+        } catch (error) {
+            console.error('Error fetching exchange rates:', error);
+        }
+    };
+
+
+    useEffect(() => {
+        fetchRates();
+
+        const intervalId = setInterval(fetchRates, 60000);
 
         return () => clearInterval(intervalId);
     }, [fromCurrency.code, toCurrency.code]);
+
+    useEffect(() => {
+        fetchCurrencies();
+
+        const intervalId = setInterval(fetchCurrencies, 6000000);
+
+        return () => clearInterval(intervalId);
+    }, []);
 
     return  <CurrencyExchangerView/>
 };

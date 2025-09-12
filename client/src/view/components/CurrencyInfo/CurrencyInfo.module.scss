@@ -1,0 +1,27 @@
+.info {
+  text-align: start;
+
+  > * {
+    display: block;
+  }
+}
+
+.name {
+  font-family: var(--font-secondary), sans-serif;
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  font-weight: 200;
+  margin-bottom: 6px;
+  hyphens: auto;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+.description {
+  font-family: var(--font-secondary), sans-serif;
+  font-size: 16px;
+  color: var(--color-text-primary);
+  hyphens: auto;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}

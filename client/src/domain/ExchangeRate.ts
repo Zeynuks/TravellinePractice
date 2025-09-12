@@ -6,5 +6,6 @@ export type ExchangeRate = {
     paymentAmount: string;
     purchasedCurrency: Currency;
     purchasedAmount: string;
+    desc: boolean;
     rates: Rate[];
 }

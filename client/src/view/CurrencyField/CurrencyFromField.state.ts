@@ -1,34 +1,35 @@
-import {usePaymentAmount} from "../../hooks/usePaymentAmount.ts";
 import {useExchangeRateStore} from "../../exchange-rate-store";
-import {useRate} from "../../hooks";
-import {parseNumber} from "../../utils.ts";
+import {usePaymentAmount, useRate} from "../../hooks";
+import {useEffect} from "react";
+import {useDesc} from "../../hooks/useDesc.ts";
 
 export const useCurrencyFromField = () => {
     const value = usePaymentAmount();
+    const desc = useDesc();
     const exchangeRateStore = useExchangeRateStore();
     const rates = useRate();
 
     const setValue = (newValue: string) => {
-        const [parsedNumber, isValid] = parseNumber(newValue)
+        const price = rates?.[rates.length - 1]?.price ?? 1;
 
-        if (isValid) {
-            const price = rates?.[rates.length - 1]?.price ?? 1;
-            const [amount, isValidAmount] = parseNumber((Number(parsedNumber) * (price)).toString())
+        exchangeRateStore.set({
+            ...exchangeRateStore.getSnapshot(),
+            paymentAmount: newValue,
+            purchasedAmount: (Math.round(Number(newValue) * price * 100) / 100).toString()
 
-            console.log(`purchasedAmount: ${amount}`);
-            exchangeRateStore.set({
-                ...exchangeRateStore.getSnapshot(),
-                paymentAmount: parsedNumber,
-                purchasedAmount: isValidAmount ? amount : "",
-            });
-        } else {
-            exchangeRateStore.set({
-                ...exchangeRateStore.getSnapshot(),
-                paymentAmount: parsedNumber,
-                purchasedAmount: ""
-            });
-        }
+        });
     };
+
+    useEffect(() => {
+       if (!desc) {
+           const price = rates?.[rates.length - 1]?.price ?? 1;
+
+           exchangeRateStore.set({
+               ...exchangeRateStore.getSnapshot(),
+               purchasedAmount: (Math.round(Number(value) * price * 100) / 100).toString()
+           });
+       }
+    }, [desc, rates])
 
     return {value, setValue};
 };

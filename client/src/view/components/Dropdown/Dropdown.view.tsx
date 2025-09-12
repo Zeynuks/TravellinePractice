@@ -21,7 +21,9 @@ export const DropdownView = <T, >({
 
     useEffect(() => {
         const query = value.trim().toLowerCase();
-        setCurrItems(query ? filterFunction(items, query) : items);
+        if (filterFunction) {
+            setCurrItems(query ? filterFunction(items, query) : items);
+        }
     }, [filterFunction, items, value]);
 
     const visibleItems = limit !== undefined && !expanded ? currItems.slice(0, limit) : currItems;

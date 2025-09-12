@@ -5,6 +5,8 @@ import {CurrencyFromField} from "../CurrencyField/CurrencyFromField.tsx";
 import {CurrencyToField} from "../CurrencyField/CurrencyToField.tsx";
 import {RateInfo} from "../RateInfo/RateInfo.tsx";
 import {RateChart} from "../components/RateChart/RateChart.tsx";
+import {CurrencyFromInfo} from "../CurrencyInfo/CurrencyFromInfo.tsx";
+import {CurrencyToInfo} from "../CurrencyInfo/CurrencyToInfo.tsx";
 
 export const CurrencyExchangerView = () => {
 
@@ -18,6 +20,8 @@ export const CurrencyExchangerView = () => {
             <CurrencyToField/>
             <RateInfo/>
             <RateChart/>
+            <CurrencyFromInfo/>
+            <CurrencyToInfo/>
         </div>
     </div>)
 }

@@ -15,5 +15,6 @@ export const defaultExchangeRate: ExchangeRate = {
         symbol: "$"
     },
     purchasedAmount: "",
+    desc: true,
     rates: []
 }

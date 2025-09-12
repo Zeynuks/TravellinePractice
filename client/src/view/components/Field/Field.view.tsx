@@ -10,12 +10,11 @@ export const FieldView = ({
         <div className={classes.field}>
             <input
                 className={classes.input}
-                type="text"
-                maxLength={8}
+                type="number"
                 value={value}
                 onChange={(e) => onChange(e)}
                 style={{
-                    fontSize: `clamp(0.7em, ${1 - (value.length - 5) * 0.1}em, 1em)`,
+                    fontSize: `clamp(0.7em, ${1 - (value.toString().length - 5) * 0.1}em, 1em)`,
                 }}
             />
         </div>

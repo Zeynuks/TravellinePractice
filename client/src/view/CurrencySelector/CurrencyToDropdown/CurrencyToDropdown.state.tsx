@@ -10,7 +10,8 @@ export const useCurrencyToDropdownState = () => {
     const exchangeRateStore = useExchangeRateStore();
     const setValue = (newValue: Currency) => exchangeRateStore.set({
         ...exchangeRateStore.getSnapshot(),
-        purchasedCurrency: newValue
+        purchasedCurrency: newValue,
+        desc: true
     });
 
     return {label, current, setValue};

@@ -6,7 +6,9 @@ export const HomePage = () => {
 
     return (
         <>
-            <Typography variant="h3" sx={{mb: 2}}>Выберите режим</Typography>
+            <Typography variant="h3" sx={{color: "#364963", mb: 2}}>
+                Выберите режим
+            </Typography>
             <Button
                 variant="contained"
                 onClick={() => navigate("/dictionary")}

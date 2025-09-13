@@ -10,9 +10,9 @@ export const WordFormView = ({word, onSubmit}: ReturnType<typeof useWordForm>) =
 
     return (
         <Box>
-            <Box sx={{border: "1px solid #ededed", mb: 4}}>
-                <Box sx={{p: 4, borderBottom: "1px solid #ededed"}}>
-                    <Typography variant="h5" component="h1">
+            <Box sx={{border: "2px solid #ededed", mb: 4, background: "#ffffff", borderRadius: 2}}>
+                <Box sx={{p: 4, borderBottom: "2px solid #ededed"}}>
+                    <Typography variant="h5" sx={{color: "#364963"}}>
                         Словарное слово
                     </Typography>
                 </Box>
@@ -24,7 +24,7 @@ export const WordFormView = ({word, onSubmit}: ReturnType<typeof useWordForm>) =
                         alignItems: "center",
                         mb: 4
                     }}>
-                        <Typography variant="body1">
+                        <Typography sx={{color: "#364963"}}>
                             Слово на русском языке
                         </Typography>
                         <TextField
@@ -43,7 +43,7 @@ export const WordFormView = ({word, onSubmit}: ReturnType<typeof useWordForm>) =
                         justifyContent: "space-between",
                         alignItems: "center"
                     }}>
-                        <Typography variant="body1">
+                        <Typography sx={{color: "#364963"}}>
                             Перевод на английский язык
                         </Typography>
                         <TextField

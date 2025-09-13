@@ -15,7 +15,9 @@ export const CheckPageView = ({
         <Box sx={{p: 3, mb: 2}}>
             <Stack direction="row" sx={{gap: 2, mb: 3}}>
                 <BackButton/>
-                <Typography variant="h3">Проверка знаний</Typography>
+                <Typography variant="h3" sx={{color: "#364963"}}>
+                    Проверка знаний
+                </Typography>
             </Stack>
 
             <Typography sx={{mb: 2, color: "#4e4e65"}} fontWeight={"700"}>
@@ -47,7 +49,6 @@ export const CheckPageView = ({
                         variant="outlined"
                         value={words[current] ?? ""}
                         sx={{maxWidth: "250px"}}
-                        InputProps={{readOnly: true}}
                     />
                 </Stack>
 
@@ -59,7 +60,9 @@ export const CheckPageView = ({
                         alignItems: "center"
                     }}
                 >
-                    <Typography variant="body1">Перевод на английский язык</Typography>
+                    <Typography variant="body1"  sx={{color: "#4e4e65"}}>
+                        Перевод на английский язык
+                    </Typography>
                     <Select
                         sx={{width: "250px"}}
                         value={translation}

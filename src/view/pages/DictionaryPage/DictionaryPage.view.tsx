@@ -29,12 +29,19 @@ export const DictionaryPageView = ({
         <>
             <Stack direction={"row"} sx={{mb: 3}}>
                 <BackButton/>
-                <Typography variant="h3" sx={{ml: 1}}>
+                <Typography variant="h3" sx={{color: "#364963", ml: 2}}>
                     Словарь
                 </Typography>
             </Stack>
-            <Button variant="contained" onClick={() => navigate("/new-word")} sx={{mb: 3}}>
-                + ДОБАВИТЬ СЛОВО
+            <Button
+                variant="contained"
+                onClick={() => navigate("/new-word")}
+                sx={{
+                    mb: 3,
+                    textTransform: "uppercase"
+                }}
+            >
+                + Добавить слово
             </Button>
             <Table>
                 <TableHead sx={{backgroundColor: "#dfe4ec"}}>

@@ -10,8 +10,8 @@ export const WordFormView = ({word, onSubmit}: ReturnType<typeof useWordForm>) =
 
     return (
         <Box>
-            <Box sx={{border: "1px solid #ededed", mb: 4}}>
-                <Box sx={{p: 4, borderBottom: "1px solid #ededed"}}>
+            <Box sx={{border: "2px solid #ededed", mb: 4, background: "#ffffff", borderRadius: 2}}>
+                <Box sx={{p: 4, borderBottom: "2px solid #ededed"}}>
                     <Typography variant="h5" component="h1">
                         Словарное слово
                     </Typography>

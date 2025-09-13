@@ -15,7 +15,9 @@ export const CheckPageView = ({
         <Box sx={{p: 3, mb: 2}}>
             <Stack direction="row" sx={{gap: 2, mb: 3}}>
                 <BackButton/>
-                <Typography variant="h3">Проверка знаний</Typography>
+                <Typography variant="h3" sx={{color: "#364963"}}>
+                    Проверка знаний
+                </Typography>
             </Stack>
 
             <Typography sx={{mb: 2, color: "#4e4e65"}} fontWeight={"700"}>

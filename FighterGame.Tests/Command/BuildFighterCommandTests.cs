@@ -1,3 +1,5 @@
+using Xunit;
+using Moq;
 using FighterGame.Command;
 using FighterGame.Domain.Model;
 using FighterGame.Domain.Model.Armor;
@@ -8,25 +10,22 @@ using FighterGame.Domain.Repository;
 using Menu.Core;
 using Menu.Infrastructure;
 using Menu.UI;
-using Moq;
 
 namespace FighterGame.Tests.Command
 {
-    [TestFixture]
     public class BuildFighterCommandTests
     {
-        private Mock<IUserInterface> _uiMock;
-        private Mock<IMenuRegistry> _registryMock;
-        private Mock<IFighterRepository> _fighterRepositoryMock;
-        private Mock<IClass> _classMock;
-        private Mock<IRace> _raceMock;
-        private Mock<IArmor> _armorMock;
-        private Mock<IWeapon> _weaponMock;
-        private FighterDto _fighterDto;
-        private BuildFighterCommand _sut;
+        private readonly Mock<IUserInterface> _uiMock;
+        private readonly Mock<IMenuRegistry> _registryMock;
+        private readonly Mock<IFighterRepository> _fighterRepositoryMock;
+        private readonly Mock<IClass> _classMock;
+        private readonly Mock<IRace> _raceMock;
+        private readonly Mock<IArmor> _armorMock;
+        private readonly Mock<IWeapon> _weaponMock;
+        private readonly FighterDto _fighterDto;
+        private readonly BuildFighterCommand _sut;
 
-        [SetUp]
-        public void SetUp()
+        public BuildFighterCommandTests()
         {
             _uiMock = new Mock<IUserInterface>();
             _registryMock = new Mock<IMenuRegistry>();
@@ -40,9 +39,10 @@ namespace FighterGame.Tests.Command
                 _fighterDto );
         }
 
-        [Test]
-        public void Execute_FighterIsBuiltSuccessfully_ShouldAddFighterToRepository()
+        [Fact]
+        public void Execute_WhenFighterBuiltSuccessfully_AddsFighterToRepository()
         {
+            // Arrange
             Fighter expectedFighter = new(
                 _fighterDto.Name,
                 _classMock.Object,
@@ -50,38 +50,47 @@ namespace FighterGame.Tests.Command
                 _armorMock.Object,
                 _weaponMock.Object );
 
+            // Act
             CommandResult result = _sut.Execute();
 
+            // Assert
             _fighterRepositoryMock.Verify( repo => repo.AddFighter(
                 It.Is<Fighter>( f => f.Name == expectedFighter.Name ) ), Times.Once );
             _registryMock.Verify( registry => registry.Remove(
                 It.Is<string>( id => id == "create-fighter" ) ), Times.Once );
-            Assert.That( result, Is.EqualTo( CommandResults.Back() ) );
+            Assert.Equal( CommandResults.Back(), result );
         }
 
-        [Test]
-        public void Execute_ExceptionThrown_ShouldDisplayErrorMessage()
+        [Fact]
+        public void Execute_WhenRepositoryThrows_ShouldDisplayErrorAndReturnBack()
         {
-            _fighterRepositoryMock.Setup( repo => repo.AddFighter( It.IsAny<Fighter>() ) )
+            // Arrange
+            _fighterRepositoryMock
+                .Setup( repo => repo.AddFighter( It.IsAny<Fighter>() ) )
                 .Throws( new Exception( "Ошибка при добавлении бойца" ) );
 
+            // Act
             CommandResult result = _sut.Execute();
 
+            // Assert
             _uiMock.Verify( ui => ui.WriteLine( It.Is<string>( msg =>
                 msg.Contains( "Ошибка: Ошибка при добавлении бойца" ) ) ), Times.Once );
-            Assert.That( result, Is.EqualTo( CommandResults.Back() ) );
+            Assert.Equal( CommandResults.Back(), result );
         }
 
-        [Test]
-        public void Execute_FighterDtoHasInvalidData_ShouldThrowException()
+        [Fact]
+        public void Execute_WhenFighterDtoNameEmpty_ShouldDisplayValidationMessageAndReturnBack()
         {
+            // Arrange
             _fighterDto.Name = "";
 
+            // Act
             CommandResult result = _sut.Execute();
 
+            // Assert
             _uiMock.Verify( ui => ui.WriteLine( It.Is<string>( msg =>
                 msg.Contains( "Ошибка: Имя не может быть пустым." ) ) ), Times.Once );
-            Assert.That( result, Is.EqualTo( CommandResults.Back() ) );
+            Assert.Equal( CommandResults.Back(), result );
         }
     }
 }

@@ -1,3 +1,5 @@
+using Xunit;
+using Moq;
 using FighterGame.Command;
 using FighterGame.Domain.Model;
 using FighterGame.Domain.Repository;
@@ -5,19 +7,17 @@ using Menu.Core;
 using Menu.Infrastructure;
 using Menu.Infrastructure.Menu;
 using Menu.UI;
-using Moq;
 
 namespace FighterGame.Tests.Command
 {
     public class PrepareToBattleCommandTests
     {
-        private Mock<IUserInterface> _uiMock;
-        private Mock<IMenuRegistry> _registryMock;
-        private Mock<IFighterRepository> _fighterRepositoryMock;
-        private PrepareToBattleCommand _sut;
+        private readonly Mock<IUserInterface> _uiMock;
+        private readonly Mock<IMenuRegistry> _registryMock;
+        private readonly Mock<IFighterRepository> _fighterRepositoryMock;
+        private readonly PrepareToBattleCommand _sut;
 
-        [SetUp]
-        public void SetUp()
+        public PrepareToBattleCommandTests()
         {
             _uiMock = new Mock<IUserInterface>();
             _registryMock = new Mock<IMenuRegistry>();
@@ -25,21 +25,25 @@ namespace FighterGame.Tests.Command
             _sut = new PrepareToBattleCommand( _uiMock.Object, _registryMock.Object, _fighterRepositoryMock.Object );
         }
 
-        [Test]
-        public void Execute_ShouldThrowException_WhenNoFightersFound()
+        [Fact]
+        public void Execute_WhenNoFightersFound_ShouldDisplayErrorAndContinue()
         {
+            // Arrange
             _fighterRepositoryMock.Setup( r => r.GetAllFighters() ).Returns( new List<IFighter>() );
 
+            // Act
             CommandResult result = _sut.Execute();
 
+            // Assert
             _uiMock.Verify( ui => ui.WriteLine( It.Is<string>( msg =>
                 msg.Contains( "Ошибка: Бойцов не обнаружено." ) ) ), Times.Once );
-            Assert.That( result, Is.EqualTo( CommandResults.Continue() ) );
+            Assert.Equal( CommandResults.Continue(), result );
         }
 
-        [Test]
-        public void Execute_ShouldAddFightersToMenu_WhenFightersExist()
+        [Fact]
+        public void Execute_WhenFightersExist_ShouldAddFightersToMenuAndReturnCommandResult()
         {
+            // Arrange
             List<IFighter> fighters =
             [
                 new Mock<IFighter>().Object,
@@ -47,11 +51,13 @@ namespace FighterGame.Tests.Command
             ];
             _fighterRepositoryMock.Setup( r => r.GetAllFighters() ).Returns( fighters );
 
+            // Act
             CommandResult result = _sut.Execute();
 
+            // Assert
             _registryMock.Verify( r => r.Add( It.IsAny<CommandMenu>() ), Times.Once );
             _uiMock.Verify( u => u.WriteLine( It.IsAny<string>() ), Times.Never );
-            Assert.That( result, Is.InstanceOf<CommandResult>() );
+            Assert.IsType<CommandResult>( result );
         }
     }
 }

@@ -1,70 +1,69 @@
+using Xunit;
+using Moq;
 using FighterGame.Command;
 using FighterGame.Domain.Model;
 using Menu.Core;
 using Menu.UI;
-using Moq;
 
 namespace FighterGame.Tests.Command
 {
     public class SelectNameCommandTests
     {
-        private Mock<IUserInterface> _uiMock;
-        private FighterDto _fighterDto;
-        private SelectNameCommand _sut;
+        private readonly Mock<IUserInterface> _uiMock;
+        private readonly FighterDto _fighterDto;
+        private readonly SelectNameCommand _sut;
 
-        [SetUp]
-        public void SetUp()
+        public SelectNameCommandTests()
         {
             _uiMock = new Mock<IUserInterface>();
             _fighterDto = new FighterDto();
             _sut = new SelectNameCommand( _uiMock.Object, _fighterDto );
         }
 
-        [Test]
-        public void Execute_ShouldThrowException_WhenNameIsEmpty()
+        [Fact]
+        public void Execute_WhenNameInputEmpty_ShouldKeepPreviousNameAndContinue()
         {
+            // Arrange
             string lastName = _fighterDto.Name;
             _uiMock.Setup( ui => ui.ReadLine( It.IsAny<string>() ) ).Returns( string.Empty );
 
+            // Act
             CommandResult result = _sut.Execute();
 
-            Assert.Multiple( () =>
-            {
-                Assert.That( _fighterDto.Name, Is.EqualTo( lastName ) );
-                Assert.That( result, Is.EqualTo( CommandResults.Continue() ) );
-            } );
+            // Assert
+            Assert.Equal( lastName, _fighterDto.Name );
+            Assert.Equal( CommandResults.Continue(), result );
         }
 
-
-        [Test]
-        public void Execute_ShouldThrowException_WhenNameIsWhitespaces()
+        [Fact]
+        public void Execute_WhenNameInputWhitespace_ShouldKeepPreviousNameAndContinue()
         {
+            // Arrange
             string lastName = _fighterDto.Name;
-            const string validName = "         ";
-            _uiMock.Setup( ui => ui.ReadLine( It.IsAny<string>() ) ).Returns( validName );
+            const string whitespaceName = "         ";
+            _uiMock.Setup( ui => ui.ReadLine( It.IsAny<string>() ) ).Returns( whitespaceName );
 
+            // Act
             CommandResult result = _sut.Execute();
 
-            Assert.Multiple( () =>
-            {
-                Assert.That( _fighterDto.Name, Is.EqualTo( lastName ) );
-                Assert.That( result, Is.EqualTo( CommandResults.Continue() ) );
-            } );
+            // Assert
+            Assert.Equal( lastName, _fighterDto.Name );
+            Assert.Equal( CommandResults.Continue(), result );
         }
 
-        [Test]
-        public void Execute_ShouldSetName_WhenValidNameIsProvided()
+        [Fact]
+        public void Execute_WhenValidNameProvided_ShouldSetNameAndContinue()
         {
+            // Arrange
             const string validName = "Test Name";
             _uiMock.Setup( ui => ui.ReadLine( It.IsAny<string>() ) ).Returns( validName );
 
+            // Act
             CommandResult result = _sut.Execute();
 
-            Assert.Multiple( () =>
-            {
-                Assert.That( _fighterDto.Name, Is.EqualTo( validName ) );
-                Assert.That( result, Is.EqualTo( CommandResults.Continue() ) );
-            } );
+            // Assert
+            Assert.Equal( validName, _fighterDto.Name );
+            Assert.Equal( CommandResults.Continue(), result );
         }
     }
 }

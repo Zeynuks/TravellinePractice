@@ -62,7 +62,7 @@ namespace FighterGame.Tests.Command
         }
 
         [Fact]
-        public void Execute_WhenRepositoryThrows_ShouldDisplayErrorAndReturnBack()
+        public void Execute_WhenRepositoryThrows_ShouldNotAddFighterAndDisplayErrorAndReturnBack()
         {
             // Arrange
             _fighterRepositoryMock
@@ -75,11 +75,14 @@ namespace FighterGame.Tests.Command
             // Assert
             _uiMock.Verify( ui => ui.WriteLine( It.Is<string>( msg =>
                 msg.Contains( "Ошибка: Ошибка при добавлении бойца" ) ) ), Times.Once );
+            _fighterRepositoryMock.Verify( r => r.AddFighter( It.IsAny<Fighter>() ), Times.Once );
+            _fighterRepositoryMock.VerifyNoOtherCalls();
             Assert.Equal( CommandResults.Back(), result );
         }
 
+
         [Fact]
-        public void Execute_WhenFighterDtoNameEmpty_ShouldDisplayValidationMessageAndReturnBack()
+        public void Execute_WhenFighterDtoNameEmpty_ShouldNotAddFighterAndDisplayValidationMessageAndReturnBack()
         {
             // Arrange
             _fighterDto.Name = "";
@@ -90,6 +93,7 @@ namespace FighterGame.Tests.Command
             // Assert
             _uiMock.Verify( ui => ui.WriteLine( It.Is<string>( msg =>
                 msg.Contains( "Ошибка: Имя не может быть пустым." ) ) ), Times.Once );
+            _fighterRepositoryMock.Verify( r => r.AddFighter( It.IsAny<IFighter>() ), Times.Never );
             Assert.Equal( CommandResults.Back(), result );
         }
     }
